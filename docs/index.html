@@ -25,10 +25,12 @@
     <nav class="nav-links">
       <a href="#scorecard">Scorecard</a>
       <a href="#trend">Trend</a>
+      <a href="#bracket">Bracket</a>
       <a href="#predictions">Predictions</a>
       <a href="#futures">Futures</a>
+      <a href="#goldenboot">Golden Boot</a>
       <a href="#race">Title Race</a>
-      <a href="#method">Behind the Scenes</a>
+      <a href="#method">Method</a>
     </nav>
   </header>
 
@@ -63,6 +65,16 @@
       </div>
     </section>
 
+    <section id="bracket" class="section">
+      <div class="section-head">
+        <h2>Knockout Bracket</h2>
+        <p>Paul's path to the trophy. Each tie shows the predicted scoreline; the predicted winner is highlighted, and played ties are graded once the result is in.</p>
+      </div>
+      <div class="bracket-scroll">
+        <div class="bracket" id="bracketTree"></div>
+      </div>
+    </section>
+
     <section id="predictions" class="section">
       <div class="section-head">
         <h2>Predictions &amp; Results</h2>
@@ -85,9 +97,17 @@
     <section id="futures" class="section">
       <div class="section-head">
         <h2>Futures</h2>
-        <p>The long bets locked at the start of the tournament.</p>
+        <p>The long bets locked at the start of the tournament — shown against Paul's current live favourite, so you can watch them hold or drift.</p>
       </div>
       <div class="futures" id="futures"></div>
+    </section>
+
+    <section id="goldenboot" class="section">
+      <div class="section-head">
+        <h2>Golden Boot Race</h2>
+        <p>Live standings for the tournament's top scorer, by implied probability. ⚽ marks a designated penalty taker.</p>
+      </div>
+      <div class="gb-board" id="goldenBoot"></div>
     </section>
 
     <section id="race" class="section">

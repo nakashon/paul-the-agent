@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-03T22:19:49.067812+00:00",
+  "generated_at": "2026-07-03T22:30:41.459566+00:00",
   "summary": {
     "matches_scored": 73,
     "exact": 8,
@@ -1368,12 +1368,390 @@
       "hit": null
     }
   ],
+  "bracket": [
+    {
+      "key": "r32",
+      "label": "Round of 32",
+      "matches": [
+        {
+          "home": "South Africa",
+          "away": "Canada",
+          "home_flag": "\ud83c\uddff\ud83c\udde6",
+          "away_flag": "\ud83c\udde8\ud83c\udde6",
+          "pred_home": 1,
+          "pred_away": 2,
+          "pred_winner": "Canada",
+          "status": "played",
+          "hit": "dir",
+          "actual_home": 0,
+          "actual_away": 1,
+          "actual_winner": "Canada"
+        },
+        {
+          "home": "Netherlands",
+          "away": "Morocco",
+          "home_flag": "\ud83c\uddf3\ud83c\uddf1",
+          "away_flag": "\ud83c\uddf2\ud83c\udde6",
+          "pred_home": 2,
+          "pred_away": 1,
+          "pred_winner": "Netherlands",
+          "status": "played",
+          "hit": "miss",
+          "actual_home": 1,
+          "actual_away": 1,
+          "actual_winner": null
+        },
+        {
+          "home": "Germany",
+          "away": "Paraguay",
+          "home_flag": "\ud83c\udde9\ud83c\uddea",
+          "away_flag": "\ud83c\uddf5\ud83c\uddfe",
+          "pred_home": 2,
+          "pred_away": 0,
+          "pred_winner": "Germany",
+          "status": "played",
+          "hit": "miss",
+          "actual_home": 1,
+          "actual_away": 1,
+          "actual_winner": null
+        },
+        {
+          "home": "France",
+          "away": "Sweden",
+          "home_flag": "\ud83c\uddeb\ud83c\uddf7",
+          "away_flag": "\ud83c\uddf8\ud83c\uddea",
+          "pred_home": 2,
+          "pred_away": 0,
+          "pred_winner": "France",
+          "status": "played",
+          "hit": "dir",
+          "actual_home": 3,
+          "actual_away": 0,
+          "actual_winner": "France"
+        },
+        {
+          "home": "Brazil",
+          "away": "Japan",
+          "home_flag": "\ud83c\udde7\ud83c\uddf7",
+          "away_flag": "\ud83c\uddef\ud83c\uddf5",
+          "pred_home": 2,
+          "pred_away": 1,
+          "pred_winner": "Brazil",
+          "status": "played",
+          "hit": "exact",
+          "actual_home": 2,
+          "actual_away": 1,
+          "actual_winner": "Brazil"
+        },
+        {
+          "home": "Ivory Coast",
+          "away": "Norway",
+          "home_flag": "\ud83c\udde8\ud83c\uddee",
+          "away_flag": "\ud83c\uddf3\ud83c\uddf4",
+          "pred_home": 1,
+          "pred_away": 2,
+          "pred_winner": "Norway",
+          "status": "played",
+          "hit": "exact",
+          "actual_home": 1,
+          "actual_away": 2,
+          "actual_winner": "Norway"
+        },
+        {
+          "home": "Mexico",
+          "away": "Ecuador",
+          "home_flag": "\ud83c\uddf2\ud83c\uddfd",
+          "away_flag": "\ud83c\uddea\ud83c\udde8",
+          "pred_home": 1,
+          "pred_away": 0,
+          "pred_winner": "Mexico",
+          "status": "played",
+          "hit": "dir",
+          "actual_home": 2,
+          "actual_away": 0,
+          "actual_winner": "Mexico"
+        },
+        {
+          "home": "England",
+          "away": "DR Congo",
+          "home_flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+          "away_flag": "\ud83c\udde8\ud83c\udde9",
+          "pred_home": 2,
+          "pred_away": 0,
+          "pred_winner": "England",
+          "status": "played",
+          "hit": "dir",
+          "actual_home": 2,
+          "actual_away": 1,
+          "actual_winner": "England"
+        },
+        {
+          "home": "USA",
+          "away": "Bosnia and Herzegovina",
+          "home_flag": "\ud83c\uddfa\ud83c\uddf8",
+          "away_flag": "\ud83c\udde7\ud83c\udde6",
+          "pred_home": 2,
+          "pred_away": 1,
+          "pred_winner": "USA",
+          "status": "played",
+          "hit": "dir",
+          "actual_home": 2,
+          "actual_away": 0,
+          "actual_winner": "USA"
+        },
+        {
+          "home": "Belgium",
+          "away": "Senegal",
+          "home_flag": "\ud83c\udde7\ud83c\uddea",
+          "away_flag": "\ud83c\uddf8\ud83c\uddf3",
+          "pred_home": 2,
+          "pred_away": 1,
+          "pred_winner": "Belgium",
+          "status": "played",
+          "hit": "dir",
+          "actual_home": 3,
+          "actual_away": 2,
+          "actual_winner": "Belgium"
+        },
+        {
+          "home": "Portugal",
+          "away": "Croatia",
+          "home_flag": "\ud83c\uddf5\ud83c\uddf9",
+          "away_flag": "\ud83c\udded\ud83c\uddf7",
+          "pred_home": 1,
+          "pred_away": 0,
+          "pred_winner": "Portugal",
+          "status": "played",
+          "hit": "dir",
+          "actual_home": 2,
+          "actual_away": 1,
+          "actual_winner": "Portugal"
+        },
+        {
+          "home": "Spain",
+          "away": "Austria",
+          "home_flag": "\ud83c\uddea\ud83c\uddf8",
+          "away_flag": "\ud83c\udde6\ud83c\uddf9",
+          "pred_home": 2,
+          "pred_away": 0,
+          "pred_winner": "Spain",
+          "status": "played",
+          "hit": "dir",
+          "actual_home": 3,
+          "actual_away": 0,
+          "actual_winner": "Spain"
+        },
+        {
+          "home": "Switzerland",
+          "away": "Algeria",
+          "home_flag": "\ud83c\udde8\ud83c\udded",
+          "away_flag": "\ud83c\udde9\ud83c\uddff",
+          "pred_home": 2,
+          "pred_away": 1,
+          "pred_winner": "Switzerland",
+          "status": "played",
+          "hit": "dir",
+          "actual_home": 2,
+          "actual_away": 0,
+          "actual_winner": "Switzerland"
+        },
+        {
+          "home": "Colombia",
+          "away": "Ghana",
+          "home_flag": "\ud83c\udde8\ud83c\uddf4",
+          "away_flag": "\ud83c\uddec\ud83c\udded",
+          "pred_home": 1,
+          "pred_away": 0,
+          "pred_winner": "Colombia",
+          "status": "pending",
+          "hit": null,
+          "actual_home": null,
+          "actual_away": null,
+          "actual_winner": null
+        },
+        {
+          "home": "Argentina",
+          "away": "Cape Verde",
+          "home_flag": "\ud83c\udde6\ud83c\uddf7",
+          "away_flag": "\ud83c\udde8\ud83c\uddfb",
+          "pred_home": 3,
+          "pred_away": 0,
+          "pred_winner": "Argentina",
+          "status": "pending",
+          "hit": null,
+          "actual_home": null,
+          "actual_away": null,
+          "actual_winner": null
+        },
+        {
+          "home": "Australia",
+          "away": "Egypt",
+          "home_flag": "\ud83c\udde6\ud83c\uddfa",
+          "away_flag": "\ud83c\uddea\ud83c\uddec",
+          "pred_home": 0,
+          "pred_away": 1,
+          "pred_winner": "Egypt",
+          "status": "played",
+          "hit": "miss",
+          "actual_home": 1,
+          "actual_away": 1,
+          "actual_winner": null
+        }
+      ]
+    },
+    {
+      "key": "r16",
+      "label": "Round of 16",
+      "matches": [
+        {
+          "home": "Canada",
+          "away": "Morocco",
+          "home_flag": "\ud83c\udde8\ud83c\udde6",
+          "away_flag": "\ud83c\uddf2\ud83c\udde6",
+          "pred_home": 0,
+          "pred_away": 1,
+          "pred_winner": "Morocco",
+          "status": "pending",
+          "hit": null,
+          "actual_home": null,
+          "actual_away": null,
+          "actual_winner": null
+        },
+        {
+          "home": "Paraguay",
+          "away": "France",
+          "home_flag": "\ud83c\uddf5\ud83c\uddfe",
+          "away_flag": "\ud83c\uddeb\ud83c\uddf7",
+          "pred_home": 0,
+          "pred_away": 2,
+          "pred_winner": "France",
+          "status": "pending",
+          "hit": null,
+          "actual_home": null,
+          "actual_away": null,
+          "actual_winner": null
+        },
+        {
+          "home": "Brazil",
+          "away": "Norway",
+          "home_flag": "\ud83c\udde7\ud83c\uddf7",
+          "away_flag": "\ud83c\uddf3\ud83c\uddf4",
+          "pred_home": 2,
+          "pred_away": 1,
+          "pred_winner": "Brazil",
+          "status": "pending",
+          "hit": null,
+          "actual_home": null,
+          "actual_away": null,
+          "actual_winner": null
+        },
+        {
+          "home": "Mexico",
+          "away": "England",
+          "home_flag": "\ud83c\uddf2\ud83c\uddfd",
+          "away_flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+          "pred_home": 1,
+          "pred_away": 2,
+          "pred_winner": "England",
+          "status": "pending",
+          "hit": null,
+          "actual_home": null,
+          "actual_away": null,
+          "actual_winner": null
+        },
+        {
+          "home": "USA",
+          "away": "Belgium",
+          "home_flag": "\ud83c\uddfa\ud83c\uddf8",
+          "away_flag": "\ud83c\udde7\ud83c\uddea",
+          "pred_home": 1,
+          "pred_away": 2,
+          "pred_winner": "Belgium",
+          "status": "pending",
+          "hit": null,
+          "actual_home": null,
+          "actual_away": null,
+          "actual_winner": null
+        },
+        {
+          "home": "Portugal",
+          "away": "Spain",
+          "home_flag": "\ud83c\uddf5\ud83c\uddf9",
+          "away_flag": "\ud83c\uddea\ud83c\uddf8",
+          "pred_home": 1,
+          "pred_away": 2,
+          "pred_winner": "Spain",
+          "status": "pending",
+          "hit": null,
+          "actual_home": null,
+          "actual_away": null,
+          "actual_winner": null
+        },
+        {
+          "home": "Switzerland",
+          "away": "Colombia",
+          "home_flag": "\ud83c\udde8\ud83c\udded",
+          "away_flag": "\ud83c\udde8\ud83c\uddf4",
+          "pred_home": 0,
+          "pred_away": 1,
+          "pred_winner": "Colombia",
+          "status": "pending",
+          "hit": null,
+          "actual_home": null,
+          "actual_away": null,
+          "actual_winner": null
+        },
+        {
+          "home": "Argentina",
+          "away": "Egypt",
+          "home_flag": "\ud83c\udde6\ud83c\uddf7",
+          "away_flag": "\ud83c\uddea\ud83c\uddec",
+          "pred_home": 2,
+          "pred_away": 0,
+          "pred_winner": "Argentina",
+          "status": "pending",
+          "hit": null,
+          "actual_home": null,
+          "actual_away": null,
+          "actual_winner": null
+        }
+      ]
+    },
+    {
+      "key": "qf",
+      "label": "Quarter-finals",
+      "matches": [
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    {
+      "key": "sf",
+      "label": "Semi-finals",
+      "matches": [
+        null,
+        null
+      ]
+    },
+    {
+      "key": "final",
+      "label": "Final",
+      "matches": [
+        null
+      ]
+    }
+  ],
   "futures": [
     {
       "kind": "champion",
       "label": "Champion",
       "pick": "Spain",
       "flag": "\ud83c\uddea\ud83c\uddf8",
+      "current": "Spain",
+      "current_flag": "\ud83c\uddea\ud83c\uddf8",
+      "holding": true,
       "status": "pending"
     },
     {
@@ -1381,7 +1759,84 @@
       "label": "Golden Boot",
       "pick": "Kylian Mbappe",
       "flag": "\ud83c\uddeb\ud83c\uddf7",
+      "current": "Kylian Mbappe",
+      "current_flag": "\ud83c\uddeb\ud83c\uddf7",
+      "holding": true,
       "status": "pending"
+    }
+  ],
+  "golden_boot": [
+    {
+      "player": "Kylian Mbappe",
+      "country": "France",
+      "flag": "\ud83c\uddeb\ud83c\uddf7",
+      "implied": 0.1429,
+      "share": 0.2412,
+      "penalty_taker": true,
+      "notes": "Defending GB winner; primary scorer + pen taker; France deep run expected"
+    },
+    {
+      "player": "Harry Kane",
+      "country": "England",
+      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+      "implied": 0.125,
+      "share": 0.211,
+      "penalty_taker": true,
+      "notes": "England captain, pen taker, favourable group"
+    },
+    {
+      "player": "Erling Haaland",
+      "country": "Norway",
+      "flag": "\ud83c\uddf3\ud83c\uddf4",
+      "implied": 0.0714,
+      "share": 0.1206,
+      "penalty_taker": true,
+      "notes": "Prolific but Norway unlikely to go deep -> fewer games"
+    },
+    {
+      "player": "Lionel Messi",
+      "country": "Argentina",
+      "flag": "\ud83c\udde6\ud83c\uddf7",
+      "implied": 0.0714,
+      "share": 0.1206,
+      "penalty_taker": false,
+      "notes": "Last WC; not guaranteed every-match scorer"
+    },
+    {
+      "player": "Lamine Yamal",
+      "country": "Spain",
+      "flag": "\ud83c\uddea\ud83c\uddf8",
+      "implied": 0.0556,
+      "share": 0.0938,
+      "penalty_taker": false,
+      "notes": "Spain attacking fulcrum; minor injury concern"
+    },
+    {
+      "player": "Cristiano Ronaldo",
+      "country": "Portugal",
+      "flag": "\ud83c\uddf5\ud83c\uddf9",
+      "implied": 0.0476,
+      "share": 0.0804,
+      "penalty_taker": true,
+      "notes": "Leads Portugal attack, pen taker"
+    },
+    {
+      "player": "Lautaro Martinez",
+      "country": "Argentina",
+      "flag": "\ud83c\udde6\ud83c\uddf7",
+      "implied": 0.04,
+      "share": 0.0675,
+      "penalty_taker": false,
+      "notes": "Value if he keeps starting"
+    },
+    {
+      "player": "Vinicius Junior",
+      "country": "Brazil",
+      "flag": "\ud83c\udde7\ud83c\uddf7",
+      "implied": 0.0385,
+      "share": 0.0649,
+      "penalty_taker": false,
+      "notes": "Explosive but not primary pen taker"
     }
   ],
   "odds": [

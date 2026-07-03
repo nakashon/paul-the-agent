@@ -150,12 +150,77 @@ function renderFutures(futures) {
   futures.forEach((f) => {
     const card = el("div", "future");
     card.appendChild(el("div", "ic", icons[f.kind] || "◆"));
-    const info = el("div");
+    const info = el("div", "f-info");
     info.appendChild(el("div", "lbl", f.label));
     info.appendChild(el("div", "pk", `<span class="flag">${f.flag}</span> ${f.pick}`));
-    info.appendChild(el("div", "mp", f.status === "pending" ? "Locked at kickoff · still live" : f.status));
+    const status = f.holding
+      ? `<span class="tag-hold">✓ still the favourite</span>`
+      : `<span class="tag-drift">now <span class="flag">${f.current_flag}</span> ${f.current}</span>`;
+    info.appendChild(
+      el("div", "f-compare",
+        `<span class="f-k">Locked pick</span> vs <span class="f-k">live model</span><br>${status}`)
+    );
     card.appendChild(info);
     wrap.appendChild(card);
+  });
+}
+
+function renderGoldenBoot(list) {
+  const wrap = document.getElementById("goldenBoot");
+  if (!list || !list.length) return;
+  const max = list[0].share || 1;
+  list.forEach((g, i) => {
+    const row = el("div", "gb-row" + (i === 0 ? " gb-lead" : ""));
+    row.appendChild(el("div", "gb-rank", `${i + 1}`));
+    row.appendChild(
+      el("div", "gb-name",
+        `<span class="flag">${g.flag}</span> ${g.player}${g.penalty_taker ? ' <span class="gb-pen" title="Penalty taker">⚽</span>' : ""}
+         <div class="gb-note">${g.notes || ""}</div>`)
+    );
+    const bar = el("div", "gb-bar");
+    const span = el("span");
+    span.style.width = "0%";
+    bar.appendChild(span);
+    row.appendChild(bar);
+    row.appendChild(el("div", "gb-pct", pct(g.share)));
+    wrap.appendChild(row);
+    setTimeout(() => (span.style.width = (g.share / max) * 100 + "%"), 250);
+  });
+}
+
+function bracketMatch(m) {
+  if (!m) {
+    return `<div class="bx bx-tbd"><div class="bx-team"><span class="bx-name">TBD</span></div>
+      <div class="bx-team"><span class="bx-name">TBD</span></div></div>`;
+  }
+  const hw = m.pred_winner === m.home ? " bx-win" : "";
+  const aw = m.pred_winner === m.away ? " bx-win" : "";
+  const badge = m.status === "played"
+    ? `<span class="bx-badge b-${m.hit}">${HIT_LABEL[m.hit]}</span>`
+    : `<span class="bx-badge b-pending">TBD</span>`;
+  const actual = m.status === "played"
+    ? `<span class="bx-actual">${m.actual_home}–${m.actual_away}</span>` : "";
+  return `<div class="bx bx-${m.status}">
+    <div class="bx-team${hw}"><span class="flag">${m.home_flag}</span>
+      <span class="bx-name">${m.home}</span><span class="bx-score">${m.pred_home}</span></div>
+    <div class="bx-team${aw}"><span class="flag">${m.away_flag}</span>
+      <span class="bx-name">${m.away}</span><span class="bx-score">${m.pred_away}</span></div>
+    <div class="bx-foot">${badge}${actual}</div>
+  </div>`;
+}
+
+function renderBracket(rounds) {
+  const wrap = document.getElementById("bracketTree");
+  if (!rounds || !rounds.length) return;
+  rounds.forEach((r, ri) => {
+    const col = el("div", `round r-${r.key}` + (ri === 0 ? " r-first" : "") + (ri === rounds.length - 1 ? " r-last" : ""));
+    col.appendChild(el("div", "round-head", r.label));
+    r.matches.forEach((m) => {
+      const cell = el("div", "match");
+      cell.innerHTML = bracketMatch(m);
+      col.appendChild(cell);
+    });
+    wrap.appendChild(col);
   });
 }
 
@@ -255,9 +320,11 @@ async function main() {
   renderHero(data.summary);
   renderScoreCards(data.summary);
   renderTrend(data.timeline);
+  renderBracket(data.bracket);
   renderFilters(data.predictions);
   renderTable("all");
   renderFutures(data.futures);
+  renderGoldenBoot(data.golden_boot);
   renderRace(data.odds);
   renderMethods();
   setupReveal();

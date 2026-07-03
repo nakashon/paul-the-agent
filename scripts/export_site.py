@@ -125,15 +125,52 @@ def build_futures(con):
     out = []
     picks = dict(con.execute("SELECT bet, pick FROM locked_futures"))
     labels = {"champion": "Champion", "golden_boot": "Golden Boot"}
+
+    # Current model-favourite for each market.
+    champ_row = con.execute(
+        "SELECT team FROM sim_results ORDER BY title DESC LIMIT 1").fetchone()
+    gb_row = con.execute(
+        "SELECT player FROM gb_candidates ORDER BY decimal_odds ASC LIMIT 1").fetchone()
+    current = {
+        "champion": champ_row[0] if champ_row else None,
+        "golden_boot": gb_row[0] if gb_row else None,
+    }
+
     for kind, pick in picks.items():
+        cur = current.get(kind)
+        is_player = kind == "golden_boot"
         out.append({
             "kind": kind,
             "label": labels.get(kind, kind.title()),
             "pick": pick,
-            "flag": flag(pick.split(" ")[-1]) if kind != "golden_boot" else flag_for_player(con, pick),
+            "flag": flag_for_player(con, pick) if is_player else flag(pick.split(" ")[-1]),
+            "current": cur,
+            "current_flag": (flag_for_player(con, cur) if is_player else flag(cur.split(" ")[-1])) if cur else "",
+            "holding": (cur == pick),
             "status": "pending",
         })
     return out
+
+
+def build_golden_boot(con):
+    """Current golden-boot race: candidates ranked by implied probability
+    (1 / decimal odds), normalised across the listed field for a clean share."""
+    rows = con.execute(
+        "SELECT player, country, decimal_odds, penalty_taker, notes "
+        "FROM gb_candidates ORDER BY decimal_odds ASC"
+    ).fetchall()
+    raw = [(p, c, 1.0 / o, pen, n) for p, c, o, pen, n in rows]
+    total = sum(r[2] for r in raw) or 1.0
+    return [
+        {
+            "player": p, "country": c, "flag": flag(c),
+            "implied": round(prob, 4),
+            "share": round(prob / total, 4),
+            "penalty_taker": bool(pen),
+            "notes": n,
+        }
+        for p, c, prob, pen, n in raw
+    ]
 
 
 def flag_for_player(con, player):
@@ -141,6 +178,76 @@ def flag_for_player(con, player):
         "SELECT country FROM gb_candidates WHERE player = ?", (player,)
     ).fetchone()
     return flag(row[0]) if row else "\U0001F3F3"
+
+
+# Knockout bracket wiring (from scripts/r32.py and scripts/r16.py). R32 games
+# are ordered so each adjacent pair feeds one R16 tie, top to bottom.
+R32_ORDER = [
+    ("South Africa", "Canada"), ("Netherlands", "Morocco"),
+    ("Germany", "Paraguay"), ("France", "Sweden"),
+    ("Brazil", "Japan"), ("Ivory Coast", "Norway"),
+    ("Mexico", "Ecuador"), ("England", "DR Congo"),
+    ("USA", "Bosnia and Herzegovina"), ("Belgium", "Senegal"),
+    ("Portugal", "Croatia"), ("Spain", "Austria"),
+    ("Switzerland", "Algeria"), ("Colombia", "Ghana"),
+    ("Argentina", "Cape Verde"), ("Australia", "Egypt"),
+]
+R16_ORDER = [
+    ("Canada", "Morocco"), ("Paraguay", "France"),
+    ("Brazil", "Norway"), ("Mexico", "England"),
+    ("USA", "Belgium"), ("Portugal", "Spain"),
+    ("Switzerland", "Colombia"), ("Argentina", "Egypt"),
+]
+
+
+def _winner(row):
+    """Predicted and actual winner team names (None if draw / not played)."""
+    pred_w = None
+    if row["pred_home"] > row["pred_away"]:
+        pred_w = row["home"]
+    elif row["pred_home"] < row["pred_away"]:
+        pred_w = row["away"]
+    act_w = None
+    if row["status"] == "played":
+        if row["actual_home"] > row["actual_away"]:
+            act_w = row["home"]
+        elif row["actual_home"] < row["actual_away"]:
+            act_w = row["away"]
+    return pred_w, act_w
+
+
+def build_bracket(preds):
+    """Structured knockout bracket: R32 -> R16 -> QF -> SF -> Final. Rounds not
+    yet predicted are emitted as empty placeholder slots so the tree is complete."""
+    by_key = {(p["home"], p["away"]): p for p in preds}
+
+    def match_from(pair):
+        p = by_key.get(pair)
+        if not p:
+            return None
+        pred_w, act_w = _winner(p)
+        return {
+            "home": p["home"], "away": p["away"],
+            "home_flag": p["home_flag"], "away_flag": p["away_flag"],
+            "pred_home": p["pred_home"], "pred_away": p["pred_away"],
+            "pred_winner": pred_w,
+            "status": p["status"], "hit": p["hit"],
+            "actual_home": p["actual_home"], "actual_away": p["actual_away"],
+            "actual_winner": act_w,
+        }
+
+    def placeholders(n):
+        return [None] * n
+
+    return [
+        {"key": "r32", "label": "Round of 32",
+         "matches": [match_from(x) for x in R32_ORDER]},
+        {"key": "r16", "label": "Round of 16",
+         "matches": [match_from(x) for x in R16_ORDER]},
+        {"key": "qf", "label": "Quarter-finals", "matches": placeholders(4)},
+        {"key": "sf", "label": "Semi-finals", "matches": placeholders(2)},
+        {"key": "final", "label": "Final", "matches": placeholders(1)},
+    ]
 
 
 def build_odds(con):
@@ -214,7 +321,9 @@ def main():
     results = load_results(con)
     preds = build_predictions(con, scoring, results)
     futures = build_futures(con)
+    golden_boot = build_golden_boot(con)
     odds = build_odds(con)
+    bracket = build_bracket(preds)
     summary = summarize(preds, futures)
     timeline = build_timeline(preds)
     con.close()
@@ -224,7 +333,9 @@ def main():
         "summary": summary,
         "timeline": timeline,
         "predictions": preds,
+        "bracket": bracket,
         "futures": futures,
+        "golden_boot": golden_boot,
         "odds": odds,
     }
     os.makedirs(os.path.dirname(OUT), exist_ok=True)

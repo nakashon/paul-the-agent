@@ -13,6 +13,7 @@
   --green: #34e6a4;
   --amber: #fbbf24;
   --red: #fb7185;
+  --line: rgba(255, 255, 255, 0.14);
   --radius: 18px;
   --shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.75);
 }
@@ -164,6 +165,66 @@ main, .nav, .foot { position: relative; z-index: 1; }
 
 /* Flags */
 .flag { font-size: 1.15em; vertical-align: -0.06em; }
+
+/* Knockout bracket */
+.bracket-scroll { overflow-x: auto; padding-bottom: 10px; }
+.bracket { --bx-gap: 40px; display: flex; gap: var(--bx-gap); min-width: max-content; align-items: stretch; }
+.round { display: flex; flex-direction: column; min-width: 208px; }
+.round-head {
+  text-align: center; color: var(--faint); font-size: 0.74rem; text-transform: uppercase;
+  letter-spacing: 0.08em; font-weight: 600; padding-bottom: 12px; position: sticky; left: 0;
+}
+.match { flex: 1 1 0; display: flex; align-items: center; position: relative; }
+/* horizontal connector out to the next round */
+.round:not(.r-last) .match::after {
+  content: ""; position: absolute; right: calc(-1 * var(--bx-gap)); top: 50%;
+  width: var(--bx-gap); height: 2px; background: var(--line);
+}
+/* vertical connector joining each pair of feeders into the current match */
+.round:not(.r-first) .match::before {
+  content: ""; position: absolute; left: -1px; top: 25%; height: 50%; width: 2px; background: var(--line);
+}
+.bx {
+  width: 100%; background: var(--card); border: 1px solid var(--card-brd); border-radius: 12px;
+  padding: 9px 11px; backdrop-filter: blur(6px); position: relative; z-index: 1;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.bx:hover { transform: translateY(-2px); border-color: rgba(163,230,53,0.28); }
+.bx-tbd { opacity: 0.5; border-style: dashed; }
+.bx-team { display: flex; align-items: center; gap: 7px; padding: 3px 0; color: var(--muted); font-size: 0.9rem; }
+.bx-team .bx-name { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bx-team .bx-score { font-family: "Sora"; font-weight: 700; color: var(--faint); }
+.bx-team.bx-win { color: var(--ink); font-weight: 600; }
+.bx-team.bx-win .bx-score { color: var(--grad-2); }
+.bx-foot { display: flex; align-items: center; justify-content: space-between; margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.06); }
+.bx-badge { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 2px 7px; border-radius: 6px; }
+.bx-actual { font-family: "Sora"; font-weight: 700; font-size: 0.8rem; color: var(--muted); }
+
+/* Golden boot race */
+.gb-board { display: flex; flex-direction: column; gap: 8px; }
+.gb-row {
+  display: grid; grid-template-columns: 34px minmax(160px, 1.4fr) 2fr 56px; align-items: center;
+  gap: 14px; padding: 12px 16px; background: var(--card); border: 1px solid var(--card-brd);
+  border-radius: 12px; transition: border-color 0.2s;
+}
+.gb-row:hover { border-color: rgba(255,255,255,0.16); }
+.gb-rank { font-family: "Sora"; font-weight: 800; color: var(--faint); text-align: center; }
+.gb-name { font-weight: 500; }
+.gb-name .gb-note { color: var(--faint); font-size: 0.76rem; font-weight: 400; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.gb-pen { font-size: 0.85em; }
+.gb-bar { height: 10px; border-radius: 99px; background: rgba(255,255,255,0.06); overflow: hidden; }
+.gb-bar > span { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--grad-1), var(--grad-2)); }
+.gb-pct { font-family: "Sora"; font-weight: 700; text-align: right; }
+.gb-lead { border-color: rgba(245,197,66,0.35); background: rgba(245,197,66,0.06); }
+.gb-lead .gb-rank, .gb-lead .gb-pct { color: var(--gold); }
+.gb-lead .gb-bar > span { background: linear-gradient(90deg, var(--gold), var(--amber)); }
+
+/* Futures compare */
+.future .f-info { min-width: 0; }
+.f-compare { color: var(--muted); font-size: 0.82rem; margin-top: 8px; line-height: 1.5; }
+.f-k { color: var(--faint); text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.05em; }
+.tag-hold { color: var(--green); font-weight: 600; }
+.tag-drift { color: var(--amber); font-weight: 600; }
 
 /* Trend chart */
 .trend-wrap {

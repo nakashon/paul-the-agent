@@ -14,7 +14,11 @@ kickoff, then grades itself against real results — no hindsight, no edits.
   the model's improvement over the tournament is visible.
 - **Predictions & results** — every locked pick (with team flags) vs. the actual
   score, colour coded as `Exact` / `Outcome` / `Miss`, filterable by round.
-- **Futures** — long bets (champion, golden boot) locked at the start.
+- **Knockout bracket** — a visual R32 → Final tree with predicted scorelines,
+  highlighted winners, and per-tie grading.
+- **Futures** — champion and golden-boot picks locked at the start, shown
+  against Paul's current live favourite so you can watch them hold or drift.
+- **Golden Boot race** — live top-scorer standings by implied probability.
 - **Title race** — live championship probability from tournament simulations.
 - **Behind the Scenes** — how the ensemble (Elo, form, momentum, market,
   Dixon–Coles, calibration, Monte Carlo) actually produces each pick.
