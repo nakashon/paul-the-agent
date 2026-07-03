@@ -9,18 +9,25 @@ kickoff, then grades itself against real results — no hindsight, no edits.
 
 ## What it shows
 
-- **Live scorecard** — points captured, outcome accuracy, exact-scoreline rate.
-- **Predictions & results** — every locked pick vs. the actual score, colour
-  coded as `Exact` / `Outcome` / `Miss`, filterable by round.
+- **Live scorecard** — outcome accuracy, exact-scoreline rate, hits vs. misses.
+- **Getting Sharper** — accuracy per round plus running cumulative accuracy, so
+  the model's improvement over the tournament is visible.
+- **Predictions & results** — every locked pick (with team flags) vs. the actual
+  score, colour coded as `Exact` / `Outcome` / `Miss`, filterable by round.
 - **Futures** — long bets (champion, golden boot) locked at the start.
 - **Title race** — live championship probability from tournament simulations.
+- **Behind the Scenes** — how the ensemble (Elo, form, momentum, market,
+  Dixon–Coles, calibration, Monte Carlo) actually produces each pick.
+
+> The internal points/scoring game is intentionally **not** shown on the site —
+> the public dashboard leads with accuracy instead.
 
 ## How it works
 
 1. Predictions and results live in `data/wc2026.db` (SQLite), maintained by the
    scripts in `scripts/`.
-2. `scripts/export_site.py` joins predictions against results, applies the
-   stage-based scoring rules (`scoring` table), and writes `docs/data.json`.
+2. `scripts/export_site.py` joins predictions against results, classifies each
+   pick as exact / correct-outcome / miss, and writes `docs/data.json`.
 3. `docs/` is a static site (no build step) that renders that JSON.
 
 ## Update the site after new results
@@ -40,7 +47,10 @@ cd docs && python -m http.server 8000
 # open http://localhost:8000
 ```
 
-## Scoring
+## Internal scoring (not shown on the site)
+
+These points power a private prediction game and are kept out of the public
+dashboard — they're documented here for reference only.
 
 | Stage | Correct outcome | Exact score |
 |-------|-----------------|-------------|

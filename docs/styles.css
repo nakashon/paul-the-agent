@@ -1,20 +1,20 @@
 :root {
-  --bg: #070a12;
-  --bg-2: #0b1020;
+  --bg: #080b0a;
+  --bg-2: #0d1311;
   --card: rgba(255, 255, 255, 0.035);
   --card-brd: rgba(255, 255, 255, 0.08);
-  --ink: #eaf0ff;
-  --muted: #8a94b3;
-  --faint: #5b6486;
-  --grad-1: #6d5efc;
-  --grad-2: #21d4fd;
-  --grad-3: #ff5e9c;
-  --gold: #ffd166;
-  --green: #35e6a4;
-  --amber: #ffb347;
-  --red: #ff6b81;
+  --ink: #eafaf0;
+  --muted: #8ca298;
+  --faint: #5c6f66;
+  --grad-1: #10b981;
+  --grad-2: #a3e635;
+  --grad-3: #f5b83d;
+  --gold: #f5c542;
+  --green: #34e6a4;
+  --amber: #fbbf24;
+  --red: #fb7185;
   --radius: 18px;
-  --shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.7);
+  --shadow: 0 20px 60px -20px rgba(0, 0, 0, 0.75);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -23,7 +23,7 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: "Space Grotesk", system-ui, sans-serif;
-  background: radial-gradient(1200px 800px at 80% -10%, #131a33 0%, var(--bg) 55%);
+  background: radial-gradient(1200px 800px at 80% -10%, #10201a 0%, var(--bg) 55%);
   color: var(--ink);
   min-height: 100vh;
   overflow-x: hidden;
@@ -74,7 +74,7 @@ main, .nav, .foot { position: relative; z-index: 1; }
 }
 .hstat .num { font-family: "Sora"; font-size: 2.1rem; font-weight: 800; letter-spacing: -0.02em; }
 .hstat .lbl { color: var(--faint); font-size: 0.82rem; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
-.num.g { color: var(--green); } .num.b { color: var(--grad-2); } .num.p { color: var(--grad-3); } .num.gold { color: var(--gold); }
+.num.g { color: var(--green); } .num.b { color: var(--grad-2); } .num.p { color: var(--grad-1); } .num.gold { color: var(--gold); }
 .updated { color: var(--faint); font-size: 0.82rem; margin-top: 24px; }
 
 /* Sections */
@@ -162,6 +162,43 @@ main, .nav, .foot { position: relative; z-index: 1; }
   flex-wrap: wrap; gap: 10px; color: var(--faint); font-size: 0.84rem;
 }
 
+/* Flags */
+.flag { font-size: 1.15em; vertical-align: -0.06em; }
+
+/* Trend chart */
+.trend-wrap {
+  background: var(--card); border: 1px solid var(--card-brd); border-radius: var(--radius);
+  padding: 22px 20px 12px; backdrop-filter: blur(8px); box-shadow: var(--shadow);
+}
+.trend-chart svg { width: 100%; height: auto; display: block; }
+.trend-chart .grid { stroke: rgba(255,255,255,0.06); stroke-width: 1; }
+.trend-chart .axis { fill: var(--faint); font-size: 12px; font-family: "Space Grotesk", sans-serif; }
+.trend-chart .pt-lbl { fill: var(--muted); font-size: 11px; font-family: "Sora", sans-serif; font-weight: 600; }
+.trend-chart .l-acc { stroke: var(--grad-2); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+.trend-chart .l-eff { stroke: var(--grad-1); stroke-width: 2.5; stroke-dasharray: 2 6; stroke-linecap: round; }
+.trend-chart .d-acc { fill: var(--grad-2); stroke: var(--bg); stroke-width: 2; }
+.trend-legend { display: flex; gap: 22px; justify-content: center; padding: 10px 0 6px; color: var(--muted); font-size: 0.85rem; }
+.trend-legend .sw { display: inline-block; width: 22px; height: 3px; border-radius: 2px; margin-right: 8px; vertical-align: middle; }
+.sw-acc { background: var(--grad-2); }
+.sw-eff { background: var(--grad-1); }
+
+/* Behind the scenes */
+.methods { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.method {
+  background: var(--card); border: 1px solid var(--card-brd); border-radius: var(--radius);
+  padding: 24px; transition: transform 0.25s, border-color 0.25s; backdrop-filter: blur(8px);
+}
+.method:hover { transform: translateY(-4px); border-color: rgba(163,230,53,0.28); }
+.method .m-ic { font-size: 1.7rem; }
+.method .m-name { font-family: "Sora"; font-weight: 700; font-size: 1.08rem; margin: 12px 0 8px; }
+.method .m-body { color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+.pipeline {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px;
+  margin-top: 26px; color: var(--muted); font-size: 0.86rem;
+}
+.pipeline span { padding: 8px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--card-brd); }
+.pipeline b { color: var(--grad-2); font-size: 1.1rem; }
+
 /* Reveal animation */
 .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
 .reveal.in { opacity: 1; transform: none; }
@@ -171,4 +208,5 @@ main, .nav, .foot { position: relative; z-index: 1; }
   .rrow { grid-template-columns: 100px 1fr 48px; gap: 10px; }
   .pred-table .rnd { font-size: 0.72rem; }
   .pred-table th:first-child, .pred-table td:first-child { display: none; }
+  .pipeline b { display: none; }
 }

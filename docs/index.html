@@ -24,9 +24,11 @@
     </div>
     <nav class="nav-links">
       <a href="#scorecard">Scorecard</a>
+      <a href="#trend">Trend</a>
       <a href="#predictions">Predictions</a>
       <a href="#futures">Futures</a>
       <a href="#race">Title Race</a>
+      <a href="#method">Behind the Scenes</a>
     </nav>
   </header>
 
@@ -47,6 +49,20 @@
       <div class="cards" id="scoreCards"></div>
     </section>
 
+    <section id="trend" class="section">
+      <div class="section-head">
+        <h2>Getting Sharper</h2>
+        <p>Accuracy per round and the running cumulative accuracy — the model re-fits its Elo, form and calibration after every matchday.</p>
+      </div>
+      <div class="trend-wrap">
+        <div class="trend-chart" id="trendChart"></div>
+        <div class="trend-legend">
+          <span><i class="sw sw-acc"></i>Round accuracy</span>
+          <span><i class="sw sw-eff"></i>Cumulative accuracy</span>
+        </div>
+      </div>
+    </section>
+
     <section id="predictions" class="section">
       <div class="section-head">
         <h2>Predictions &amp; Results</h2>
@@ -58,7 +74,7 @@
           <thead>
             <tr>
               <th>Round</th><th class="ta-r">Home</th><th class="ta-c">Pick</th>
-              <th class="ta-l">Away</th><th class="ta-c">Result</th><th class="ta-c">Pts</th>
+              <th class="ta-l">Away</th><th class="ta-c">Result</th>
             </tr>
           </thead>
           <tbody id="predBody"></tbody>
@@ -80,6 +96,21 @@
         <p>Live championship probability from 20,000 tournament simulations.</p>
       </div>
       <div class="race" id="race"></div>
+    </section>
+
+    <section id="method" class="section">
+      <div class="section-head">
+        <h2>Behind the Scenes</h2>
+        <p>Paul isn't a lucky octopus. Every pick is an ensemble of opponent-aware signals fused into expected goals, then a probability matrix over every scoreline.</p>
+      </div>
+      <div class="methods" id="methods"></div>
+      <div class="pipeline">
+        <span>Elo + Form + Momentum + Market</span>
+        <b>→</b><span>Expected goals λ</span>
+        <b>→</b><span>Dixon–Coles matrix</span>
+        <b>→</b><span>Calibrated pick</span>
+        <b>→</b><span>20k simulations</span>
+      </div>
     </section>
   </main>
 

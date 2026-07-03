@@ -1,8 +1,8 @@
 """Export prediction data to docs/data.json for the static GitHub Pages site.
 
-Joins every locked prediction against actual match results, applies the
-stage-based scoring rules, and produces a single JSON payload consumed by the
-front-end. Re-run whenever the database changes:
+Joins every locked prediction against actual match results, classifies each pick
+as exact / correct-outcome / miss, and produces a single JSON payload consumed
+by the front-end. Re-run whenever the database changes:
 
     python scripts/export_site.py
 """
@@ -14,6 +14,37 @@ from datetime import datetime, timezone
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DB = os.path.join(BASE, "data", "wc2026.db")
 OUT = os.path.join(BASE, "docs", "data.json")
+
+# Team -> ISO 3166-1 alpha-2 (for regional-indicator flag emoji). England and
+# Scotland use their subdivision flags handled separately below.
+ISO = {
+    "Algeria": "DZ", "Argentina": "AR", "Australia": "AU", "Austria": "AT",
+    "Belgium": "BE", "Bosnia and Herzegovina": "BA", "Brazil": "BR",
+    "Canada": "CA", "Cape Verde": "CV", "Colombia": "CO", "Croatia": "HR",
+    "Curacao": "CW", "Czechia": "CZ", "DR Congo": "CD", "Ecuador": "EC",
+    "Egypt": "EG", "France": "FR", "Germany": "DE", "Ghana": "GH",
+    "Haiti": "HT", "Iran": "IR", "Iraq": "IQ", "Ivory Coast": "CI",
+    "Japan": "JP", "Jordan": "JO", "Mexico": "MX", "Morocco": "MA",
+    "Netherlands": "NL", "New Zealand": "NZ", "Norway": "NO", "Panama": "PA",
+    "Paraguay": "PY", "Portugal": "PT", "Qatar": "QA", "Saudi Arabia": "SA",
+    "Senegal": "SN", "South Africa": "ZA", "South Korea": "KR", "Spain": "ES",
+    "Sweden": "SE", "Switzerland": "CH", "Tunisia": "TN", "Turkiye": "TR",
+    "USA": "US", "Uruguay": "UY", "Uzbekistan": "UZ",
+}
+_SUBDIVISION = {
+    # England / Scotland: tag-sequence emoji flags
+    "England": "\U0001F3F4\U000E0067\U000E0062\U000E0065\U000E006E\U000E0067\U000E007F",
+    "Scotland": "\U0001F3F4\U000E0067\U000E0062\U000E0073\U000E0063\U000E0074\U000E007F",
+}
+
+
+def flag(team):
+    if team in _SUBDIVISION:
+        return _SUBDIVISION[team]
+    iso = ISO.get(team)
+    if not iso:
+        return "\U0001F3F3"  # white flag fallback
+    return "".join(chr(0x1F1E6 + ord(c) - ord("A")) for c in iso)
 
 
 def direction(hg, ag):
@@ -59,6 +90,8 @@ def build_predictions(con, scoring, results):
                 "stage": stage,
                 "home": home,
                 "away": away,
+                "home_flag": flag(home),
+                "away_flag": flag(away),
                 "pred_home": ph,
                 "pred_away": pa,
                 "pred_dir": direction(ph, pa),
@@ -71,41 +104,43 @@ def build_predictions(con, scoring, results):
                     ag, hg, md = rev
                     actual = (hg, ag, md)
             if actual is None:
-                row.update({"status": "pending", "points": None,
+                row.update({"status": "pending",
                             "actual_home": None, "actual_away": None, "hit": None})
             else:
                 hg, ag, _md = actual
                 exact = (ph == hg and pa == ag)
                 dir_ok = direction(ph, pa) == direction(hg, ag)
-                pts = exact_pts if exact else (dir_pts if dir_ok else 0)
                 row.update({
                     "status": "played",
                     "actual_home": hg,
                     "actual_away": ag,
                     "actual_dir": direction(hg, ag),
                     "hit": "exact" if exact else ("dir" if dir_ok else "miss"),
-                    "points": pts,
-                    "max_points": exact_pts,
                 })
             out.append(row)
     return out
 
 
-def build_futures(con, scoring_futures):
+def build_futures(con):
     out = []
     picks = dict(con.execute("SELECT bet, pick FROM locked_futures"))
-    pts = dict(con.execute("SELECT kind, pts FROM futures_pts"))
     labels = {"champion": "Champion", "golden_boot": "Golden Boot"}
     for kind, pick in picks.items():
         out.append({
             "kind": kind,
             "label": labels.get(kind, kind.title()),
             "pick": pick,
-            "max_points": pts.get(kind, 0),
+            "flag": flag(pick.split(" ")[-1]) if kind != "golden_boot" else flag_for_player(con, pick),
             "status": "pending",
-            "points": None,
         })
     return out
+
+
+def flag_for_player(con, player):
+    row = con.execute(
+        "SELECT country FROM gb_candidates WHERE player = ?", (player,)
+    ).fetchone()
+    return flag(row[0]) if row else "\U0001F3F3"
 
 
 def build_odds(con):
@@ -113,15 +148,13 @@ def build_odds(con):
         "SELECT team, title, final, semi, adv FROM sim_results ORDER BY title DESC LIMIT 12"
     ).fetchall()
     return [
-        {"team": t, "title": ti, "final": f, "semi": s, "advance": a}
+        {"team": t, "flag": flag(t), "title": ti, "final": f, "semi": s, "advance": a}
         for t, ti, s, f, a in [(r[0], r[1], r[3], r[2], r[4]) for r in rows]
     ]
 
 
 def summarize(preds, futures):
     played = [p for p in preds if p["status"] == "played"]
-    total_pts = sum(p["points"] for p in played)
-    max_pts = sum(p["max_points"] for p in played)
     exact = sum(1 for p in played if p["hit"] == "exact")
     dir_only = sum(1 for p in played if p["hit"] == "dir")
     miss = sum(1 for p in played if p["hit"] == "miss")
@@ -129,9 +162,6 @@ def summarize(preds, futures):
     n = len(played)
     return {
         "matches_scored": n,
-        "total_points": total_pts,
-        "max_points": max_pts,
-        "efficiency": round(total_pts / max_pts, 4) if max_pts else 0,
         "exact": exact,
         "direction_only": dir_only,
         "miss": miss,
@@ -142,29 +172,66 @@ def summarize(preds, futures):
     }
 
 
+def build_timeline(preds):
+    """Per-round accuracy in chronological order, plus a running cumulative
+    accuracy so the model's improvement over the tournament is visible."""
+    order = []
+    groups = {}
+    for p in preds:
+        if p["status"] != "played":
+            continue
+        r = p["round"]
+        if r not in groups:
+            groups[r] = []
+            order.append(r)
+        groups[r].append(p)
+
+    timeline = []
+    cum_correct = cum_n = cum_exact = 0
+    for r in order:
+        rows = groups[r]
+        n = len(rows)
+        correct = sum(1 for p in rows if p["hit"] in ("exact", "dir"))
+        exact = sum(1 for p in rows if p["hit"] == "exact")
+        cum_correct += correct
+        cum_n += n
+        cum_exact += exact
+        timeline.append({
+            "round": r,
+            "matches": n,
+            "exact": exact,
+            "accuracy": round(correct / n, 4) if n else 0,
+            "exact_rate": round(exact / n, 4) if n else 0,
+            "cum_accuracy": round(cum_correct / cum_n, 4) if cum_n else 0,
+            "cum_exact_rate": round(cum_exact / cum_n, 4) if cum_n else 0,
+        })
+    return timeline
+
+
 def main():
     con = sqlite3.connect(DB)
     scoring = load_scoring(con)
     results = load_results(con)
     preds = build_predictions(con, scoring, results)
-    futures = build_futures(con, scoring)
+    futures = build_futures(con)
     odds = build_odds(con)
     summary = summarize(preds, futures)
+    timeline = build_timeline(preds)
     con.close()
 
     payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "summary": summary,
+        "timeline": timeline,
         "predictions": preds,
         "futures": futures,
         "odds": odds,
-        "scoring": scoring,
     }
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
     with open(OUT, "w") as f:
         json.dump(payload, f, indent=2)
-    print(f"Wrote {OUT}: {summary['matches_scored']} scored, "
-          f"{summary['total_points']}/{summary['max_points']} pts, "
+    print(f"Wrote {OUT}: {summary['matches_scored']} graded, "
+          f"{summary['outcome_accuracy']*100:.1f}% outcome accuracy, "
           f"{len(preds)} predictions total.")
 
 
