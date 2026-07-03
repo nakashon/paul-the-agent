@@ -5,7 +5,7 @@ spiritual successor to Paul the Octopus, only this one shows its work. An
 ensemble model (Dixon–Coles + Elo + momentum) locks a scoreline **before**
 kickoff, then grades itself against real results — no hindsight, no edits.
 
-**Live site:** `https://<your-username>.github.io/<repo>/`
+**Live site:** https://nakashon.github.io/paul-the-agent/
 
 ## What it shows
 
