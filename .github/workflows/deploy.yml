@@ -1,4 +1,4 @@
-name: Deploy WC26 Oracle to GitHub Pages
+name: Deploy Paul the Agent to GitHub Pages
 
 on:
   push:

@@ -1,6 +1,7 @@
-# WC26 Oracle 🔮
+# Paul the Agent 🐙
 
-A slick, self-grading dashboard for 2026 FIFA World Cup predictions. An
+A slick, self-grading dashboard for 2026 FIFA World Cup predictions — the
+spiritual successor to Paul the Octopus, only this one shows its work. An
 ensemble model (Dixon–Coles + Elo + momentum) locks a scoreline **before**
 kickoff, then grades itself against real results — no hindsight, no edits.
 
