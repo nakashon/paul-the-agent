@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-04T06:40:32.966964+00:00",
+  "generated_at": "2026-07-04T07:01:20.101122+00:00",
   "summary": {
     "matches_scored": 75,
     "exact": 9,
@@ -2938,86 +2938,110 @@
       "label": "Golden Boot",
       "pick": "Kylian Mbappe",
       "flag": "\ud83c\uddeb\ud83c\uddf7",
-      "current": "Kylian Mbappe",
-      "current_flag": "\ud83c\uddeb\ud83c\uddf7",
-      "holding": true,
+      "current": "Lionel Messi",
+      "current_flag": "\ud83c\udde6\ud83c\uddf7",
+      "holding": false,
       "status": "pending"
     }
   ],
-  "golden_boot": [
-    {
-      "player": "Kylian Mbappe",
-      "country": "France",
-      "flag": "\ud83c\uddeb\ud83c\uddf7",
-      "implied": 0.1429,
-      "share": 0.2412,
-      "penalty_taker": true,
-      "notes": "Defending GB winner; primary scorer + pen taker; France deep run expected"
-    },
-    {
-      "player": "Harry Kane",
-      "country": "England",
-      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
-      "implied": 0.125,
-      "share": 0.211,
-      "penalty_taker": true,
-      "notes": "England captain, pen taker, favourable group"
-    },
-    {
-      "player": "Erling Haaland",
-      "country": "Norway",
-      "flag": "\ud83c\uddf3\ud83c\uddf4",
-      "implied": 0.0714,
-      "share": 0.1206,
-      "penalty_taker": true,
-      "notes": "Prolific but Norway unlikely to go deep -> fewer games"
-    },
-    {
-      "player": "Lionel Messi",
-      "country": "Argentina",
-      "flag": "\ud83c\udde6\ud83c\uddf7",
-      "implied": 0.0714,
-      "share": 0.1206,
-      "penalty_taker": false,
-      "notes": "Last WC; not guaranteed every-match scorer"
-    },
-    {
-      "player": "Lamine Yamal",
-      "country": "Spain",
-      "flag": "\ud83c\uddea\ud83c\uddf8",
-      "implied": 0.0556,
-      "share": 0.0938,
-      "penalty_taker": false,
-      "notes": "Spain attacking fulcrum; minor injury concern"
-    },
-    {
-      "player": "Cristiano Ronaldo",
-      "country": "Portugal",
-      "flag": "\ud83c\uddf5\ud83c\uddf9",
-      "implied": 0.0476,
-      "share": 0.0804,
-      "penalty_taker": true,
-      "notes": "Leads Portugal attack, pen taker"
-    },
-    {
-      "player": "Lautaro Martinez",
-      "country": "Argentina",
-      "flag": "\ud83c\udde6\ud83c\uddf7",
-      "implied": 0.04,
-      "share": 0.0675,
-      "penalty_taker": false,
-      "notes": "Value if he keeps starting"
-    },
-    {
-      "player": "Vinicius Junior",
-      "country": "Brazil",
-      "flag": "\ud83c\udde7\ud83c\uddf7",
-      "implied": 0.0385,
-      "share": 0.0649,
-      "penalty_taker": false,
-      "notes": "Explosive but not primary pen taker"
-    }
-  ],
+  "golden_boot": {
+    "as_of": "Through the Round of 32",
+    "source": "Public tournament scoring data",
+    "locked_pick": "Kylian Mbappe",
+    "current_pick": "Lionel Messi",
+    "leader": "Lionel Messi",
+    "max_goals": 7,
+    "players": [
+      {
+        "player": "Lionel Messi",
+        "country": "Argentina",
+        "flag": "\ud83c\udde6\ud83c\uddf7",
+        "goals": 7,
+        "penalty_taker": false,
+        "alive": true,
+        "projection": 9.9,
+        "extra": 2.9,
+        "is_pick": true
+      },
+      {
+        "player": "Kylian Mbappe",
+        "country": "France",
+        "flag": "\ud83c\uddeb\ud83c\uddf7",
+        "goals": 6,
+        "penalty_taker": true,
+        "alive": true,
+        "projection": 8.3,
+        "extra": 2.3,
+        "is_pick": false
+      },
+      {
+        "player": "Erling Haaland",
+        "country": "Norway",
+        "flag": "\ud83c\uddf3\ud83c\uddf4",
+        "goals": 5,
+        "penalty_taker": true,
+        "alive": true,
+        "projection": 6.7,
+        "extra": 1.7,
+        "is_pick": false
+      },
+      {
+        "player": "Harry Kane",
+        "country": "England",
+        "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+        "goals": 5,
+        "penalty_taker": true,
+        "alive": true,
+        "projection": 6.9,
+        "extra": 1.9,
+        "is_pick": false
+      },
+      {
+        "player": "Ousmane Dembele",
+        "country": "France",
+        "flag": "\ud83c\uddeb\ud83c\uddf7",
+        "goals": 4,
+        "penalty_taker": false,
+        "alive": true,
+        "projection": 5.5,
+        "extra": 1.5,
+        "is_pick": false
+      },
+      {
+        "player": "Vinicius Junior",
+        "country": "Brazil",
+        "flag": "\ud83c\udde7\ud83c\uddf7",
+        "goals": 4,
+        "penalty_taker": false,
+        "alive": true,
+        "projection": 5.6,
+        "extra": 1.6,
+        "is_pick": false
+      },
+      {
+        "player": "Mikel Oyarzabal",
+        "country": "Spain",
+        "flag": "\ud83c\uddea\ud83c\uddf8",
+        "goals": 4,
+        "penalty_taker": true,
+        "alive": true,
+        "projection": 5.7,
+        "extra": 1.7,
+        "is_pick": false
+      },
+      {
+        "player": "Ismaila Sarr",
+        "country": "Senegal",
+        "flag": "\ud83c\uddf8\ud83c\uddf3",
+        "goals": 4,
+        "penalty_taker": false,
+        "alive": false,
+        "projection": 4.0,
+        "extra": 0.0,
+        "is_pick": false
+      }
+    ]
+  },
   "odds": [
     {
       "team": "Spain",

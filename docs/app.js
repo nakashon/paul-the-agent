@@ -162,16 +162,21 @@ function renderTable(filter) {
 
 function renderFilters(preds) {
   const wrap = document.getElementById("filters");
-  const stages = [...new Set(preds.map((p) => p.stage))];
+  const stageOrder = ["group", "r32", "r16", "qf", "sf", "final"];
+  const stages = [...new Set(preds.map((p) => p.stage))]
+    .sort((a, b) => stageOrder.indexOf(a) - stageOrder.indexOf(b));
   const stageLabel = { group: "Group", r32: "Round of 32", r16: "Round of 16", qf: "Quarters", sf: "Semis", final: "Final" };
+  // Default to the latest (current) round so the page opens compact, not with
+  // every result from the whole tournament.
+  const current = stages[stages.length - 1] || "all";
   const defs = [
-    { key: "all", label: "All" },
     ...stages.map((s) => ({ key: s, label: stageLabel[s] || s })),
     { key: "exact", label: "★ Exact hits" },
     { key: "pending", label: "Upcoming" },
+    { key: "all", label: "All rounds" },
   ];
-  defs.forEach((d, i) => {
-    const chip = el("button", "chip" + (i === 0 ? " active" : ""), d.label);
+  defs.forEach((d) => {
+    const chip = el("button", "chip" + (d.key === current ? " active" : ""), d.label);
     chip.onclick = () => {
       wrap.querySelectorAll(".chip").forEach((c) => c.classList.remove("active"));
       chip.classList.add("active");
@@ -179,6 +184,7 @@ function renderFilters(preds) {
     };
     wrap.appendChild(chip);
   });
+  renderTable(current);
 }
 
 function renderFutures(futures) {
@@ -202,26 +208,53 @@ function renderFutures(futures) {
   });
 }
 
-function renderGoldenBoot(list) {
+function renderGoldenBoot(gb) {
   const wrap = document.getElementById("goldenBoot");
-  if (!list || !list.length) return;
-  const max = list[0].share || 1;
-  list.forEach((g, i) => {
-    const row = el("div", "gb-row" + (i === 0 ? " gb-lead" : ""));
+  if (!gb || !gb.players || !gb.players.length) return;
+  const players = gb.players;
+  const max = gb.max_goals || 1;
+
+  // Paul's pick banner: locked pre-tournament vs current re-projection.
+  const pickHost = document.getElementById("gbPick");
+  if (pickHost && gb.current_pick) {
+    const pk = players.find((p) => p.is_pick) || {};
+    const changed = gb.current_pick !== gb.locked_pick;
+    pickHost.innerHTML = `
+      <div class="gbp-ic">🏆</div>
+      <div class="gbp-main">
+        <div class="gbp-lbl">Paul now predicts</div>
+        <div class="gbp-name"><span class="flag">${pk.flag || ""}</span> ${gb.current_pick}
+          <span class="gbp-goals">${pk.goals} goals</span></div>
+        <div class="gbp-sub">
+          ${changed
+            ? `Shifted off the locked pick <b>${gb.locked_pick}</b> — ${gb.current_pick} leads the race and Argentina are projected deep. On pace for <b>~${pk.projection}</b>.`
+            : `Still backing the locked pick <b>${gb.locked_pick}</b>. On pace for <b>~${pk.projection}</b>.`}
+        </div>
+      </div>
+      <div class="gbp-tag ${changed ? "gbp-drift" : "gbp-hold"}">${changed ? "Updated pick" : "Holding"}</div>`;
+  }
+
+  wrap.innerHTML = "";
+  players.forEach((g, i) => {
+    const row = el("div", "gb-row" + (g.is_pick ? " gb-lead" : "") + (!g.alive ? " gb-out" : ""));
     row.appendChild(el("div", "gb-rank", `${i + 1}`));
+    const meta = g.is_pick
+      ? `<span class="gb-badge">Paul's pick</span>`
+      : (!g.alive ? `<span class="gb-badge gb-elim">Eliminated</span>` : "");
     row.appendChild(
       el("div", "gb-name",
         `<span class="flag">${g.flag}</span> ${g.player}${g.penalty_taker ? ' <span class="gb-pen" title="Penalty taker">⚽</span>' : ""}
-         <div class="gb-note">${g.notes || ""}</div>`)
+         <div class="gb-note">${g.country}${g.alive && g.extra ? ` · on pace for ~${g.projection}` : (g.alive ? "" : " · out of the tournament")}</div>`)
     );
+    row.appendChild(meta ? el("div", "gb-mid", meta) : el("div", "gb-mid"));
     const bar = el("div", "gb-bar");
     const span = el("span");
     span.style.width = "0%";
     bar.appendChild(span);
     row.appendChild(bar);
-    row.appendChild(el("div", "gb-pct", pct(g.share)));
+    row.appendChild(el("div", "gb-pct", `${g.goals}<span class="gb-g">g</span>`));
     wrap.appendChild(row);
-    setTimeout(() => (span.style.width = (g.share / max) * 100 + "%"), 250);
+    setTimeout(() => (span.style.width = (g.goals / max) * 100 + "%"), 250);
   });
 }
 
@@ -361,7 +394,6 @@ async function main() {
   renderTrend(data.timeline);
   renderBracket(data.bracket);
   renderFilters(data.predictions);
-  renderTable("all");
   renderFutures(data.futures);
   renderGoldenBoot(data.golden_boot);
   renderRace(data.odds);

@@ -162,7 +162,7 @@ def build_predictions(con, scoring, results, elo, conf):
     return out
 
 
-def build_futures(con):
+def build_futures(con, gb_pick=None):
     out = []
     picks = dict(con.execute("SELECT bet, pick FROM locked_futures"))
     labels = {"champion": "Champion", "golden_boot": "Golden Boot"}
@@ -170,11 +170,9 @@ def build_futures(con):
     # Current model-favourite for each market.
     champ_row = con.execute(
         "SELECT team FROM sim_results ORDER BY title DESC LIMIT 1").fetchone()
-    gb_row = con.execute(
-        "SELECT player FROM gb_candidates ORDER BY decimal_odds ASC LIMIT 1").fetchone()
     current = {
         "champion": champ_row[0] if champ_row else None,
-        "golden_boot": gb_row[0] if gb_row else None,
+        "golden_boot": gb_pick,
     }
 
     for kind, pick in picks.items():
@@ -194,24 +192,73 @@ def build_futures(con):
 
 
 def build_golden_boot(con):
-    """Current golden-boot race: candidates ranked by implied probability
-    (1 / decimal odds), normalised across the listed field for a clean share."""
-    rows = con.execute(
-        "SELECT player, country, decimal_odds, penalty_taker, notes "
-        "FROM gb_candidates ORDER BY decimal_odds ASC"
-    ).fetchall()
-    raw = [(p, c, 1.0 / o, pen, n) for p, c, o, pen, n in rows]
-    total = sum(r[2] for r in raw) or 1.0
-    return [
-        {
-            "player": p, "country": c, "flag": flag(c),
-            "implied": round(prob, 4),
-            "share": round(prob / total, 4),
-            "penalty_taker": bool(pen),
-            "notes": n,
-        }
-        for p, c, prob, pen, n in raw
+    """Live golden-boot standings: real current goal tallies (sourced from
+    public tournament data) plus Paul's re-projected pick, which weighs each
+    contender's current goals against how deep his team is expected to run."""
+    # Current goals through the Round of 32 (public data, see GB_AS_OF).
+    # (player, country, goals, penalty_taker)
+    standings = [
+        ("Lionel Messi", "Argentina", 7, False),
+        ("Kylian Mbappe", "France", 6, True),
+        ("Erling Haaland", "Norway", 5, True),
+        ("Harry Kane", "England", 5, True),
+        ("Ousmane Dembele", "France", 4, False),
+        ("Vinicius Junior", "Brazil", 4, False),
+        ("Mikel Oyarzabal", "Spain", 4, True),
+        ("Ismaila Sarr", "Senegal", 4, False),
     ]
+
+    alive = {t for (t,) in con.execute(
+        "SELECT home FROM locked_bets_r16 UNION SELECT away FROM locked_bets_r16")}
+
+    # Expected remaining matches per team from the tournament simulation:
+    # they play the R16 tie for sure, then each later match with the modeled
+    # probability of reaching it.
+    depth = {}
+    for team, title, final, semi, adv in con.execute(
+            "SELECT team, title, final, semi, adv FROM sim_results"):
+        depth[team] = 1.0 + (adv or 0) + (semi or 0) + (final or 0)
+
+    games_played = 4  # MD1-3 + Round of 32
+    # Knockout scoring regresses (tougher defenses, fewer blowouts), so damp
+    # the extrapolated rate rather than projecting group-stage pace forward.
+    KO_DAMP = 0.7
+    rows = []
+    for player, country, goals, pen in standings:
+        is_alive = country in alive
+        rate = goals / games_played
+        e_rem = depth.get(country, 1.0) if is_alive else 0.0
+        extra = rate * e_rem * KO_DAMP
+        projection = goals + extra
+        rows.append({
+            "player": player, "country": country, "flag": flag(country),
+            "goals": goals, "penalty_taker": pen, "alive": is_alive,
+            "projection": round(projection, 1),
+            "extra": round(extra, 1),
+        })
+
+    # Paul's current pick = best projected finish among players still in.
+    pick = max((r for r in rows if r["alive"]),
+               key=lambda r: r["projection"], default=None)
+    for r in rows:
+        r["is_pick"] = bool(pick and r["player"] == pick["player"])
+
+    locked = con.execute(
+        "SELECT pick FROM locked_futures WHERE bet='golden_boot'").fetchone()
+    max_goals = max((r["goals"] for r in rows), default=1) or 1
+    return {
+        "as_of": GB_AS_OF,
+        "source": GB_SOURCE,
+        "locked_pick": locked[0] if locked else None,
+        "current_pick": pick["player"] if pick else None,
+        "leader": rows[0]["player"] if rows else None,
+        "max_goals": max_goals,
+        "players": rows,
+    }
+
+
+GB_AS_OF = "Through the Round of 32"
+GB_SOURCE = "Public tournament scoring data"
 
 
 def flag_for_player(con, player):
@@ -365,8 +412,8 @@ def main():
     elo = load_elo(con)
     conf = load_conf(con)
     preds = build_predictions(con, scoring, results, elo, conf)
-    futures = build_futures(con)
     golden_boot = build_golden_boot(con)
+    futures = build_futures(con, gb_pick=golden_boot.get("current_pick"))
     odds = build_odds(con)
     bracket = build_bracket(preds)
     summary = summarize(preds, futures)
