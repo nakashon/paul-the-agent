@@ -36,13 +36,28 @@ kickoff, then grades itself against real results — no hindsight, no edits.
 
 ## Update the site after new results
 
+The full matchday sync, in three commands:
+
 ```bash
-python scripts/add_result.py "Home" 2 1 "Away" 4   # record a played match
-python scripts/export_site.py                       # regenerate docs/data.json
+# 1. Record scores (fuzzy team-name matching; knockout draws require --pens)
+python3 scripts/result.py France 2 Portugal 1
+python3 scripts/result.py Spain 1 Brazil 1 --pens 5 4   # 1-1, Spain win 5-4 on pens
+
+# 2. Update Golden Boot goal tallies for anyone who scored
+python3 scripts/goals.py "Kylian Mbappe" +2
+python3 scripts/goals.py --new "Cole Palmer" England 1 --pen   # track a fresh scorer
+python3 scripts/goals.py --games 5                              # bump the shared pace counter once per round
+
+# 3. Sync everything: recalibrate, refresh pending bets, re-simulate title odds,
+#    and regenerate docs/data.json — all in one command
+python3 scripts/update.py
 ```
 
+Run any script with `-h`/no args for full usage and examples.
+
 Commit and push — the GitHub Actions workflow (`.github/workflows/deploy.yml`)
-regenerates the data and deploys to GitHub Pages automatically.
+regenerates `docs/data.json` from `data/wc2026.db` and deploys to GitHub Pages
+automatically.
 
 ## Local preview
 

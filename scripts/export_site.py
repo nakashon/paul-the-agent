@@ -219,21 +219,15 @@ def load_alive(con):
 
 
 def build_golden_boot(con, alive):
-    """Live golden-boot standings: real current goal tallies (sourced from
-    public tournament data) plus Paul's re-projected pick, which weighs each
-    contender's current goals against how deep his team is expected to run."""
-    # Current goals through the Round of 32 (public data, see GB_AS_OF).
-    # (player, country, goals, penalty_taker)
-    standings = [
-        ("Lionel Messi", "Argentina", 7, False),
-        ("Kylian Mbappe", "France", 6, True),
-        ("Erling Haaland", "Norway", 5, True),
-        ("Harry Kane", "England", 5, True),
-        ("Ousmane Dembele", "France", 4, False),
-        ("Vinicius Junior", "Brazil", 4, False),
-        ("Mikel Oyarzabal", "Spain", 4, True),
-        ("Ismaila Sarr", "Senegal", 4, False),
-    ]
+    """Live golden-boot standings: real current goal tallies (tracked in the
+    gb_live table, updated after every matchday via scripts/goals.py) plus
+    Paul's re-projected pick, which weighs each contender's current goals
+    against how deep his team is expected to run."""
+    ensure_gb_tables(con)
+    standings = [(p, c, g, bool(pen)) for p, c, g, pen in con.execute(
+        "SELECT player, country, goals, penalty_taker FROM gb_live")]
+    games_played, as_of, source = con.execute(
+        "SELECT games_played, as_of, source FROM gb_meta WHERE id=1").fetchone()
 
     # Expected remaining matches per team from the tournament simulation:
     # they play the R16 tie for sure, then each later match with the modeled
@@ -243,7 +237,6 @@ def build_golden_boot(con, alive):
             "SELECT team, title, final, semi, adv FROM sim_results"):
         depth[team] = 1.0 + (adv or 0) + (semi or 0) + (final or 0)
 
-    games_played = 4  # MD1-3 + Round of 32
     # Knockout scoring regresses (tougher defenses, fewer blowouts), so damp
     # the extrapolated rate rather than projecting group-stage pace forward.
     KO_DAMP = 0.7
@@ -260,6 +253,7 @@ def build_golden_boot(con, alive):
             "projection": round(projection, 1),
             "extra": round(extra, 1),
         })
+    rows.sort(key=lambda r: -r["goals"])  # goals scored so far sets the board order
 
     # Paul's current pick = best projected finish among players still in.
     pick = max((r for r in rows if r["alive"]),
@@ -271,8 +265,8 @@ def build_golden_boot(con, alive):
         "SELECT pick FROM locked_futures WHERE bet='golden_boot'").fetchone()
     max_goals = max((r["goals"] for r in rows), default=1) or 1
     return {
-        "as_of": GB_AS_OF,
-        "source": GB_SOURCE,
+        "as_of": as_of,
+        "source": source,
         "locked_pick": locked[0] if locked else None,
         "locked_flag": flag_for_player(con, locked[0]) if locked else "",
         "current_pick": pick["player"] if pick else None,
@@ -282,8 +276,50 @@ def build_golden_boot(con, alive):
     }
 
 
-GB_AS_OF = "Through the Round of 32"
-GB_SOURCE = "Public tournament scoring data"
+# Seed values for gb_live / gb_meta the first time either table is created —
+# matches scripts/goals.py's seed so both entry points agree on a fresh DB.
+GB_SEED = [
+    ("Lionel Messi", "Argentina", 7, 0),
+    ("Kylian Mbappe", "France", 6, 1),
+    ("Erling Haaland", "Norway", 5, 1),
+    ("Harry Kane", "England", 5, 1),
+    ("Ousmane Dembele", "France", 4, 0),
+    ("Vinicius Junior", "Brazil", 4, 0),
+    ("Mikel Oyarzabal", "Spain", 4, 1),
+    ("Ismaila Sarr", "Senegal", 4, 0),
+]
+GB_SEED_GAMES_PLAYED = 4
+GB_SEED_AS_OF = "Through the Round of 32"
+GB_SEED_SOURCE = "Public tournament scoring data"
+
+
+def ensure_gb_tables(con):
+    con.execute("""
+        CREATE TABLE IF NOT EXISTS gb_live (
+            player TEXT PRIMARY KEY,
+            country TEXT NOT NULL,
+            goals INTEGER NOT NULL DEFAULT 0,
+            penalty_taker INTEGER NOT NULL DEFAULT 0,
+            updated_at TEXT
+        )
+    """)
+    con.execute("""
+        CREATE TABLE IF NOT EXISTS gb_meta (
+            id INTEGER PRIMARY KEY CHECK (id = 1),
+            games_played INTEGER NOT NULL,
+            as_of TEXT NOT NULL,
+            source TEXT NOT NULL
+        )
+    """)
+    if con.execute("SELECT COUNT(*) FROM gb_live").fetchone()[0] == 0:
+        con.executemany(
+            "INSERT INTO gb_live(player, country, goals, penalty_taker, updated_at) "
+            "VALUES (?,?,?,?,NULL)", GB_SEED)
+    if con.execute("SELECT COUNT(*) FROM gb_meta").fetchone()[0] == 0:
+        con.execute(
+            "INSERT INTO gb_meta(id, games_played, as_of, source) VALUES (1,?,?,?)",
+            (GB_SEED_GAMES_PLAYED, GB_SEED_AS_OF, GB_SEED_SOURCE))
+    con.commit()
 
 
 def flag_for_player(con, player):

@@ -1,15 +1,18 @@
-"""Paul the Agent — one-command matchday update loop.
+"""Paul the Agent — one-command matchday sync.
 
-Runs the full pipeline after new results are in:
-  1. calibrate.py  — re-tune goal calibration from all stored results
-  2. model.py      — refresh every pending per-match bet (with calibration)
-  3. simulate.py   — re-run the Monte Carlo tournament for live title odds
+Run this after logging new results and goals to refresh everything, in order:
+  1. calibrate.py        — re-tune goal calibration from all stored results
+  2. model.py            — refresh every still-pending locked bet (with calibration)
+  3. simulate_bracket.py — re-run the bracket-aware Monte Carlo for live title odds
+                           (plays the actual set draw, not a bracket-blind reseed)
+  4. export_site.py      — regenerate docs/data.json for the website
 
 Usage:
-    # 1) log any new results first:
-    python add_result.py "Brazil" 2 1 "Morocco" 1
-    # 2) then run the loop:
-    python update.py
+    # 1) log whatever came in first:
+    python3 scripts/result.py "Home" 2 1 "Away"      # match score (add --pens for shootouts)
+    python3 scripts/goals.py "Player" +1              # golden boot goal tally
+    # 2) then run the sync:
+    python3 scripts/update.py
 """
 import os
 import subprocess
@@ -25,9 +28,9 @@ def run(script):
 
 
 def main():
-    for s in ("calibrate.py", "model.py", "simulate.py"):
+    for s in ("calibrate.py", "model.py", "simulate_bracket.py", "export_site.py"):
         run(s)
-    print("\n🐙 Paul the Agent — update complete. Bets and title odds refreshed.")
+    print("\n🐙 Paul the Agent — fully synced: model, title odds, and site data are all up to date.")
 
 
 if __name__ == "__main__":
