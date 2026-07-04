@@ -295,6 +295,8 @@ function bracketMatch(m) {
     : (m.confidence != null
         ? `<span class="bx-badge b-pending">${Math.round(m.confidence * 100)}%</span>`
         : `<span class="bx-badge b-pending">TBD</span>`);
+  const pens = m.pen_winner
+    ? `<div class="bx-pens">${m.pen_winner} adv. on pens ${m.pen_home}–${m.pen_away}</div>` : "";
   const actual = m.status === "played"
     ? `<span class="bx-actual">was ${m.actual_home}–${m.actual_away}</span>` : "";
   return `<div class="bx bx-${m.status}">
@@ -303,6 +305,7 @@ function bracketMatch(m) {
     <div class="bx-team${aw}"><span class="flag">${m.away_flag}</span>
       <span class="bx-name">${m.away}</span><span class="bx-score">${m.pred_away}</span></div>
     <div class="bx-foot">${badge}${actual}</div>
+    ${pens}
   </div>`;
 }
 

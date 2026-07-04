@@ -314,7 +314,8 @@ R16_ORDER = [
 
 
 def _winner(row):
-    """Predicted and actual winner team names (None if draw / not played)."""
+    """Predicted and actual winner team names (None if draw / not played).
+    A level knockout score is settled by the penalty shootout winner."""
     pred_w = None
     if row["pred_home"] > row["pred_away"]:
         pred_w = row["home"]
@@ -326,6 +327,8 @@ def _winner(row):
             act_w = row["home"]
         elif row["actual_home"] < row["actual_away"]:
             act_w = row["away"]
+        elif row.get("pen_winner"):
+            act_w = row["pen_winner"]
     return pred_w, act_w
 
 
@@ -349,6 +352,8 @@ def build_bracket(preds):
             "status": p["status"], "hit": p["hit"],
             "actual_home": p["actual_home"], "actual_away": p["actual_away"],
             "actual_winner": act_w,
+            "pen_home": p.get("pen_home"), "pen_away": p.get("pen_away"),
+            "pen_winner": p.get("pen_winner"),
         }
 
     def placeholders(n):

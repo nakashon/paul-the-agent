@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-04T20:14:30.628078+00:00",
+  "generated_at": "2026-07-04T21:06:29.246811+00:00",
   "summary": {
     "matches_scored": 75,
     "exact": 9,
@@ -2536,7 +2536,10 @@
           "hit": "dir",
           "actual_home": 0,
           "actual_away": 1,
-          "actual_winner": "Canada"
+          "actual_winner": "Canada",
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         },
         {
           "home": "Netherlands",
@@ -2561,7 +2564,10 @@
           "hit": "miss",
           "actual_home": 1,
           "actual_away": 1,
-          "actual_winner": null
+          "actual_winner": "Morocco",
+          "pen_home": 2,
+          "pen_away": 3,
+          "pen_winner": "Morocco"
         },
         {
           "home": "Germany",
@@ -2586,7 +2592,10 @@
           "hit": "miss",
           "actual_home": 1,
           "actual_away": 1,
-          "actual_winner": null
+          "actual_winner": "Paraguay",
+          "pen_home": 3,
+          "pen_away": 4,
+          "pen_winner": "Paraguay"
         },
         {
           "home": "France",
@@ -2611,7 +2620,10 @@
           "hit": "dir",
           "actual_home": 3,
           "actual_away": 0,
-          "actual_winner": "France"
+          "actual_winner": "France",
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         },
         {
           "home": "Brazil",
@@ -2636,7 +2648,10 @@
           "hit": "exact",
           "actual_home": 2,
           "actual_away": 1,
-          "actual_winner": "Brazil"
+          "actual_winner": "Brazil",
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         },
         {
           "home": "Ivory Coast",
@@ -2661,7 +2676,10 @@
           "hit": "exact",
           "actual_home": 1,
           "actual_away": 2,
-          "actual_winner": "Norway"
+          "actual_winner": "Norway",
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         },
         {
           "home": "Mexico",
@@ -2686,7 +2704,10 @@
           "hit": "dir",
           "actual_home": 2,
           "actual_away": 0,
-          "actual_winner": "Mexico"
+          "actual_winner": "Mexico",
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         },
         {
           "home": "England",
@@ -2711,7 +2732,10 @@
           "hit": "dir",
           "actual_home": 2,
           "actual_away": 1,
-          "actual_winner": "England"
+          "actual_winner": "England",
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         },
         {
           "home": "USA",
@@ -2736,7 +2760,10 @@
           "hit": "dir",
           "actual_home": 2,
           "actual_away": 0,
-          "actual_winner": "USA"
+          "actual_winner": "USA",
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         },
         {
           "home": "Belgium",
@@ -2761,7 +2788,10 @@
           "hit": "dir",
           "actual_home": 3,
           "actual_away": 2,
-          "actual_winner": "Belgium"
+          "actual_winner": "Belgium",
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         },
         {
           "home": "Portugal",
@@ -2786,7 +2816,10 @@
           "hit": "dir",
           "actual_home": 2,
           "actual_away": 1,
-          "actual_winner": "Portugal"
+          "actual_winner": "Portugal",
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         },
         {
           "home": "Spain",
@@ -2811,7 +2844,10 @@
           "hit": "dir",
           "actual_home": 3,
           "actual_away": 0,
-          "actual_winner": "Spain"
+          "actual_winner": "Spain",
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         },
         {
           "home": "Switzerland",
@@ -2836,7 +2872,10 @@
           "hit": "dir",
           "actual_home": 2,
           "actual_away": 0,
-          "actual_winner": "Switzerland"
+          "actual_winner": "Switzerland",
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         },
         {
           "home": "Colombia",
@@ -2861,7 +2900,10 @@
           "hit": "exact",
           "actual_home": 1,
           "actual_away": 0,
-          "actual_winner": "Colombia"
+          "actual_winner": "Colombia",
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         },
         {
           "home": "Argentina",
@@ -2886,7 +2928,10 @@
           "hit": "dir",
           "actual_home": 3,
           "actual_away": 2,
-          "actual_winner": "Argentina"
+          "actual_winner": "Argentina",
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         },
         {
           "home": "Australia",
@@ -2911,7 +2956,10 @@
           "hit": "dir",
           "actual_home": 1,
           "actual_away": 1,
-          "actual_winner": null
+          "actual_winner": "Egypt",
+          "pen_home": 2,
+          "pen_away": 4,
+          "pen_winner": "Egypt"
         }
       ]
     },
@@ -2942,7 +2990,10 @@
           "hit": null,
           "actual_home": null,
           "actual_away": null,
-          "actual_winner": null
+          "actual_winner": null,
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         },
         {
           "home": "Paraguay",
@@ -2967,7 +3018,10 @@
           "hit": null,
           "actual_home": null,
           "actual_away": null,
-          "actual_winner": null
+          "actual_winner": null,
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         },
         {
           "home": "Brazil",
@@ -2992,7 +3046,10 @@
           "hit": null,
           "actual_home": null,
           "actual_away": null,
-          "actual_winner": null
+          "actual_winner": null,
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         },
         {
           "home": "Mexico",
@@ -3017,7 +3074,10 @@
           "hit": null,
           "actual_home": null,
           "actual_away": null,
-          "actual_winner": null
+          "actual_winner": null,
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         },
         {
           "home": "USA",
@@ -3042,7 +3102,10 @@
           "hit": null,
           "actual_home": null,
           "actual_away": null,
-          "actual_winner": null
+          "actual_winner": null,
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         },
         {
           "home": "Portugal",
@@ -3067,7 +3130,10 @@
           "hit": null,
           "actual_home": null,
           "actual_away": null,
-          "actual_winner": null
+          "actual_winner": null,
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         },
         {
           "home": "Switzerland",
@@ -3092,7 +3158,10 @@
           "hit": null,
           "actual_home": null,
           "actual_away": null,
-          "actual_winner": null
+          "actual_winner": null,
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         },
         {
           "home": "Argentina",
@@ -3117,7 +3186,10 @@
           "hit": null,
           "actual_home": null,
           "actual_away": null,
-          "actual_winner": null
+          "actual_winner": null,
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         }
       ]
     },
