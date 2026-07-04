@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-04T07:01:20.101122+00:00",
+  "generated_at": "2026-07-04T07:16:51.920292+00:00",
   "summary": {
     "matches_scored": 75,
     "exact": 9,
@@ -2928,9 +2928,9 @@
       "label": "Champion",
       "pick": "Spain",
       "flag": "\ud83c\uddea\ud83c\uddf8",
-      "current": "Spain",
-      "current_flag": "\ud83c\uddea\ud83c\uddf8",
-      "holding": true,
+      "current": "France",
+      "current_flag": "\ud83c\uddeb\ud83c\uddf7",
+      "holding": false,
       "status": "pending"
     },
     {
@@ -2959,8 +2959,8 @@
         "goals": 7,
         "penalty_taker": false,
         "alive": true,
-        "projection": 9.9,
-        "extra": 2.9,
+        "projection": 10.1,
+        "extra": 3.1,
         "is_pick": true
       },
       {
@@ -2970,8 +2970,8 @@
         "goals": 6,
         "penalty_taker": true,
         "alive": true,
-        "projection": 8.3,
-        "extra": 2.3,
+        "projection": 8.9,
+        "extra": 2.9,
         "is_pick": false
       },
       {
@@ -2981,8 +2981,8 @@
         "goals": 5,
         "penalty_taker": true,
         "alive": true,
-        "projection": 6.7,
-        "extra": 1.7,
+        "projection": 6.4,
+        "extra": 1.4,
         "is_pick": false
       },
       {
@@ -2992,8 +2992,8 @@
         "goals": 5,
         "penalty_taker": true,
         "alive": true,
-        "projection": 6.9,
-        "extra": 1.9,
+        "projection": 6.8,
+        "extra": 1.8,
         "is_pick": false
       },
       {
@@ -3003,8 +3003,8 @@
         "goals": 4,
         "penalty_taker": false,
         "alive": true,
-        "projection": 5.5,
-        "extra": 1.5,
+        "projection": 6.0,
+        "extra": 2.0,
         "is_pick": false
       },
       {
@@ -3014,8 +3014,8 @@
         "goals": 4,
         "penalty_taker": false,
         "alive": true,
-        "projection": 5.6,
-        "extra": 1.6,
+        "projection": 5.5,
+        "extra": 1.5,
         "is_pick": false
       },
       {
@@ -3042,102 +3042,110 @@
       }
     ]
   },
+  "title_race": {
+    "locked_pick": "Spain",
+    "current_pick": "France",
+    "current_flag": "\ud83c\uddeb\ud83c\uddf7",
+    "title_pct": 0.19475,
+    "holding": false,
+    "sims": 20000
+  },
   "odds": [
+    {
+      "team": "France",
+      "flag": "\ud83c\uddeb\ud83c\uddf7",
+      "title": 0.19475,
+      "final": 0.3503,
+      "semi": 0.59295,
+      "advance": 0.85625
+    },
     {
       "team": "Spain",
       "flag": "\ud83c\uddea\ud83c\uddf8",
-      "title": 0.14005,
-      "final": 0.1982,
-      "semi": 0.29945,
-      "advance": 0.9298
+      "title": 0.179,
+      "final": 0.28865,
+      "semi": 0.4559,
+      "advance": 0.6282
     },
     {
       "team": "Argentina",
       "flag": "\ud83c\udde6\ud83c\uddf7",
-      "title": 0.10075,
-      "final": 0.14975,
-      "semi": 0.23735,
-      "advance": 0.95225
-    },
-    {
-      "team": "France",
-      "flag": "\ud83c\uddeb\ud83c\uddf7",
-      "title": 0.0716,
-      "final": 0.11045,
-      "semi": 0.1824,
-      "advance": 0.89685
-    },
-    {
-      "team": "England",
-      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
-      "title": 0.06155,
-      "final": 0.09955,
-      "semi": 0.17275,
-      "advance": 0.91925
+      "title": 0.1436,
+      "final": 0.26115,
+      "semi": 0.4922,
+      "advance": 0.78155
     },
     {
       "team": "Brazil",
       "flag": "\ud83c\udde7\ud83c\uddf7",
-      "title": 0.0597,
-      "final": 0.10135,
-      "semi": 0.20735,
-      "advance": 0.93235
+      "title": 0.08175,
+      "final": 0.16595,
+      "semi": 0.3257,
+      "advance": 0.62845
+    },
+    {
+      "team": "England",
+      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+      "title": 0.07945,
+      "final": 0.1615,
+      "semi": 0.30345,
+      "advance": 0.56305
     },
     {
       "team": "Portugal",
       "flag": "\ud83c\uddf5\ud83c\uddf9",
-      "title": 0.0525,
-      "final": 0.09065,
-      "semi": 0.19705,
-      "advance": 0.87775
-    },
-    {
-      "team": "Germany",
-      "flag": "\ud83c\udde9\ud83c\uddea",
-      "title": 0.04475,
-      "final": 0.09825,
-      "semi": 0.1814,
-      "advance": 0.99335
+      "title": 0.05455,
+      "final": 0.11055,
+      "semi": 0.22135,
+      "advance": 0.3718
     },
     {
       "team": "Colombia",
       "flag": "\ud83c\udde8\ud83c\uddf4",
-      "title": 0.03515,
-      "final": 0.06375,
-      "semi": 0.15345,
-      "advance": 0.8333
-    },
-    {
-      "team": "Japan",
-      "flag": "\ud83c\uddef\ud83c\uddf5",
-      "title": 0.0334,
-      "final": 0.0785,
-      "semi": 0.13865,
-      "advance": 0.7949
+      "title": 0.0479,
+      "final": 0.10915,
+      "semi": 0.24875,
+      "advance": 0.5662
     },
     {
       "team": "Mexico",
       "flag": "\ud83c\uddf2\ud83c\uddfd",
-      "title": 0.0304,
-      "final": 0.058,
-      "semi": 0.15035,
-      "advance": 0.9748
+      "title": 0.04445,
+      "final": 0.1009,
+      "semi": 0.21375,
+      "advance": 0.43695
     },
     {
-      "team": "Netherlands",
-      "flag": "\ud83c\uddf3\ud83c\uddf1",
-      "title": 0.02945,
-      "final": 0.0622,
-      "semi": 0.13405,
-      "advance": 0.79615
+      "team": "Morocco",
+      "flag": "\ud83c\uddf2\ud83c\udde6",
+      "title": 0.0377,
+      "final": 0.09675,
+      "semi": 0.2341,
+      "advance": 0.63155
+    },
+    {
+      "team": "Belgium",
+      "flag": "\ud83c\udde7\ud83c\uddea",
+      "title": 0.03585,
+      "final": 0.082,
+      "semi": 0.18185,
+      "advance": 0.5289
+    },
+    {
+      "team": "Switzerland",
+      "flag": "\ud83c\udde8\ud83c\udded",
+      "title": 0.03,
+      "final": 0.0714,
+      "semi": 0.1809,
+      "advance": 0.4338
     },
     {
       "team": "Norway",
       "flag": "\ud83c\uddf3\ud83c\uddf4",
-      "title": 0.02925,
-      "final": 0.0676,
-      "semi": 0.13,
-      "advance": 0.76105
+      "title": 0.02845,
+      "final": 0.06905,
+      "semi": 0.1571,
+      "advance": 0.37155
     }
   ]
 }

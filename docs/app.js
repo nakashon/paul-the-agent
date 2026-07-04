@@ -208,6 +208,18 @@ function renderFutures(futures) {
   });
 }
 
+function pickBanner(o) {
+  return `
+    <div class="pb-ic">${o.icon}</div>
+    <div class="pb-main">
+      <div class="pb-lbl">Paul now predicts</div>
+      <div class="pb-name"><span class="flag">${o.flag}</span> ${o.name}
+        <span class="pb-metric">${o.metric}</span></div>
+      <div class="pb-sub">${o.sub}</div>
+    </div>
+    <div class="pb-tag ${o.changed ? "pb-drift" : "pb-hold"}">${o.changed ? "Updated pick" : "Holding"}</div>`;
+}
+
 function renderGoldenBoot(gb) {
   const wrap = document.getElementById("goldenBoot");
   if (!gb || !gb.players || !gb.players.length) return;
@@ -219,19 +231,15 @@ function renderGoldenBoot(gb) {
   if (pickHost && gb.current_pick) {
     const pk = players.find((p) => p.is_pick) || {};
     const changed = gb.current_pick !== gb.locked_pick;
-    pickHost.innerHTML = `
-      <div class="gbp-ic">🏆</div>
-      <div class="gbp-main">
-        <div class="gbp-lbl">Paul now predicts</div>
-        <div class="gbp-name"><span class="flag">${pk.flag || ""}</span> ${gb.current_pick}
-          <span class="gbp-goals">${pk.goals} goals</span></div>
-        <div class="gbp-sub">
-          ${changed
-            ? `Shifted off the locked pick <b>${gb.locked_pick}</b> — ${gb.current_pick} leads the race and Argentina are projected deep. On pace for <b>~${pk.projection}</b>.`
-            : `Still backing the locked pick <b>${gb.locked_pick}</b>. On pace for <b>~${pk.projection}</b>.`}
-        </div>
-      </div>
-      <div class="gbp-tag ${changed ? "gbp-drift" : "gbp-hold"}">${changed ? "Updated pick" : "Holding"}</div>`;
+    pickHost.className = "pick-banner";
+    pickHost.innerHTML = pickBanner({
+      icon: "🏆", flag: pk.flag || "", name: gb.current_pick,
+      metric: `${pk.goals} goals`,
+      changed,
+      sub: changed
+        ? `Shifted off the locked pick <b>${gb.locked_pick}</b> — ${gb.current_pick} leads the race and his team is projected deep. On pace for <b>~${pk.projection}</b>.`
+        : `Still backing the locked pick <b>${gb.locked_pick}</b>. On pace for <b>~${pk.projection}</b>.`,
+    });
   }
 
   wrap.innerHTML = "";
@@ -296,11 +304,28 @@ function renderBracket(rounds) {
   });
 }
 
-function renderRace(odds) {
-  const wrap = document.getElementById("race");
+function renderRace(odds, title) {
+  const wrap = document.getElementById("raceList");
   const max = odds[0]?.title || 1;
+
+  const pickHost = document.getElementById("titlePick");
+  if (pickHost && title && title.current_pick) {
+    const changed = title.current_pick !== title.locked_pick;
+    const pctTxt = title.title_pct != null ? pct(title.title_pct) : "";
+    pickHost.className = "pick-banner";
+    pickHost.innerHTML = pickBanner({
+      icon: "🏆", flag: title.current_flag, name: title.current_pick,
+      metric: `${pctTxt} to lift it`,
+      changed,
+      sub: changed
+        ? `Shifted off the locked pick <b>${title.locked_pick}</b> — once the set bracket is simulated ${title.sims.toLocaleString()} times, <b>${title.current_pick}</b> have the clearest path and win it <b>${pctTxt}</b> of the time.`
+        : `Still backing the locked pick <b>${title.locked_pick}</b> — champions in <b>${pctTxt}</b> of ${title.sims.toLocaleString()} bracket simulations.`,
+    });
+  }
+
+  wrap.innerHTML = "";
   odds.forEach((o) => {
-    const row = el("div", "rrow");
+    const row = el("div", "rrow" + (title && o.team === title.current_pick ? " rpick" : ""));
     row.appendChild(el("div", "rteam", `<span class="flag">${o.flag}</span> ${o.team}`));
     const bar = el("div", "rbar");
     const span = el("span");
@@ -396,7 +421,7 @@ async function main() {
   renderFilters(data.predictions);
   renderFutures(data.futures);
   renderGoldenBoot(data.golden_boot);
-  renderRace(data.odds);
+  renderRace(data.odds, data.title_race);
   renderMethods();
   setupReveal();
 

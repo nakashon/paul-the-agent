@@ -197,6 +197,7 @@ main, .nav, .foot { position: relative; z-index: 1; }
 .rrow .rpct { font-family: "Sora"; font-weight: 700; text-align: right; }
 .rrow:first-child .rbar > span { background: linear-gradient(90deg, var(--gold), var(--amber)); }
 .rrow:first-child .rpct { color: var(--gold); }
+.rrow.rpick .rteam { font-weight: 700; }
 
 /* Footer */
 .foot {
@@ -242,23 +243,25 @@ main, .nav, .foot { position: relative; z-index: 1; }
 .bx-badge { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 2px 7px; border-radius: 6px; }
 .bx-actual { font-family: "Sora"; font-weight: 700; font-size: 0.8rem; color: var(--muted); }
 
-/* Golden boot race */
-.gb-pick {
+/* Shared "Paul now predicts" banner (golden boot + title race) */
+.pick-banner {
   display: flex; align-items: center; gap: 18px; margin-bottom: 18px;
   background: linear-gradient(100deg, rgba(245,197,66,0.12), rgba(245,197,66,0.03));
   border: 1px solid rgba(245,197,66,0.32); border-radius: var(--radius);
   padding: 20px 22px; position: relative; overflow: hidden;
 }
-.gbp-ic { font-size: 2.2rem; filter: drop-shadow(0 0 12px rgba(245,197,66,0.4)); }
-.gbp-main { flex: 1; min-width: 0; }
-.gbp-lbl { color: var(--gold); font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
-.gbp-name { font-family: "Sora"; font-size: 1.6rem; font-weight: 800; margin: 3px 0 6px; }
-.gbp-goals { font-size: 0.95rem; color: var(--gold); font-weight: 700; margin-left: 8px; }
-.gbp-sub { color: var(--muted); font-size: 0.88rem; line-height: 1.5; }
-.gbp-sub b { color: var(--ink); font-weight: 700; }
-.gbp-tag { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 6px 12px; border-radius: 8px; white-space: nowrap; }
-.gbp-drift { background: rgba(245,197,66,0.16); color: var(--gold); }
-.gbp-hold { background: rgba(52,230,164,0.14); color: var(--green); }
+.pb-ic { font-size: 2.2rem; filter: drop-shadow(0 0 12px rgba(245,197,66,0.4)); }
+.pb-main { flex: 1; min-width: 0; }
+.pb-lbl { color: var(--gold); font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+.pb-name { font-family: "Sora"; font-size: 1.6rem; font-weight: 800; margin: 3px 0 6px; }
+.pb-metric { font-size: 0.95rem; color: var(--gold); font-weight: 700; margin-left: 8px; }
+.pb-sub { color: var(--muted); font-size: 0.88rem; line-height: 1.5; }
+.pb-sub b { color: var(--ink); font-weight: 700; }
+.pb-tag { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 6px 12px; border-radius: 8px; white-space: nowrap; }
+.pb-drift { background: rgba(245,197,66,0.16); color: var(--gold); }
+.pb-hold { background: rgba(52,230,164,0.14); color: var(--green); }
+
+/* Golden boot race */
 
 .gb-board { display: flex; flex-direction: column; gap: 8px; }
 .gb-row {

@@ -191,7 +191,13 @@ def build_futures(con, gb_pick=None):
     return out
 
 
-def build_golden_boot(con):
+def load_alive(con):
+    """Teams still in the tournament = the 16 Round-of-16 participants."""
+    return {t for (t,) in con.execute(
+        "SELECT home FROM locked_bets_r16 UNION SELECT away FROM locked_bets_r16")}
+
+
+def build_golden_boot(con, alive):
     """Live golden-boot standings: real current goal tallies (sourced from
     public tournament data) plus Paul's re-projected pick, which weighs each
     contender's current goals against how deep his team is expected to run."""
@@ -207,9 +213,6 @@ def build_golden_boot(con):
         ("Mikel Oyarzabal", "Spain", 4, True),
         ("Ismaila Sarr", "Senegal", 4, False),
     ]
-
-    alive = {t for (t,) in con.execute(
-        "SELECT home FROM locked_bets_r16 UNION SELECT away FROM locked_bets_r16")}
 
     # Expected remaining matches per team from the tournament simulation:
     # they play the R16 tie for sure, then each later match with the modeled
@@ -340,10 +343,13 @@ def build_bracket(preds):
     ]
 
 
-def build_odds(con):
+def build_odds(con, alive=None):
     rows = con.execute(
-        "SELECT team, title, final, semi, adv FROM sim_results ORDER BY title DESC LIMIT 12"
+        "SELECT team, title, final, semi, adv FROM sim_results ORDER BY title DESC"
     ).fetchall()
+    if alive:
+        rows = [r for r in rows if r[0] in alive]
+    rows = rows[:12]
     return [
         {"team": t, "flag": flag(t), "title": ti, "final": f, "semi": s, "advance": a}
         for t, ti, s, f, a in [(r[0], r[1], r[3], r[2], r[4]) for r in rows]
@@ -405,6 +411,26 @@ def build_timeline(preds):
     return timeline
 
 
+def build_title_race(con, odds):
+    """Champion pick summary for the Title Race banner: the locked pre-tournament
+    pick vs Paul's current bracket-aware favourite, plus its title probability."""
+    locked = con.execute(
+        "SELECT pick FROM locked_futures WHERE bet='champion'").fetchone()
+    locked_pick = locked[0] if locked else None
+    current = odds[0]["team"] if odds else None
+    return {
+        "locked_pick": locked_pick,
+        "current_pick": current,
+        "current_flag": flag(current) if current else "",
+        "title_pct": odds[0]["title"] if odds else None,
+        "holding": (current == locked_pick),
+        "sims": SIM_COUNT,
+    }
+
+
+SIM_COUNT = 20000
+
+
 def main():
     con = sqlite3.connect(DB)
     scoring = load_scoring(con)
@@ -412,9 +438,11 @@ def main():
     elo = load_elo(con)
     conf = load_conf(con)
     preds = build_predictions(con, scoring, results, elo, conf)
-    golden_boot = build_golden_boot(con)
+    alive = load_alive(con)
+    golden_boot = build_golden_boot(con, alive)
     futures = build_futures(con, gb_pick=golden_boot.get("current_pick"))
-    odds = build_odds(con)
+    odds = build_odds(con, alive)
+    title_race = build_title_race(con, odds)
     bracket = build_bracket(preds)
     summary = summarize(preds, futures)
     timeline = build_timeline(preds)
@@ -428,6 +456,7 @@ def main():
         "bracket": bracket,
         "futures": futures,
         "golden_boot": golden_boot,
+        "title_race": title_race,
         "odds": odds,
     }
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
