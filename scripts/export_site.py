@@ -55,6 +55,42 @@ def direction(hg, ag):
     return "D"
 
 
+# Elo-based strength tiers (eloratings.net scale). Thresholds tuned to the
+# 48-team field so each band is meaningful.
+TIERS = [
+    (2020, "elite", "Elite"),
+    (1920, "contender", "Contender"),
+    (1830, "darkhorse", "Dark Horse"),
+    (1740, "challenger", "Challenger"),
+    (0, "underdog", "Underdog"),
+]
+
+
+def load_elo(con):
+    return {t: r for t, r in con.execute("SELECT team, rating FROM elo")}
+
+
+def tier_for(elo):
+    if elo is None:
+        return {"key": "unknown", "label": "—", "elo": None}
+    for cut, key, label in TIERS:
+        if elo >= cut:
+            return {"key": key, "label": label, "elo": round(elo)}
+    return {"key": "underdog", "label": "Underdog", "elo": round(elo)}
+
+
+def load_conf(con):
+    """Map (home, away) -> model win probability for the picked winner."""
+    conf = {}
+    for table in ("locked_bets_md2", "locked_bets_md3",
+                  "locked_bets_r32", "locked_bets_r16"):
+        for home, away, c in con.execute(
+                f"SELECT home, away, conf FROM {table}"):
+            if c is not None:
+                conf[(home, away)] = round(c, 4)
+    return conf
+
+
 def load_scoring(con):
     rows = con.execute("SELECT stage, dir_pts, exact_pts FROM scoring").fetchall()
     return {s: (d, e) for s, d, e in rows}
@@ -80,11 +116,13 @@ SOURCES = [
 ]
 
 
-def build_predictions(con, scoring, results):
+def build_predictions(con, scoring, results, elo, conf):
     out = []
     for table, cols, stage, label in SOURCES:
         dir_pts, exact_pts = scoring.get(stage, (1, 3))
         for home, away, ph, pa in con.execute(f"SELECT {cols} FROM {table}"):
+            pred_dir = direction(ph, pa)
+            win_prob = conf.get((home, away))
             row = {
                 "round": label,
                 "stage": stage,
@@ -92,9 +130,12 @@ def build_predictions(con, scoring, results):
                 "away": away,
                 "home_flag": flag(home),
                 "away_flag": flag(away),
+                "home_tier": tier_for(elo.get(home)),
+                "away_tier": tier_for(elo.get(away)),
                 "pred_home": ph,
                 "pred_away": pa,
-                "pred_dir": direction(ph, pa),
+                "pred_dir": pred_dir,
+                "confidence": win_prob,
             }
             actual = results.get((home, away))
             if actual is None:
@@ -229,8 +270,10 @@ def build_bracket(preds):
         return {
             "home": p["home"], "away": p["away"],
             "home_flag": p["home_flag"], "away_flag": p["away_flag"],
+            "home_tier": p["home_tier"], "away_tier": p["away_tier"],
             "pred_home": p["pred_home"], "pred_away": p["pred_away"],
             "pred_winner": pred_w,
+            "confidence": p.get("confidence"),
             "status": p["status"], "hit": p["hit"],
             "actual_home": p["actual_home"], "actual_away": p["actual_away"],
             "actual_winner": act_w,
@@ -319,7 +362,9 @@ def main():
     con = sqlite3.connect(DB)
     scoring = load_scoring(con)
     results = load_results(con)
-    preds = build_predictions(con, scoring, results)
+    elo = load_elo(con)
+    conf = load_conf(con)
+    preds = build_predictions(con, scoring, results, elo, conf)
     futures = build_futures(con)
     golden_boot = build_golden_boot(con)
     odds = build_odds(con)

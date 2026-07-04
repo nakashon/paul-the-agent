@@ -78,20 +78,15 @@
     <section id="predictions" class="section">
       <div class="section-head">
         <h2>Predictions &amp; Results</h2>
-        <p>Locked before kickoff. Exact scoreline, correct outcome, or a miss.</p>
+        <p>Every pick is locked before kickoff. Each card shows <b class="hl-pred">what Paul predicted</b> next to <b class="hl-real">what actually happened</b> — then grades itself.</p>
+      </div>
+      <div class="legend">
+        <span class="lg"><i class="lg-dot d-exact"></i>Exact score — nailed the exact scoreline</span>
+        <span class="lg"><i class="lg-dot d-dir"></i>Right winner — called the outcome, not the score</span>
+        <span class="lg"><i class="lg-dot d-miss"></i>Missed — wrong outcome</span>
       </div>
       <div class="filters" id="filters"></div>
-      <div class="table-wrap">
-        <table class="pred-table">
-          <thead>
-            <tr>
-              <th>Round</th><th class="ta-r">Home</th><th class="ta-c">Pick</th>
-              <th class="ta-l">Away</th><th class="ta-c">Result</th>
-            </tr>
-          </thead>
-          <tbody id="predBody"></tbody>
-        </table>
-      </div>
+      <div class="pred-list" id="predBody"></div>
     </section>
 
     <section id="futures" class="section">

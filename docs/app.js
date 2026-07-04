@@ -83,30 +83,67 @@ function renderScoreCards(s) {
 }
 
 const HIT_LABEL = { exact: "Exact", dir: "Outcome", miss: "Miss", pending: "Pending" };
+const VERDICT = {
+  exact: { cls: "v-exact", txt: "Exact score", ic: "🎯" },
+  dir: { cls: "v-dir", txt: "Right winner", ic: "✓" },
+  miss: { cls: "v-miss", txt: "Missed", ic: "✗" },
+};
+
+function tierChip(t) {
+  if (!t || t.key === "unknown") return "";
+  return `<span class="tier t-${t.key}" title="Elo ${t.elo}">${t.label}</span>`;
+}
 
 function predRow(p) {
-  const tr = el("tr");
-  tr.appendChild(el("td", "rnd", p.round));
-  tr.appendChild(el("td", "team ta-r", `${p.home} <span class="flag">${p.home_flag}</span>`));
-  tr.appendChild(
-    el("td", "ta-c", `<span class="pick">${p.pred_home}–${p.pred_away}</span>`)
-  );
-  tr.appendChild(el("td", "team ta-l", `<span class="flag">${p.away_flag}</span> ${p.away}`));
+  const status = p.status;
+  const hitCls = status === "pending" ? "pending" : p.hit;
+  const conf = p.confidence != null
+    ? `<span class="pm-conf">${Math.round(p.confidence * 100)}% confident</span>` : "";
 
-  if (p.status === "pending") {
-    tr.appendChild(el("td", "ta-c", `<span class="badge b-pending">TBD</span>`));
-  } else {
-    const cls = p.hit;
-    tr.appendChild(
-      el(
-        "td",
-        "ta-c",
-        `<span class="score">${p.actual_home}–${p.actual_away}</span>
-         <div class="badge b-${cls}" style="margin-top:5px">${HIT_LABEL[cls]}</div>`
-      )
-    );
-  }
-  return tr;
+  const predVal = `${p.pred_home}<span class="dash">–</span>${p.pred_away}`;
+  const actual = status === "played"
+    ? `<div class="pm-box b-real">
+         <div class="pm-cap">Actual result</div>
+         <div class="pm-val">${p.actual_home}<span class="dash">–</span>${p.actual_away}</div>
+       </div>`
+    : `<div class="pm-box b-tbd">
+         <div class="pm-cap">Actual result</div>
+         <div class="pm-val pm-wait">Not played yet</div>
+       </div>`;
+
+  const verdict = status === "played"
+    ? `<span class="verdict ${VERDICT[p.hit].cls}">${VERDICT[p.hit].ic} ${VERDICT[p.hit].txt}</span>`
+    : `<span class="verdict v-tbd">Upcoming</span>`;
+
+  const row = el("div", `pmatch pm-${hitCls}`);
+  row.innerHTML = `
+    <div class="pm-meta">
+      <span class="pm-round">${p.round}</span>
+      ${conf}
+    </div>
+    <div class="pm-teams">
+      <div class="pm-side pm-home">
+        <span class="flag">${p.home_flag}</span>
+        <span class="pm-name">${p.home}</span>
+        ${tierChip(p.home_tier)}
+      </div>
+      <span class="pm-vs">v</span>
+      <div class="pm-side pm-away">
+        ${tierChip(p.away_tier)}
+        <span class="pm-name">${p.away}</span>
+        <span class="flag">${p.away_flag}</span>
+      </div>
+    </div>
+    <div class="pm-scores">
+      <div class="pm-box b-pred">
+        <div class="pm-cap">Paul predicted</div>
+        <div class="pm-val">${predVal}</div>
+      </div>
+      <span class="pm-arrow">vs</span>
+      ${actual}
+    </div>
+    <div class="pm-verdict">${verdict}</div>`;
+  return row;
 }
 
 let ALL_PREDS = [];
@@ -120,7 +157,7 @@ function renderTable(filter) {
     return p.stage === filter;
   });
   list.forEach((p) => body.appendChild(predRow(p)));
-  if (!list.length) body.appendChild(el("tr", null, `<td colspan="5" style="text-align:center;color:var(--faint);padding:30px">No matches in this view.</td>`));
+  if (!list.length) body.appendChild(el("div", "pm-empty", "No matches in this view."));
 }
 
 function renderFilters(preds) {
@@ -197,9 +234,11 @@ function bracketMatch(m) {
   const aw = m.pred_winner === m.away ? " bx-win" : "";
   const badge = m.status === "played"
     ? `<span class="bx-badge b-${m.hit}">${HIT_LABEL[m.hit]}</span>`
-    : `<span class="bx-badge b-pending">TBD</span>`;
+    : (m.confidence != null
+        ? `<span class="bx-badge b-pending">${Math.round(m.confidence * 100)}%</span>`
+        : `<span class="bx-badge b-pending">TBD</span>`);
   const actual = m.status === "played"
-    ? `<span class="bx-actual">${m.actual_home}–${m.actual_away}</span>` : "";
+    ? `<span class="bx-actual">was ${m.actual_home}–${m.actual_away}</span>` : "";
   return `<div class="bx bx-${m.status}">
     <div class="bx-team${hw}"><span class="flag">${m.home_flag}</span>
       <span class="bx-name">${m.home}</span><span class="bx-score">${m.pred_home}</span></div>

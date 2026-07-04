@@ -37,16 +37,17 @@ R16_FIXTURES = [
     ("Argentina", "Egypt", True),        # W86 pending (Argentina v Cape Verde)
 ]
 
-# consensus-estimate 1X2 (decimal): match -> (home, draw, away)
+# LIVE market 1X2 (decimal): match -> (home, draw, away). Consensus across
+# Oddspedia / Oddschecker (bet365 / FanDuel), Jul 4 2026 (range midpoints).
 R16_MARKET = {
-    ("Canada", "Morocco"): (3.10, 3.20, 2.30),
-    ("Paraguay", "France"): (9.00, 5.25, 1.33),
-    ("Brazil", "Norway"): (1.75, 3.90, 4.50),
-    ("Mexico", "England"): (2.90, 3.25, 2.45),
-    ("USA", "Belgium"): (2.95, 3.30, 2.40),
-    ("Portugal", "Spain"): (3.40, 3.25, 2.15),
-    ("Switzerland", "Colombia"): (2.85, 3.20, 2.55),
-    ("Argentina", "Egypt"): (1.45, 4.20, 7.00),
+    ("Canada", "Morocco"): (5.25, 3.56, 1.88),
+    ("Paraguay", "France"): (22.0, 7.90, 1.23),
+    ("Brazil", "Norway"): (1.90, 3.84, 4.60),
+    ("Mexico", "England"): (3.55, 3.30, 2.54),
+    ("USA", "Belgium"): (2.84, 3.50, 2.68),
+    ("Portugal", "Spain"): (4.10, 3.75, 1.99),
+    ("Switzerland", "Colombia"): (3.59, 3.32, 2.27),
+    ("Argentina", "Egypt"): (1.38, 5.10, 9.50),
 }
 
 
