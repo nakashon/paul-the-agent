@@ -25,17 +25,23 @@ spec = importlib.util.spec_from_file_location(
 M = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(M)
 
-# Fixed Round-of-16 ties, top-to-bottom in bracket order. Adjacent ties feed a
-# quarter-final; QF1/QF2 feed SF1 and QF3/QF4 feed SF2 (standard bracket).
+# Fixed Round-of-16 ties in the REAL 2026 bracket order (top-to-bottom), verified
+# against the official FIFA match tree (R16 matches 89-96 -> QF 97-100 -> SF
+# 101-102). Adjacent ties feed a quarter-final; QF0/QF1 feed SF1 (top half) and
+# QF2/QF3 feed SF2 (bottom half). This puts France (QF0) and Spain (QF1) in the
+# SAME half, so they meet in a semi-final, while Argentina (QF3) sits in the
+# opposite half and can only meet them in the final.
+#   Top half  (SF1): Paraguay/France, Canada/Morocco, Portugal/Spain, USA/Belgium
+#   Bottom half(SF2): Brazil/Norway, Mexico/England, Argentina/Egypt, Switzerland/Colombia
 R16 = [
-    ("Canada", "Morocco"),
     ("Paraguay", "France"),
+    ("Canada", "Morocco"),
+    ("Portugal", "Spain"),
+    ("USA", "Belgium"),
     ("Brazil", "Norway"),
     ("Mexico", "England"),
-    ("USA", "Belgium"),
-    ("Portugal", "Spain"),
-    ("Switzerland", "Colombia"),
     ("Argentina", "Egypt"),
+    ("Switzerland", "Colombia"),
 ]
 
 # Live R16 market 1X2 (decimal) from scripts/r16.py, so the first knockout round

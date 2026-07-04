@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-04T07:16:51.920292+00:00",
+  "generated_at": "2026-07-04T11:28:45.605859+00:00",
   "summary": {
     "matches_scored": 75,
     "exact": 9,
@@ -2992,8 +2992,8 @@
         "goals": 5,
         "penalty_taker": true,
         "alive": true,
-        "projection": 6.8,
-        "extra": 1.8,
+        "projection": 6.7,
+        "extra": 1.7,
         "is_pick": false
       },
       {
@@ -3003,8 +3003,8 @@
         "goals": 4,
         "penalty_taker": false,
         "alive": true,
-        "projection": 6.0,
-        "extra": 2.0,
+        "projection": 5.9,
+        "extra": 1.9,
         "is_pick": false
       },
       {
@@ -3046,7 +3046,7 @@
     "locked_pick": "Spain",
     "current_pick": "France",
     "current_flag": "\ud83c\uddeb\ud83c\uddf7",
-    "title_pct": 0.19475,
+    "title_pct": 0.18925,
     "holding": false,
     "sims": 20000
   },
@@ -3054,98 +3054,98 @@
     {
       "team": "France",
       "flag": "\ud83c\uddeb\ud83c\uddf7",
-      "title": 0.19475,
-      "final": 0.3503,
-      "semi": 0.59295,
-      "advance": 0.85625
+      "title": 0.18925,
+      "final": 0.32575,
+      "semi": 0.5902,
+      "advance": 0.85115
     },
     {
       "team": "Spain",
       "flag": "\ud83c\uddea\ud83c\uddf8",
-      "title": 0.179,
-      "final": 0.28865,
-      "semi": 0.4559,
-      "advance": 0.6282
+      "title": 0.1828,
+      "final": 0.289,
+      "semi": 0.45445,
+      "advance": 0.6279
     },
     {
       "team": "Argentina",
       "flag": "\ud83c\udde6\ud83c\uddf7",
-      "title": 0.1436,
-      "final": 0.26115,
-      "semi": 0.4922,
-      "advance": 0.78155
+      "title": 0.1458,
+      "final": 0.2798,
+      "semi": 0.4958,
+      "advance": 0.7846
     },
     {
       "team": "Brazil",
       "flag": "\ud83c\udde7\ud83c\uddf7",
-      "title": 0.08175,
-      "final": 0.16595,
-      "semi": 0.3257,
-      "advance": 0.62845
+      "title": 0.09115,
+      "final": 0.18055,
+      "semi": 0.3373,
+      "advance": 0.631
     },
     {
       "team": "England",
       "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
-      "title": 0.07945,
-      "final": 0.1615,
-      "semi": 0.30345,
-      "advance": 0.56305
+      "title": 0.0744,
+      "final": 0.15305,
+      "semi": 0.29105,
+      "advance": 0.5515
     },
     {
       "team": "Portugal",
       "flag": "\ud83c\uddf5\ud83c\uddf9",
-      "title": 0.05455,
-      "final": 0.11055,
+      "title": 0.05175,
+      "final": 0.10895,
       "semi": 0.22135,
-      "advance": 0.3718
+      "advance": 0.3721
     },
     {
       "team": "Colombia",
       "flag": "\ud83c\udde8\ud83c\uddf4",
-      "title": 0.0479,
-      "final": 0.10915,
-      "semi": 0.24875,
-      "advance": 0.5662
+      "title": 0.04785,
+      "final": 0.112,
+      "semi": 0.2523,
+      "advance": 0.56385
     },
     {
       "team": "Mexico",
       "flag": "\ud83c\uddf2\ud83c\uddfd",
-      "title": 0.04445,
-      "final": 0.1009,
-      "semi": 0.21375,
-      "advance": 0.43695
+      "title": 0.04615,
+      "final": 0.10355,
+      "semi": 0.2118,
+      "advance": 0.4485
     },
     {
       "team": "Morocco",
       "flag": "\ud83c\uddf2\ud83c\udde6",
-      "title": 0.0377,
-      "final": 0.09675,
-      "semi": 0.2341,
-      "advance": 0.63155
+      "title": 0.0349,
+      "final": 0.09025,
+      "semi": 0.2384,
+      "advance": 0.6349
     },
     {
       "team": "Belgium",
       "flag": "\ud83c\udde7\ud83c\uddea",
-      "title": 0.03585,
-      "final": 0.082,
-      "semi": 0.18185,
-      "advance": 0.5289
+      "title": 0.03305,
+      "final": 0.07855,
+      "semi": 0.1804,
+      "advance": 0.5284
     },
     {
       "team": "Switzerland",
       "flag": "\ud83c\udde8\ud83c\udded",
-      "title": 0.03,
-      "final": 0.0714,
-      "semi": 0.1809,
-      "advance": 0.4338
+      "title": 0.0295,
+      "final": 0.0746,
+      "semi": 0.17405,
+      "advance": 0.43615
     },
     {
       "team": "Norway",
       "flag": "\ud83c\uddf3\ud83c\uddf4",
-      "title": 0.02845,
-      "final": 0.06905,
-      "semi": 0.1571,
-      "advance": 0.37155
+      "title": 0.027,
+      "final": 0.0707,
+      "semi": 0.15985,
+      "advance": 0.369
     }
   ]
 }
