@@ -90,10 +90,43 @@ def play(a, b, p):
     return a if random.random() < p[(a, b)] else b
 
 
+def load_decided(con):
+    """Map each R16 tie to its real winner, for ties already played (penalties
+    count as the decider on a level score) — so the sim stops re-rolling a
+    knockout that has already happened in reality."""
+    decided = {}
+    for h, a in R16:
+        row = con.execute(
+            "SELECT home, away, hg, ag, pen_home, pen_away FROM match_results "
+            "WHERE (home=? AND away=?) OR (home=? AND away=?)",
+            (h, a, a, h)).fetchone()
+        if row is None:
+            continue
+        sh, sa, hg, ag, ph, pa = row
+        if hg > ag:
+            winner = sh
+        elif hg < ag:
+            winner = sa
+        elif ph is not None and pa is not None:
+            winner = sh if ph > pa else sa
+        else:
+            continue  # stored as level with no shootout — not actually decided
+        decided[(h, a)] = winner
+    return decided
+
+
 def main():
     n = int(sys.argv[1]) if len(sys.argv) > 1 else 20000
     data = M.build_data()
     p = build_probs(data)
+
+    con = sqlite3.connect(DB)
+    decided = load_decided(con)
+    if decided:
+        print("Locking in already-played R16 results (no more re-rolling these):")
+        for (h, a), w in decided.items():
+            print(f"  {h} v {a} -> {w} advance")
+        print()
 
     title = {t: 0 for tie in R16 for t in tie}
     reach_final = dict(title)
@@ -101,8 +134,8 @@ def main():
     reach_qf = dict(title)     # won the R16, reached the quarter-finals
 
     for _ in range(n):
-        # Round of 16 -> 8 quarter-finalists
-        qf_teams = [play(h, a, p) for (h, a) in R16]
+        # Round of 16 -> 8 quarter-finalists (already-played ties are locked in)
+        qf_teams = [decided.get((h, a)) or play(h, a, p) for (h, a) in R16]
         for t in qf_teams:
             reach_qf[t] += 1
         # Quarter-finals -> 4 semi-finalists
@@ -125,7 +158,6 @@ def main():
         print(f"{t:16}{title[t]/n*100:9.1f}%{reach_final[t]/n*100:8.1f}%"
               f"{reach_semi[t]/n*100:7.1f}%{reach_qf[t]/n*100:6.0f}%")
 
-    con = sqlite3.connect(DB)
     con.execute("DELETE FROM sim_results")
     for t in title:
         con.execute("INSERT OR REPLACE INTO sim_results VALUES (?,?,?,?,?)",
