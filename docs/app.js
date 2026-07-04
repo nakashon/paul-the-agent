@@ -101,10 +101,14 @@ function predRow(p) {
     ? `<span class="pm-conf">${Math.round(p.confidence * 100)}% confident</span>` : "";
 
   const predVal = `${p.pred_home}<span class="dash">–</span>${p.pred_away}`;
+  const pens = p.pen_winner
+    ? `<div class="pm-pens">${p.pen_winner} win ${p.pen_home}–${p.pen_away} on pens</div>`
+    : "";
   const actual = status === "played"
     ? `<div class="pm-box b-real">
          <div class="pm-cap">Actual result</div>
          <div class="pm-val">${p.actual_home}<span class="dash">–</span>${p.actual_away}</div>
+         ${pens}
        </div>`
     : `<div class="pm-box b-tbd">
          <div class="pm-cap">Actual result</div>
@@ -191,30 +195,42 @@ function renderFutures(futures) {
   const wrap = document.getElementById("futures");
   const icons = { champion: "🏆", golden_boot: "⚽" };
   futures.forEach((f) => {
-    const card = el("div", "future");
+    const changed = !f.holding;
+    const card = el("div", "future" + (changed ? " f-changed" : " f-holding"));
     card.appendChild(el("div", "ic", icons[f.kind] || "◆"));
     const info = el("div", "f-info");
     info.appendChild(el("div", "lbl", f.label));
-    info.appendChild(el("div", "pk", `<span class="flag">${f.flag}</span> ${f.pick}`));
-    const status = f.holding
-      ? `<span class="tag-hold">✓ still the favourite</span>`
-      : `<span class="tag-drift">now <span class="flag">${f.current_flag}</span> ${f.current}</span>`;
-    info.appendChild(
-      el("div", "f-compare",
-        `<span class="f-k">Locked pick</span> vs <span class="f-k">live model</span><br>${status}`)
-    );
+    const picks = el("div", "f-picks");
+    picks.innerHTML = `
+      <div class="f-slot">
+        <span class="f-slabel">Original pick</span>
+        <span class="f-team f-orig"><span class="flag">${f.flag}</span> ${f.pick}</span>
+      </div>
+      <div class="f-arrow">${changed ? "→" : "="}</div>
+      <div class="f-slot">
+        <span class="f-slabel">Current pick</span>
+        <span class="f-team f-curr"><span class="flag">${f.current_flag}</span> ${f.current}</span>
+      </div>`;
+    info.appendChild(picks);
     card.appendChild(info);
+    card.appendChild(el("div", "f-chip " + (changed ? "chip-drift" : "chip-hold"),
+      changed ? "Changed" : "Holding"));
     wrap.appendChild(card);
   });
 }
 
 function pickBanner(o) {
+  const orig = o.changed && o.original
+    ? `<div class="pb-orig">Original pick:
+         <span class="flag">${o.origFlag || ""}</span> <s>${o.original}</s></div>`
+    : "";
   return `
     <div class="pb-ic">${o.icon}</div>
     <div class="pb-main">
-      <div class="pb-lbl">Paul now predicts</div>
+      <div class="pb-lbl">${o.changed ? "Paul's current pick" : "Paul's pick"}</div>
       <div class="pb-name"><span class="flag">${o.flag}</span> ${o.name}
         <span class="pb-metric">${o.metric}</span></div>
+      ${orig}
       <div class="pb-sub">${o.sub}</div>
     </div>
     <div class="pb-tag ${o.changed ? "pb-drift" : "pb-hold"}">${o.changed ? "Updated pick" : "Holding"}</div>`;
@@ -236,6 +252,7 @@ function renderGoldenBoot(gb) {
       icon: "🏆", flag: pk.flag || "", name: gb.current_pick,
       metric: `${pk.goals} goals`,
       changed,
+      original: gb.locked_pick, origFlag: gb.locked_flag,
       sub: changed
         ? `Shifted off the locked pick <b>${gb.locked_pick}</b> — ${gb.current_pick} leads the race and his team is projected deep. On pace for <b>~${pk.projection}</b>.`
         : `Still backing the locked pick <b>${gb.locked_pick}</b>. On pace for <b>~${pk.projection}</b>.`,
@@ -317,6 +334,7 @@ function renderRace(odds, title) {
       icon: "🏆", flag: title.current_flag, name: title.current_pick,
       metric: `${pctTxt} to lift it`,
       changed,
+      original: title.locked_pick, origFlag: title.locked_flag,
       sub: changed
         ? `Shifted off the locked pick <b>${title.locked_pick}</b> — once the set bracket is simulated ${title.sims.toLocaleString()} times, <b>${title.current_pick}</b> have the clearest path and win it <b>${pctTxt}</b> of the time.`
         : `Still backing the locked pick <b>${title.locked_pick}</b> — champions in <b>${pctTxt}</b> of ${title.sims.toLocaleString()} bracket simulations.`,

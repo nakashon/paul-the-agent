@@ -96,14 +96,29 @@ def load_scoring(con):
     return {s: (d, e) for s, d, e in rows}
 
 
+KNOCKOUT_STAGES = {"r32", "r16", "qf", "sf", "final"}
+
+
 def load_results(con):
-    """Map (home, away) -> (hg, ag, matchday)."""
+    """Map (home, away) -> (hg, ag, matchday, pen_home, pen_away)."""
+    cols = {c[1] for c in con.execute("PRAGMA table_info(match_results)")}
+    pen = ", pen_home, pen_away" if {"pen_home", "pen_away"} <= cols else ""
     res = {}
-    for home, away, hg, ag, md in con.execute(
-        "SELECT home, away, hg, ag, matchday FROM match_results"
-    ):
-        res[(home, away)] = (hg, ag, md)
+    for row in con.execute(f"SELECT home, away, hg, ag, matchday{pen} FROM match_results"):
+        home, away, hg, ag, md = row[:5]
+        ph, pa = (row[5], row[6]) if pen else (None, None)
+        res[(home, away)] = (hg, ag, md, ph, pa)
     return res
+
+
+def advance_dir(stage, hg, ag, ph, pa):
+    """Directional outcome. For a knockout tie level after 120', the team that
+    wins the penalty shootout is treated as the winner (they advance)."""
+    if hg != ag:
+        return direction(hg, ag)
+    if stage in KNOCKOUT_STAGES and ph is not None and pa is not None:
+        return "H" if ph > pa else "A"
+    return "D"
 
 
 # Each source: table, columns for predicted (home, away, ph, pa), stage key, round label
@@ -142,20 +157,26 @@ def build_predictions(con, scoring, results, elo, conf):
                 # try reversed fixture orientation
                 rev = results.get((away, home))
                 if rev is not None:
-                    ag, hg, md = rev
-                    actual = (hg, ag, md)
+                    ag, hg, md, pa, ph_pen = rev
+                    actual = (hg, ag, md, ph_pen, pa)
             if actual is None:
                 row.update({"status": "pending",
                             "actual_home": None, "actual_away": None, "hit": None})
             else:
-                hg, ag, _md = actual
+                hg, ag, _md, pen_h, pen_a = actual
                 exact = (ph == hg and pa == ag)
-                dir_ok = direction(ph, pa) == direction(hg, ag)
+                actual_dir = advance_dir(stage, hg, ag, pen_h, pen_a)
+                dir_ok = pred_dir == actual_dir
+                shootout = (hg == ag and pen_h is not None and pen_a is not None
+                            and stage in KNOCKOUT_STAGES)
                 row.update({
                     "status": "played",
                     "actual_home": hg,
                     "actual_away": ag,
-                    "actual_dir": direction(hg, ag),
+                    "actual_dir": actual_dir,
+                    "pen_home": pen_h if shootout else None,
+                    "pen_away": pen_a if shootout else None,
+                    "pen_winner": (home if pen_h > pen_a else away) if shootout else None,
                     "hit": "exact" if exact else ("dir" if dir_ok else "miss"),
                 })
             out.append(row)
@@ -253,6 +274,7 @@ def build_golden_boot(con, alive):
         "as_of": GB_AS_OF,
         "source": GB_SOURCE,
         "locked_pick": locked[0] if locked else None,
+        "locked_flag": flag_for_player(con, locked[0]) if locked else "",
         "current_pick": pick["player"] if pick else None,
         "leader": rows[0]["player"] if rows else None,
         "max_goals": max_goals,
@@ -420,6 +442,7 @@ def build_title_race(con, odds):
     current = odds[0]["team"] if odds else None
     return {
         "locked_pick": locked_pick,
+        "locked_flag": flag(locked_pick) if locked_pick else "",
         "current_pick": current,
         "current_flag": flag(current) if current else "",
         "title_pct": odds[0]["title"] if odds else None,

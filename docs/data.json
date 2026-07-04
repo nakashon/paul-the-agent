@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-07-04T11:28:45.605859+00:00",
+  "generated_at": "2026-07-04T20:14:30.628078+00:00",
   "summary": {
     "matches_scored": 75,
     "exact": 9,
-    "direction_only": 47,
-    "miss": 19,
-    "outcome_accuracy": 0.7467,
+    "direction_only": 48,
+    "miss": 18,
+    "outcome_accuracy": 0.76,
     "exact_rate": 0.12,
     "pending": 8,
     "futures_open": 2
@@ -42,9 +42,9 @@
       "round": "Round of 32",
       "matches": 16,
       "exact": 3,
-      "accuracy": 0.8125,
+      "accuracy": 0.875,
       "exact_rate": 0.1875,
-      "cum_accuracy": 0.7467,
+      "cum_accuracy": 0.76,
       "cum_exact_rate": 0.12
     }
   ],
@@ -74,6 +74,9 @@
       "actual_home": 0,
       "actual_away": 1,
       "actual_dir": "A",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -101,6 +104,9 @@
       "actual_home": 1,
       "actual_away": 1,
       "actual_dir": "D",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "miss"
     },
     {
@@ -128,6 +134,9 @@
       "actual_home": 1,
       "actual_away": 1,
       "actual_dir": "D",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "miss"
     },
     {
@@ -155,6 +164,9 @@
       "actual_home": 3,
       "actual_away": 1,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -182,6 +194,9 @@
       "actual_home": 1,
       "actual_away": 4,
       "actual_dir": "A",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -209,6 +224,9 @@
       "actual_home": 3,
       "actual_away": 0,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -236,6 +254,9 @@
       "actual_home": 3,
       "actual_away": 1,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -263,6 +284,9 @@
       "actual_home": 1,
       "actual_away": 1,
       "actual_dir": "D",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "miss"
     },
     {
@@ -290,6 +314,9 @@
       "actual_home": 1,
       "actual_away": 3,
       "actual_dir": "A",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -317,6 +344,9 @@
       "actual_home": 1,
       "actual_away": 0,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -344,6 +374,9 @@
       "actual_home": 4,
       "actual_away": 2,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -371,6 +404,9 @@
       "actual_home": 1,
       "actual_away": 0,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -398,6 +434,9 @@
       "actual_home": 1,
       "actual_away": 1,
       "actual_dir": "D",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "miss"
     },
     {
@@ -425,6 +464,9 @@
       "actual_home": 6,
       "actual_away": 0,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -452,6 +494,9 @@
       "actual_home": 5,
       "actual_away": 1,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -479,6 +524,9 @@
       "actual_home": 3,
       "actual_away": 0,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "exact"
     },
     {
@@ -506,6 +554,9 @@
       "actual_home": 0,
       "actual_away": 1,
       "actual_dir": "A",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -533,6 +584,9 @@
       "actual_home": 2,
       "actual_away": 0,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -560,6 +614,9 @@
       "actual_home": 0,
       "actual_away": 1,
       "actual_dir": "A",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "miss"
     },
     {
@@ -587,6 +644,9 @@
       "actual_home": 2,
       "actual_away": 1,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "exact"
     },
     {
@@ -614,6 +674,9 @@
       "actual_home": 0,
       "actual_away": 0,
       "actual_dir": "D",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "miss"
     },
     {
@@ -641,6 +704,9 @@
       "actual_home": 5,
       "actual_away": 1,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -668,6 +734,9 @@
       "actual_home": 0,
       "actual_away": 4,
       "actual_dir": "A",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -695,6 +764,9 @@
       "actual_home": 0,
       "actual_away": 0,
       "actual_dir": "D",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "miss"
     },
     {
@@ -722,6 +794,9 @@
       "actual_home": 1,
       "actual_away": 3,
       "actual_dir": "A",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -749,6 +824,9 @@
       "actual_home": 4,
       "actual_away": 0,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -776,6 +854,9 @@
       "actual_home": 2,
       "actual_away": 2,
       "actual_dir": "D",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "miss"
     },
     {
@@ -803,6 +884,9 @@
       "actual_home": 3,
       "actual_away": 0,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "exact"
     },
     {
@@ -830,6 +914,9 @@
       "actual_home": 3,
       "actual_away": 2,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -857,6 +944,9 @@
       "actual_home": 2,
       "actual_away": 0,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -884,6 +974,9 @@
       "actual_home": 1,
       "actual_away": 2,
       "actual_dir": "A",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "exact"
     },
     {
@@ -911,6 +1004,9 @@
       "actual_home": 5,
       "actual_away": 0,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -938,6 +1034,9 @@
       "actual_home": 1,
       "actual_away": 0,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -965,6 +1064,9 @@
       "actual_home": 0,
       "actual_away": 0,
       "actual_dir": "D",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "miss"
     },
     {
@@ -992,6 +1094,9 @@
       "actual_home": 0,
       "actual_away": 1,
       "actual_dir": "A",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1019,6 +1124,9 @@
       "actual_home": 0,
       "actual_away": 3,
       "actual_dir": "A",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1046,6 +1154,9 @@
       "actual_home": 1,
       "actual_away": 0,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "miss"
     },
     {
@@ -1073,6 +1184,9 @@
       "actual_home": 2,
       "actual_away": 1,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "miss"
     },
     {
@@ -1100,6 +1214,9 @@
       "actual_home": 3,
       "actual_away": 1,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1127,6 +1244,9 @@
       "actual_home": 0,
       "actual_away": 3,
       "actual_dir": "A",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1154,6 +1274,9 @@
       "actual_home": 4,
       "actual_away": 2,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1181,6 +1304,9 @@
       "actual_home": 3,
       "actual_away": 2,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "miss"
     },
     {
@@ -1208,6 +1334,9 @@
       "actual_home": 0,
       "actual_away": 0,
       "actual_dir": "D",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1235,6 +1364,9 @@
       "actual_home": 2,
       "actual_away": 1,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "miss"
     },
     {
@@ -1262,6 +1394,9 @@
       "actual_home": 0,
       "actual_away": 2,
       "actual_dir": "A",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "exact"
     },
     {
@@ -1289,6 +1424,9 @@
       "actual_home": 1,
       "actual_away": 3,
       "actual_dir": "A",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1316,6 +1454,9 @@
       "actual_home": 1,
       "actual_away": 1,
       "actual_dir": "D",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "miss"
     },
     {
@@ -1343,6 +1484,9 @@
       "actual_home": 1,
       "actual_away": 5,
       "actual_dir": "A",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1370,6 +1514,9 @@
       "actual_home": 1,
       "actual_away": 1,
       "actual_dir": "D",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1397,6 +1544,9 @@
       "actual_home": 0,
       "actual_away": 1,
       "actual_dir": "A",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1424,6 +1574,9 @@
       "actual_home": 0,
       "actual_away": 0,
       "actual_dir": "D",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "miss"
     },
     {
@@ -1451,6 +1604,9 @@
       "actual_home": 1,
       "actual_away": 4,
       "actual_dir": "A",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1478,6 +1634,9 @@
       "actual_home": 5,
       "actual_away": 0,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1505,6 +1664,9 @@
       "actual_home": 1,
       "actual_away": 3,
       "actual_dir": "A",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1532,6 +1694,9 @@
       "actual_home": 3,
       "actual_away": 3,
       "actual_dir": "D",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1559,6 +1724,9 @@
       "actual_home": 0,
       "actual_away": 0,
       "actual_dir": "D",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "miss"
     },
     {
@@ -1586,6 +1754,9 @@
       "actual_home": 3,
       "actual_away": 1,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1613,6 +1784,9 @@
       "actual_home": 0,
       "actual_away": 2,
       "actual_dir": "A",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "exact"
     },
     {
@@ -1640,6 +1814,9 @@
       "actual_home": 2,
       "actual_away": 1,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1667,6 +1844,9 @@
       "actual_home": 0,
       "actual_away": 1,
       "actual_dir": "A",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1693,7 +1873,10 @@
       "status": "played",
       "actual_home": 1,
       "actual_away": 1,
-      "actual_dir": "D",
+      "actual_dir": "A",
+      "pen_home": 3,
+      "pen_away": 4,
+      "pen_winner": "Paraguay",
       "hit": "miss"
     },
     {
@@ -1720,7 +1903,10 @@
       "status": "played",
       "actual_home": 1,
       "actual_away": 1,
-      "actual_dir": "D",
+      "actual_dir": "A",
+      "pen_home": 2,
+      "pen_away": 3,
+      "pen_winner": "Morocco",
       "hit": "miss"
     },
     {
@@ -1748,6 +1934,9 @@
       "actual_home": 2,
       "actual_away": 1,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "exact"
     },
     {
@@ -1775,6 +1964,9 @@
       "actual_home": 3,
       "actual_away": 0,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1802,6 +1994,9 @@
       "actual_home": 1,
       "actual_away": 2,
       "actual_dir": "A",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "exact"
     },
     {
@@ -1829,6 +2024,9 @@
       "actual_home": 2,
       "actual_away": 0,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1856,6 +2054,9 @@
       "actual_home": 2,
       "actual_away": 1,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1883,6 +2084,9 @@
       "actual_home": 2,
       "actual_away": 0,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1910,6 +2114,9 @@
       "actual_home": 3,
       "actual_away": 2,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1937,6 +2144,9 @@
       "actual_home": 2,
       "actual_away": 1,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1964,6 +2174,9 @@
       "actual_home": 3,
       "actual_away": 0,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -1991,6 +2204,9 @@
       "actual_home": 2,
       "actual_away": 0,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -2018,6 +2234,9 @@
       "actual_home": 3,
       "actual_away": 2,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "dir"
     },
     {
@@ -2045,6 +2264,9 @@
       "actual_home": 1,
       "actual_away": 0,
       "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
       "hit": "exact"
     },
     {
@@ -2071,8 +2293,11 @@
       "status": "played",
       "actual_home": 1,
       "actual_away": 1,
-      "actual_dir": "D",
-      "hit": "miss"
+      "actual_dir": "A",
+      "pen_home": 2,
+      "pen_away": 4,
+      "pen_winner": "Egypt",
+      "hit": "dir"
     },
     {
       "round": "Round of 16",
@@ -2683,7 +2908,7 @@
           "pred_winner": "Egypt",
           "confidence": 0.387,
           "status": "played",
-          "hit": "miss",
+          "hit": "dir",
           "actual_home": 1,
           "actual_away": 1,
           "actual_winner": null
@@ -2948,6 +3173,7 @@
     "as_of": "Through the Round of 32",
     "source": "Public tournament scoring data",
     "locked_pick": "Kylian Mbappe",
+    "locked_flag": "\ud83c\uddeb\ud83c\uddf7",
     "current_pick": "Lionel Messi",
     "leader": "Lionel Messi",
     "max_goals": 7,
@@ -3044,6 +3270,7 @@
   },
   "title_race": {
     "locked_pick": "Spain",
+    "locked_flag": "\ud83c\uddea\ud83c\uddf8",
     "current_pick": "France",
     "current_flag": "\ud83c\uddeb\ud83c\uddf7",
     "title_pct": 0.18925,

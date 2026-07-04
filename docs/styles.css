@@ -159,6 +159,7 @@ main, .nav, .foot { position: relative; z-index: 1; }
 .b-real .pm-cap { color: var(--gold); }
 .b-tbd .pm-cap { color: var(--faint); }
 .pm-wait { font-size: 0.8rem !important; font-weight: 500; color: var(--faint); font-family: "Space Grotesk"; }
+.pm-pens { font-size: 0.66rem; font-weight: 700; color: var(--gold); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.03em; }
 .pm-arrow { color: var(--faint); font-size: 0.74rem; font-weight: 600; }
 
 .pm-verdict { text-align: right; }
@@ -257,6 +258,8 @@ main, .nav, .foot { position: relative; z-index: 1; }
 .pb-metric { font-size: 0.95rem; color: var(--gold); font-weight: 700; margin-left: 8px; }
 .pb-sub { color: var(--muted); font-size: 0.88rem; line-height: 1.5; }
 .pb-sub b { color: var(--ink); font-weight: 700; }
+.pb-orig { color: var(--faint); font-size: 0.82rem; margin: 4px 0 8px; }
+.pb-orig s { color: var(--muted); text-decoration-color: rgba(255,255,255,0.3); }
 .pb-tag { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 6px 12px; border-radius: 8px; white-space: nowrap; }
 .pb-drift { background: rgba(245,197,66,0.16); color: var(--gold); }
 .pb-hold { background: rgba(52,230,164,0.14); color: var(--green); }
@@ -287,12 +290,21 @@ main, .nav, .foot { position: relative; z-index: 1; }
 .gb-out { opacity: 0.6; }
 .gb-out .gb-bar > span { background: var(--faint); }
 
-/* Futures compare */
-.future .f-info { min-width: 0; }
-.f-compare { color: var(--muted); font-size: 0.82rem; margin-top: 8px; line-height: 1.5; }
-.f-k { color: var(--faint); text-transform: uppercase; font-size: 0.7rem; letter-spacing: 0.05em; }
-.tag-hold { color: var(--green); font-weight: 600; }
-.tag-drift { color: var(--amber); font-weight: 600; }
+/* Futures: Original pick -> Current pick */
+.future { justify-content: space-between; }
+.future .f-info { min-width: 0; flex: 1; }
+.f-picks { display: flex; align-items: flex-end; gap: 16px; margin-top: 12px; flex-wrap: wrap; }
+.f-slot { display: flex; flex-direction: column; gap: 5px; }
+.f-slabel { color: var(--faint); text-transform: uppercase; font-size: 0.66rem; letter-spacing: 0.08em; font-weight: 700; }
+.f-team { font-family: "Sora"; font-size: 1.35rem; font-weight: 800; white-space: nowrap; }
+.f-orig { color: var(--muted); }
+.f-curr { color: var(--ink); }
+.f-changed .f-orig { text-decoration: line-through; text-decoration-color: rgba(255,255,255,0.28); text-decoration-thickness: 2px; }
+.f-arrow { font-size: 1.25rem; color: var(--gold); padding-bottom: 5px; }
+.f-holding .f-arrow { color: var(--green); }
+.f-chip { align-self: flex-start; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; padding: 5px 12px; border-radius: 999px; white-space: nowrap; }
+.chip-hold { color: var(--green); background: rgba(52,211,153,0.12); border: 1px solid rgba(52,211,153,0.32); }
+.chip-drift { color: var(--amber); background: rgba(251,191,36,0.12); border: 1px solid rgba(251,191,36,0.32); }
 
 /* Trend chart */
 .trend-wrap {
