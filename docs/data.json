@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-04T23:30:54.198712+00:00",
+  "generated_at": "2026-07-05T04:55:58.757615+00:00",
   "summary": {
     "matches_scored": 77,
     "exact": 9,
@@ -3364,7 +3364,9 @@
     "current_flag": "\ud83c\uddeb\ud83c\uddf7",
     "title_pct": 0.2192,
     "holding": false,
-    "sims": 20000
+    "sims": 20000,
+    "r16_played": 2,
+    "r16_total": 8
   },
   "odds": [
     {

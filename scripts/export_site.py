@@ -474,13 +474,20 @@ def build_timeline(preds):
     return timeline
 
 
-def build_title_race(con, odds):
+def build_title_race(con, odds, preds=None):
     """Champion pick summary for the Title Race banner: the locked pre-tournament
-    pick vs Paul's current bracket-aware favourite, plus its title probability."""
+    pick vs Paul's current bracket-aware favourite, plus its title probability.
+
+    Also reports how many Round of 16 ties are actually decided so far, since
+    the Monte Carlo locks in real results but still simulates everything
+    unplayed — teams already through show 100% to reach the QF because
+    that specific game is over, not because the whole round is finished."""
     locked = con.execute(
         "SELECT pick FROM locked_futures WHERE bet='champion'").fetchone()
     locked_pick = locked[0] if locked else None
     current = odds[0]["team"] if odds else None
+    r16 = [p for p in (preds or []) if p.get("stage") == "r16"]
+    r16_played = sum(1 for p in r16 if p["status"] == "played")
     return {
         "locked_pick": locked_pick,
         "locked_flag": flag(locked_pick) if locked_pick else "",
@@ -489,6 +496,8 @@ def build_title_race(con, odds):
         "title_pct": odds[0]["title"] if odds else None,
         "holding": (current == locked_pick),
         "sims": SIM_COUNT,
+        "r16_played": r16_played,
+        "r16_total": len(r16),
     }
 
 
@@ -506,7 +515,7 @@ def main():
     golden_boot = build_golden_boot(con, alive)
     futures = build_futures(con, gb_pick=golden_boot.get("current_pick"))
     odds = build_odds(con, alive)
-    title_race = build_title_race(con, odds)
+    title_race = build_title_race(con, odds, preds)
     bracket = build_bracket(preds)
     summary = summarize(preds, futures)
     timeline = build_timeline(preds)

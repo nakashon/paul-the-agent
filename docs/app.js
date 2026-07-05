@@ -332,15 +332,19 @@ function renderRace(odds, title) {
   if (pickHost && title && title.current_pick) {
     const changed = title.current_pick !== title.locked_pick;
     const pctTxt = title.title_pct != null ? pct(title.title_pct) : "";
+    const progress = title.r16_total
+      ? `<b>${title.r16_played}/${title.r16_total}</b> Round of 16 ties played so far — those results are locked in as certain, everything else is still simulated from the model.`
+      : "";
     pickHost.className = "pick-banner";
     pickHost.innerHTML = pickBanner({
       icon: "🏆", flag: title.current_flag, name: title.current_pick,
       metric: `${pctTxt} to lift it`,
       changed,
       original: title.locked_pick, origFlag: title.locked_flag,
-      sub: changed
+      sub: (changed
         ? `Shifted off the locked pick <b>${title.locked_pick}</b> — once the set bracket is simulated ${title.sims.toLocaleString()} times, <b>${title.current_pick}</b> have the clearest path and win it <b>${pctTxt}</b> of the time.`
-        : `Still backing the locked pick <b>${title.locked_pick}</b> — champions in <b>${pctTxt}</b> of ${title.sims.toLocaleString()} bracket simulations.`,
+        : `Still backing the locked pick <b>${title.locked_pick}</b> — champions in <b>${pctTxt}</b> of ${title.sims.toLocaleString()} bracket simulations.`)
+        + (progress ? ` ${progress}` : ""),
     });
   }
 
