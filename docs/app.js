@@ -288,6 +288,13 @@ function bracketMatch(m) {
     return `<div class="bx bx-tbd"><div class="bx-team"><span class="bx-name">TBD</span></div>
       <div class="bx-team"><span class="bx-name">TBD</span></div></div>`;
   }
+  if (m.pending_on) {
+    const rows = m.pending_on.length
+      ? m.pending_on.map((x) => `<div class="bx-team"><span class="bx-name">Winner: ${x}</span></div>`).join("")
+      : `<div class="bx-team"><span class="bx-name">TBD</span></div><div class="bx-team"><span class="bx-name">TBD</span></div>`;
+    return `<div class="bx bx-tbd bx-waiting">${rows}
+      <div class="bx-foot"><span class="bx-badge b-pending">Awaiting Round of 16</span></div></div>`;
+  }
   const hw = m.pred_winner === m.home ? " bx-win" : "";
   const aw = m.pred_winner === m.away ? " bx-win" : "";
   const badge = m.status === "played"

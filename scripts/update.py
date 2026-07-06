@@ -3,9 +3,11 @@
 Run this after logging new results and goals to refresh everything, in order:
   1. calibrate.py        — re-tune goal calibration from all stored results
   2. model.py            — refresh every still-pending locked bet (with calibration)
-  3. simulate_bracket.py — re-run the bracket-aware Monte Carlo for live title odds
+  3. qf.py               — lock in any quarter-final ties that just became knowable
+                           (never touches a QF tie once it's already locked)
+  4. simulate_bracket.py — re-run the bracket-aware Monte Carlo for live title odds
                            (plays the actual set draw, not a bracket-blind reseed)
-  4. export_site.py      — regenerate docs/data.json for the website
+  5. export_site.py      — regenerate docs/data.json for the website
 
 Usage:
     # 1) log whatever came in first:
@@ -28,7 +30,7 @@ def run(script):
 
 
 def main():
-    for s in ("calibrate.py", "model.py", "simulate_bracket.py", "export_site.py"):
+    for s in ("calibrate.py", "model.py", "qf.py", "simulate_bracket.py", "export_site.py"):
         run(s)
     print("\n🐙 Paul the Agent — fully synced: model, title odds, and site data are all up to date.")
 

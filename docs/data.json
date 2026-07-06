@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T10:49:01.077971+00:00",
+  "generated_at": "2026-07-06T17:48:45.506316+00:00",
   "summary": {
     "matches_scored": 79,
     "exact": 9,
@@ -7,7 +7,7 @@
     "miss": 19,
     "outcome_accuracy": 0.7595,
     "exact_rate": 0.1139,
-    "pending": 4,
+    "pending": 6,
     "futures_open": 2
   },
   "timeline": [
@@ -2531,6 +2531,58 @@
       "actual_home": null,
       "actual_away": null,
       "hit": null
+    },
+    {
+      "round": "Quarter-finals",
+      "stage": "qf",
+      "home": "Morocco",
+      "away": "France",
+      "home_flag": "\ud83c\uddf2\ud83c\udde6",
+      "away_flag": "\ud83c\uddeb\ud83c\uddf7",
+      "home_tier": {
+        "key": "darkhorse",
+        "label": "Dark Horse",
+        "elo": 1881
+      },
+      "away_tier": {
+        "key": "elite",
+        "label": "Elite",
+        "elo": 2131
+      },
+      "pred_home": 0,
+      "pred_away": 2,
+      "pred_dir": "A",
+      "confidence": 0.572,
+      "status": "pending",
+      "actual_home": null,
+      "actual_away": null,
+      "hit": null
+    },
+    {
+      "round": "Quarter-finals",
+      "stage": "qf",
+      "home": "Norway",
+      "away": "England",
+      "home_flag": "\ud83c\uddf3\ud83c\uddf4",
+      "away_flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+      "home_tier": {
+        "key": "contender",
+        "label": "Contender",
+        "elo": 1950
+      },
+      "away_tier": {
+        "key": "elite",
+        "label": "Elite",
+        "elo": 2052
+      },
+      "pred_home": 1,
+      "pred_away": 2,
+      "pred_dir": "A",
+      "confidence": 0.479,
+      "status": "pending",
+      "actual_home": null,
+      "actual_away": null,
+      "hit": null
     }
   ],
   "bracket": [
@@ -3222,10 +3274,74 @@
       "key": "qf",
       "label": "Quarter-finals",
       "matches": [
-        null,
-        null,
-        null,
-        null
+        {
+          "home": "Morocco",
+          "away": "France",
+          "home_flag": "\ud83c\uddf2\ud83c\udde6",
+          "away_flag": "\ud83c\uddeb\ud83c\uddf7",
+          "home_tier": {
+            "key": "darkhorse",
+            "label": "Dark Horse",
+            "elo": 1881
+          },
+          "away_tier": {
+            "key": "elite",
+            "label": "Elite",
+            "elo": 2131
+          },
+          "pred_home": 0,
+          "pred_away": 2,
+          "pred_winner": "France",
+          "confidence": 0.572,
+          "status": "pending",
+          "hit": null,
+          "actual_home": null,
+          "actual_away": null,
+          "actual_winner": null,
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
+        },
+        {
+          "home": "Norway",
+          "away": "England",
+          "home_flag": "\ud83c\uddf3\ud83c\uddf4",
+          "away_flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+          "home_tier": {
+            "key": "contender",
+            "label": "Contender",
+            "elo": 1950
+          },
+          "away_tier": {
+            "key": "elite",
+            "label": "Elite",
+            "elo": 2052
+          },
+          "pred_home": 1,
+          "pred_away": 2,
+          "pred_winner": "England",
+          "confidence": 0.479,
+          "status": "pending",
+          "hit": null,
+          "actual_home": null,
+          "actual_away": null,
+          "actual_winner": null,
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
+        },
+        {
+          "pending_on": [
+            "USA v Belgium",
+            "Portugal v Spain"
+          ]
+        },
+        {
+          "pending_on": [
+            "Switzerland v Colombia",
+            "Argentina v Egypt"
+          ]
+        }
       ]
     },
     {
@@ -3370,7 +3486,7 @@
     "locked_flag": "\ud83c\uddea\ud83c\uddf8",
     "current_pick": "France",
     "current_flag": "\ud83c\uddeb\ud83c\uddf7",
-    "title_pct": 0.22085,
+    "title_pct": 0.2207,
     "holding": false,
     "sims": 20000,
     "r16_played": 4,
@@ -3380,98 +3496,98 @@
     {
       "team": "France",
       "flag": "\ud83c\uddeb\ud83c\uddf7",
-      "title": 0.22085,
-      "final": 0.3721,
-      "semi": 0.6711,
+      "title": 0.2207,
+      "final": 0.374,
+      "semi": 0.6686,
       "advance": 1.0
     },
     {
       "team": "Spain",
       "flag": "\ud83c\uddea\ud83c\uddf8",
-      "title": 0.1754,
-      "final": 0.2774,
-      "semi": 0.46095,
-      "advance": 0.6365
+      "title": 0.1767,
+      "final": 0.2796,
+      "semi": 0.4659,
+      "advance": 0.63605
     },
     {
       "team": "England",
       "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
-      "title": 0.15005,
-      "final": 0.31345,
-      "semi": 0.59605,
+      "title": 0.15065,
+      "final": 0.317,
+      "semi": 0.6037,
       "advance": 1.0
     },
     {
       "team": "Argentina",
       "flag": "\ud83c\udde6\ud83c\uddf7",
-      "title": 0.14835,
-      "final": 0.2898,
-      "semi": 0.492,
-      "advance": 0.78335
+      "title": 0.1441,
+      "final": 0.2789,
+      "semi": 0.48565,
+      "advance": 0.78405
     },
     {
       "team": "Norway",
       "flag": "\ud83c\uddf3\ud83c\uddf4",
-      "title": 0.0657,
-      "final": 0.1765,
-      "semi": 0.40395,
+      "title": 0.06655,
+      "final": 0.1755,
+      "semi": 0.3963,
+      "advance": 1.0
+    },
+    {
+      "team": "Morocco",
+      "flag": "\ud83c\uddf2\ud83c\udde6",
+      "title": 0.052,
+      "final": 0.12715,
+      "semi": 0.3314,
       "advance": 1.0
     },
     {
       "team": "Portugal",
       "flag": "\ud83c\uddf5\ud83c\uddf9",
-      "title": 0.0539,
-      "final": 0.1007,
-      "semi": 0.2176,
-      "advance": 0.3635
-    },
-    {
-      "team": "Morocco",
-      "flag": "\ud83c\uddf2\ud83c\udde6",
-      "title": 0.0514,
-      "final": 0.12595,
-      "semi": 0.3289,
-      "advance": 1.0
+      "title": 0.0508,
+      "final": 0.1004,
+      "semi": 0.22005,
+      "advance": 0.36395
     },
     {
       "team": "Colombia",
       "flag": "\ud83c\udde8\ud83c\uddf4",
-      "title": 0.0474,
-      "final": 0.1172,
-      "semi": 0.25145,
-      "advance": 0.56475
-    },
-    {
-      "team": "Belgium",
-      "flag": "\ud83c\udde7\ud83c\uddea",
-      "title": 0.03255,
-      "final": 0.07265,
-      "semi": 0.18175,
-      "advance": 0.531
+      "title": 0.04995,
+      "final": 0.11915,
+      "semi": 0.2508,
+      "advance": 0.56025
     },
     {
       "team": "Switzerland",
       "flag": "\ud83c\udde8\ud83c\udded",
-      "title": 0.02795,
-      "final": 0.0778,
-      "semi": 0.17795,
-      "advance": 0.43525
+      "title": 0.03195,
+      "final": 0.0838,
+      "semi": 0.18425,
+      "advance": 0.43975
+    },
+    {
+      "team": "Belgium",
+      "flag": "\ud83c\udde7\ud83c\uddea",
+      "title": 0.0299,
+      "final": 0.0692,
+      "semi": 0.17515,
+      "advance": 0.52805
     },
     {
       "team": "USA",
       "flag": "\ud83c\uddfa\ud83c\uddf8",
-      "title": 0.0189,
-      "final": 0.0512,
-      "semi": 0.1397,
-      "advance": 0.469
+      "title": 0.02005,
+      "final": 0.04965,
+      "semi": 0.1389,
+      "advance": 0.47195
     },
     {
       "team": "Egypt",
       "flag": "\ud83c\uddea\ud83c\uddec",
-      "title": 0.00755,
-      "final": 0.02525,
-      "semi": 0.0786,
-      "advance": 0.21665
+      "title": 0.00665,
+      "final": 0.02565,
+      "semi": 0.0793,
+      "advance": 0.21595
     }
   ]
 }

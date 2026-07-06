@@ -83,7 +83,7 @@ def load_conf(con):
     """Map (home, away) -> model win probability for the picked winner."""
     conf = {}
     for table in ("locked_bets_md2", "locked_bets_md3",
-                  "locked_bets_r32", "locked_bets_r16"):
+                  "locked_bets_r32", "locked_bets_r16", "locked_bets_qf"):
         for home, away, c in con.execute(
                 f"SELECT home, away, conf FROM {table}"):
             if c is not None:
@@ -128,6 +128,7 @@ SOURCES = [
     ("locked_bets_md3", "home, away, hg, ag", "group", "Group · MD3"),
     ("locked_bets_r32", "home, away, hg, ag", "r32", "Round of 32"),
     ("locked_bets_r16", "home, away, hg, ag", "r16", "Round of 16"),
+    ("locked_bets_qf", "home, away, hg, ag", "qf", "Quarter-finals"),
 ]
 
 
@@ -392,15 +393,30 @@ def build_bracket(preds):
             "pen_winner": p.get("pen_winner"),
         }
 
+    def qf_match(tie_a, tie_b):
+        """Resolve the real quarter-final fed by two adjacent R16 ties. Returns
+        the locked prediction once both legs are decided; otherwise a small
+        "awaiting" marker naming whichever R16 tie(s) still need to finish —
+        never a guessed matchup."""
+        ra, rb = by_key.get(tie_a), by_key.get(tie_b)
+        wa = _winner(ra)[1] if ra else None
+        wb = _winner(rb)[1] if rb else None
+        if wa and wb:
+            return match_from((wa, wb)) or match_from((wb, wa))
+        pending = [f"{h} v {a}" for (h, a), w in ((tie_a, wa), (tie_b, wb)) if not w]
+        return {"pending_on": pending}
+
     def placeholders(n):
         return [None] * n
 
+    qf_ties = [(R16_ORDER[i], R16_ORDER[i + 1]) for i in range(0, 8, 2)]
     return [
         {"key": "r32", "label": "Round of 32",
          "matches": [match_from(x) for x in R32_ORDER]},
         {"key": "r16", "label": "Round of 16",
          "matches": [match_from(x) for x in R16_ORDER]},
-        {"key": "qf", "label": "Quarter-finals", "matches": placeholders(4)},
+        {"key": "qf", "label": "Quarter-finals",
+         "matches": [qf_match(a, b) for a, b in qf_ties]},
         {"key": "sf", "label": "Semi-finals", "matches": placeholders(2)},
         {"key": "final", "label": "Final", "matches": placeholders(1)},
     ]
