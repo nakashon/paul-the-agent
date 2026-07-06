@@ -330,23 +330,28 @@ def flag_for_player(con, player):
     return flag(row[0]) if row else "\U0001F3F3"
 
 
-# Knockout bracket wiring (from scripts/r32.py and scripts/r16.py). R32 games
-# are ordered so each adjacent pair feeds one R16 tie, top to bottom.
+# Knockout bracket wiring (from scripts/r32.py and scripts/r16.py), reordered to
+# match the OFFICIAL bracket tree visual layout: each adjacent pair of R32 ties
+# feeds one R16 tie, each adjacent pair of R16 ties feeds one QF, top to bottom.
+#   QF-A: Paraguay/France + Canada/Morocco       -> France v Morocco
+#   QF-B: Portugal/Spain + USA/Belgium
+#   QF-C: Brazil/Norway + Mexico/England          -> Norway v England
+#   QF-D: Argentina/Egypt + Switzerland/Colombia
 R32_ORDER = [
-    ("South Africa", "Canada"), ("Netherlands", "Morocco"),
     ("Germany", "Paraguay"), ("France", "Sweden"),
+    ("South Africa", "Canada"), ("Netherlands", "Morocco"),
+    ("Portugal", "Croatia"), ("Spain", "Austria"),
+    ("USA", "Bosnia and Herzegovina"), ("Belgium", "Senegal"),
     ("Brazil", "Japan"), ("Ivory Coast", "Norway"),
     ("Mexico", "Ecuador"), ("England", "DR Congo"),
-    ("USA", "Bosnia and Herzegovina"), ("Belgium", "Senegal"),
-    ("Portugal", "Croatia"), ("Spain", "Austria"),
-    ("Switzerland", "Algeria"), ("Colombia", "Ghana"),
     ("Argentina", "Cape Verde"), ("Australia", "Egypt"),
+    ("Switzerland", "Algeria"), ("Colombia", "Ghana"),
 ]
 R16_ORDER = [
-    ("Canada", "Morocco"), ("Paraguay", "France"),
+    ("Paraguay", "France"), ("Canada", "Morocco"),
+    ("Portugal", "Spain"), ("USA", "Belgium"),
     ("Brazil", "Norway"), ("Mexico", "England"),
-    ("USA", "Belgium"), ("Portugal", "Spain"),
-    ("Switzerland", "Colombia"), ("Argentina", "Egypt"),
+    ("Argentina", "Egypt"), ("Switzerland", "Colombia"),
 ]
 
 

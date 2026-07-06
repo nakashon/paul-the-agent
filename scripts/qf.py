@@ -24,13 +24,15 @@ import model
 DB = os.path.join(os.path.dirname(__file__), "..", "data", "wc2026.db")
 EXACT_PTS, DIR_PTS = 8, 4
 
-# Official Round of 16 bracket order (the same 8 ties used across the site) --
-# consecutive pairs (0,1) (2,3) (4,5) (6,7) each feed one quarter-final.
+# Official Round of 16 bracket order (matches the site's bracket layout in
+# export_site.py) -- consecutive pairs (0,1) (2,3) (4,5) (6,7) each feed one
+# quarter-final: France v Morocco, Portugal/Spain v USA/Belgium winners,
+# Norway v England, Argentina/Egypt v Switzerland/Colombia winners.
 R16_ORDER = [
-    ("Canada", "Morocco"), ("Paraguay", "France"),
+    ("Paraguay", "France"), ("Canada", "Morocco"),
+    ("Portugal", "Spain"), ("USA", "Belgium"),
     ("Brazil", "Norway"), ("Mexico", "England"),
-    ("USA", "Belgium"), ("Portugal", "Spain"),
-    ("Switzerland", "Colombia"), ("Argentina", "Egypt"),
+    ("Argentina", "Egypt"), ("Switzerland", "Colombia"),
 ]
 QF_LABELS = ["QF-A", "QF-B", "QF-C", "QF-D"]
 

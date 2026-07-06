@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-06T17:48:45.506316+00:00",
+  "generated_at": "2026-07-06T18:10:24.621118+00:00",
   "summary": {
     "matches_scored": 79,
     "exact": 9,
@@ -2591,6 +2591,62 @@
       "label": "Round of 32",
       "matches": [
         {
+          "home": "Germany",
+          "away": "Paraguay",
+          "home_flag": "\ud83c\udde9\ud83c\uddea",
+          "away_flag": "\ud83c\uddf5\ud83c\uddfe",
+          "home_tier": {
+            "key": "darkhorse",
+            "label": "Dark Horse",
+            "elo": 1920
+          },
+          "away_tier": {
+            "key": "challenger",
+            "label": "Challenger",
+            "elo": 1762
+          },
+          "pred_home": 2,
+          "pred_away": 0,
+          "pred_winner": "Germany",
+          "confidence": 0.631,
+          "status": "played",
+          "hit": "miss",
+          "actual_home": 1,
+          "actual_away": 1,
+          "actual_winner": "Paraguay",
+          "pen_home": 3,
+          "pen_away": 4,
+          "pen_winner": "Paraguay"
+        },
+        {
+          "home": "France",
+          "away": "Sweden",
+          "home_flag": "\ud83c\uddeb\ud83c\uddf7",
+          "away_flag": "\ud83c\uddf8\ud83c\uddea",
+          "home_tier": {
+            "key": "elite",
+            "label": "Elite",
+            "elo": 2131
+          },
+          "away_tier": {
+            "key": "challenger",
+            "label": "Challenger",
+            "elo": 1809
+          },
+          "pred_home": 2,
+          "pred_away": 0,
+          "pred_winner": "France",
+          "confidence": 0.719,
+          "status": "played",
+          "hit": "dir",
+          "actual_home": 3,
+          "actual_away": 0,
+          "actual_winner": "France",
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
+        },
+        {
           "home": "South Africa",
           "away": "Canada",
           "home_flag": "\ud83c\uddff\ud83c\udde6",
@@ -2647,57 +2703,113 @@
           "pen_winner": "Morocco"
         },
         {
-          "home": "Germany",
-          "away": "Paraguay",
-          "home_flag": "\ud83c\udde9\ud83c\uddea",
-          "away_flag": "\ud83c\uddf5\ud83c\uddfe",
+          "home": "Portugal",
+          "away": "Croatia",
+          "home_flag": "\ud83c\uddf5\ud83c\uddf9",
+          "away_flag": "\ud83c\udded\ud83c\uddf7",
           "home_tier": {
-            "key": "darkhorse",
-            "label": "Dark Horse",
-            "elo": 1920
+            "key": "contender",
+            "label": "Contender",
+            "elo": 2013
           },
           "away_tier": {
-            "key": "challenger",
-            "label": "Challenger",
-            "elo": 1762
+            "key": "darkhorse",
+            "label": "Dark Horse",
+            "elo": 1899
           },
-          "pred_home": 2,
+          "pred_home": 1,
           "pred_away": 0,
-          "pred_winner": "Germany",
-          "confidence": 0.631,
+          "pred_winner": "Portugal",
+          "confidence": 0.493,
           "status": "played",
-          "hit": "miss",
-          "actual_home": 1,
+          "hit": "dir",
+          "actual_home": 2,
           "actual_away": 1,
-          "actual_winner": "Paraguay",
-          "pen_home": 3,
-          "pen_away": 4,
-          "pen_winner": "Paraguay"
+          "actual_winner": "Portugal",
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         },
         {
-          "home": "France",
-          "away": "Sweden",
-          "home_flag": "\ud83c\uddeb\ud83c\uddf7",
-          "away_flag": "\ud83c\uddf8\ud83c\uddea",
+          "home": "Spain",
+          "away": "Austria",
+          "home_flag": "\ud83c\uddea\ud83c\uddf8",
+          "away_flag": "\ud83c\udde6\ud83c\uddf9",
           "home_tier": {
             "key": "elite",
             "label": "Elite",
-            "elo": 2131
+            "elo": 2158
           },
           "away_tier": {
             "key": "challenger",
             "label": "Challenger",
-            "elo": 1809
+            "elo": 1794
           },
           "pred_home": 2,
           "pred_away": 0,
-          "pred_winner": "France",
-          "confidence": 0.719,
+          "pred_winner": "Spain",
+          "confidence": 0.715,
           "status": "played",
           "hit": "dir",
           "actual_home": 3,
           "actual_away": 0,
-          "actual_winner": "France",
+          "actual_winner": "Spain",
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
+        },
+        {
+          "home": "USA",
+          "away": "Bosnia and Herzegovina",
+          "home_flag": "\ud83c\uddfa\ud83c\uddf8",
+          "away_flag": "\ud83c\udde7\ud83c\udde6",
+          "home_tier": {
+            "key": "challenger",
+            "label": "Challenger",
+            "elo": 1801
+          },
+          "away_tier": {
+            "key": "underdog",
+            "label": "Underdog",
+            "elo": 1734
+          },
+          "pred_home": 2,
+          "pred_away": 1,
+          "pred_winner": "USA",
+          "confidence": 0.594,
+          "status": "played",
+          "hit": "dir",
+          "actual_home": 2,
+          "actual_away": 0,
+          "actual_winner": "USA",
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
+        },
+        {
+          "home": "Belgium",
+          "away": "Senegal",
+          "home_flag": "\ud83c\udde7\ud83c\uddea",
+          "away_flag": "\ud83c\uddf8\ud83c\uddf3",
+          "home_tier": {
+            "key": "contender",
+            "label": "Contender",
+            "elo": 1928
+          },
+          "away_tier": {
+            "key": "challenger",
+            "label": "Challenger",
+            "elo": 1823
+          },
+          "pred_home": 2,
+          "pred_away": 1,
+          "pred_winner": "Belgium",
+          "confidence": 0.4,
+          "status": "played",
+          "hit": "dir",
+          "actual_home": 3,
+          "actual_away": 2,
+          "actual_winner": "Belgium",
           "pen_home": null,
           "pen_away": null,
           "pen_winner": null
@@ -2815,116 +2927,60 @@
           "pen_winner": null
         },
         {
-          "home": "USA",
-          "away": "Bosnia and Herzegovina",
-          "home_flag": "\ud83c\uddfa\ud83c\uddf8",
-          "away_flag": "\ud83c\udde7\ud83c\udde6",
+          "home": "Argentina",
+          "away": "Cape Verde",
+          "home_flag": "\ud83c\udde6\ud83c\uddf7",
+          "away_flag": "\ud83c\udde8\ud83c\uddfb",
           "home_tier": {
-            "key": "challenger",
-            "label": "Challenger",
-            "elo": 1801
+            "key": "elite",
+            "label": "Elite",
+            "elo": 2141
           },
           "away_tier": {
             "key": "underdog",
             "label": "Underdog",
-            "elo": 1734
+            "elo": 1695
           },
-          "pred_home": 2,
-          "pred_away": 1,
-          "pred_winner": "USA",
-          "confidence": 0.594,
-          "status": "played",
-          "hit": "dir",
-          "actual_home": 2,
-          "actual_away": 0,
-          "actual_winner": "USA",
-          "pen_home": null,
-          "pen_away": null,
-          "pen_winner": null
-        },
-        {
-          "home": "Belgium",
-          "away": "Senegal",
-          "home_flag": "\ud83c\udde7\ud83c\uddea",
-          "away_flag": "\ud83c\uddf8\ud83c\uddf3",
-          "home_tier": {
-            "key": "contender",
-            "label": "Contender",
-            "elo": 1928
-          },
-          "away_tier": {
-            "key": "challenger",
-            "label": "Challenger",
-            "elo": 1823
-          },
-          "pred_home": 2,
-          "pred_away": 1,
-          "pred_winner": "Belgium",
-          "confidence": 0.4,
+          "pred_home": 3,
+          "pred_away": 0,
+          "pred_winner": "Argentina",
+          "confidence": 0.813,
           "status": "played",
           "hit": "dir",
           "actual_home": 3,
           "actual_away": 2,
-          "actual_winner": "Belgium",
+          "actual_winner": "Argentina",
           "pen_home": null,
           "pen_away": null,
           "pen_winner": null
         },
         {
-          "home": "Portugal",
-          "away": "Croatia",
-          "home_flag": "\ud83c\uddf5\ud83c\uddf9",
-          "away_flag": "\ud83c\udded\ud83c\uddf7",
+          "home": "Australia",
+          "away": "Egypt",
+          "home_flag": "\ud83c\udde6\ud83c\uddfa",
+          "away_flag": "\ud83c\uddea\ud83c\uddec",
           "home_tier": {
-            "key": "contender",
-            "label": "Contender",
-            "elo": 2013
-          },
-          "away_tier": {
-            "key": "darkhorse",
-            "label": "Dark Horse",
-            "elo": 1899
-          },
-          "pred_home": 1,
-          "pred_away": 0,
-          "pred_winner": "Portugal",
-          "confidence": 0.493,
-          "status": "played",
-          "hit": "dir",
-          "actual_home": 2,
-          "actual_away": 1,
-          "actual_winner": "Portugal",
-          "pen_home": null,
-          "pen_away": null,
-          "pen_winner": null
-        },
-        {
-          "home": "Spain",
-          "away": "Austria",
-          "home_flag": "\ud83c\uddea\ud83c\uddf8",
-          "away_flag": "\ud83c\udde6\ud83c\uddf9",
-          "home_tier": {
-            "key": "elite",
-            "label": "Elite",
-            "elo": 2158
+            "key": "challenger",
+            "label": "Challenger",
+            "elo": 1767
           },
           "away_tier": {
             "key": "challenger",
             "label": "Challenger",
-            "elo": 1794
+            "elo": 1826
           },
-          "pred_home": 2,
-          "pred_away": 0,
-          "pred_winner": "Spain",
-          "confidence": 0.715,
+          "pred_home": 0,
+          "pred_away": 1,
+          "pred_winner": "Egypt",
+          "confidence": 0.387,
           "status": "played",
           "hit": "dir",
-          "actual_home": 3,
-          "actual_away": 0,
-          "actual_winner": "Spain",
-          "pen_home": null,
-          "pen_away": null,
-          "pen_winner": null
+          "actual_home": 1,
+          "actual_away": 1,
+          "actual_winner": "Egypt",
+          "pen_home": 2,
+          "pen_away": 4,
+          "pen_winner": "Egypt"
         },
         {
           "home": "Switzerland",
@@ -2981,62 +3037,6 @@
           "pen_home": null,
           "pen_away": null,
           "pen_winner": null
-        },
-        {
-          "home": "Argentina",
-          "away": "Cape Verde",
-          "home_flag": "\ud83c\udde6\ud83c\uddf7",
-          "away_flag": "\ud83c\udde8\ud83c\uddfb",
-          "home_tier": {
-            "key": "elite",
-            "label": "Elite",
-            "elo": 2141
-          },
-          "away_tier": {
-            "key": "underdog",
-            "label": "Underdog",
-            "elo": 1695
-          },
-          "pred_home": 3,
-          "pred_away": 0,
-          "pred_winner": "Argentina",
-          "confidence": 0.813,
-          "status": "played",
-          "hit": "dir",
-          "actual_home": 3,
-          "actual_away": 2,
-          "actual_winner": "Argentina",
-          "pen_home": null,
-          "pen_away": null,
-          "pen_winner": null
-        },
-        {
-          "home": "Australia",
-          "away": "Egypt",
-          "home_flag": "\ud83c\udde6\ud83c\uddfa",
-          "away_flag": "\ud83c\uddea\ud83c\uddec",
-          "home_tier": {
-            "key": "challenger",
-            "label": "Challenger",
-            "elo": 1767
-          },
-          "away_tier": {
-            "key": "challenger",
-            "label": "Challenger",
-            "elo": 1826
-          },
-          "pred_home": 0,
-          "pred_away": 1,
-          "pred_winner": "Egypt",
-          "confidence": 0.387,
-          "status": "played",
-          "hit": "dir",
-          "actual_home": 1,
-          "actual_away": 1,
-          "actual_winner": "Egypt",
-          "pen_home": 2,
-          "pen_away": 4,
-          "pen_winner": "Egypt"
         }
       ]
     },
@@ -3044,6 +3044,34 @@
       "key": "r16",
       "label": "Round of 16",
       "matches": [
+        {
+          "home": "Paraguay",
+          "away": "France",
+          "home_flag": "\ud83c\uddf5\ud83c\uddfe",
+          "away_flag": "\ud83c\uddeb\ud83c\uddf7",
+          "home_tier": {
+            "key": "challenger",
+            "label": "Challenger",
+            "elo": 1762
+          },
+          "away_tier": {
+            "key": "elite",
+            "label": "Elite",
+            "elo": 2131
+          },
+          "pred_home": 0,
+          "pred_away": 2,
+          "pred_winner": "France",
+          "confidence": 0.773,
+          "status": "played",
+          "hit": "dir",
+          "actual_home": 0,
+          "actual_away": 1,
+          "actual_winner": "France",
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
+        },
         {
           "home": "Canada",
           "away": "Morocco",
@@ -3073,29 +3101,57 @@
           "pen_winner": null
         },
         {
-          "home": "Paraguay",
-          "away": "France",
-          "home_flag": "\ud83c\uddf5\ud83c\uddfe",
-          "away_flag": "\ud83c\uddeb\ud83c\uddf7",
+          "home": "Portugal",
+          "away": "Spain",
+          "home_flag": "\ud83c\uddf5\ud83c\uddf9",
+          "away_flag": "\ud83c\uddea\ud83c\uddf8",
           "home_tier": {
-            "key": "challenger",
-            "label": "Challenger",
-            "elo": 1762
+            "key": "contender",
+            "label": "Contender",
+            "elo": 2013
           },
           "away_tier": {
             "key": "elite",
             "label": "Elite",
-            "elo": 2131
+            "elo": 2158
           },
-          "pred_home": 0,
+          "pred_home": 1,
           "pred_away": 2,
-          "pred_winner": "France",
-          "confidence": 0.773,
-          "status": "played",
-          "hit": "dir",
-          "actual_home": 0,
-          "actual_away": 1,
-          "actual_winner": "France",
+          "pred_winner": "Spain",
+          "confidence": 0.497,
+          "status": "pending",
+          "hit": null,
+          "actual_home": null,
+          "actual_away": null,
+          "actual_winner": null,
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
+        },
+        {
+          "home": "USA",
+          "away": "Belgium",
+          "home_flag": "\ud83c\uddfa\ud83c\uddf8",
+          "away_flag": "\ud83c\udde7\ud83c\uddea",
+          "home_tier": {
+            "key": "challenger",
+            "label": "Challenger",
+            "elo": 1801
+          },
+          "away_tier": {
+            "key": "contender",
+            "label": "Contender",
+            "elo": 1928
+          },
+          "pred_home": 1,
+          "pred_away": 2,
+          "pred_winner": "Belgium",
+          "confidence": 0.387,
+          "status": "pending",
+          "hit": null,
+          "actual_home": null,
+          "actual_away": null,
+          "actual_winner": null,
           "pen_home": null,
           "pen_away": null,
           "pen_winner": null
@@ -3157,52 +3213,24 @@
           "pen_winner": null
         },
         {
-          "home": "USA",
-          "away": "Belgium",
-          "home_flag": "\ud83c\uddfa\ud83c\uddf8",
-          "away_flag": "\ud83c\udde7\ud83c\uddea",
+          "home": "Argentina",
+          "away": "Egypt",
+          "home_flag": "\ud83c\udde6\ud83c\uddf7",
+          "away_flag": "\ud83c\uddea\ud83c\uddec",
           "home_tier": {
-            "key": "challenger",
-            "label": "Challenger",
-            "elo": 1801
-          },
-          "away_tier": {
-            "key": "contender",
-            "label": "Contender",
-            "elo": 1928
-          },
-          "pred_home": 1,
-          "pred_away": 2,
-          "pred_winner": "Belgium",
-          "confidence": 0.387,
-          "status": "pending",
-          "hit": null,
-          "actual_home": null,
-          "actual_away": null,
-          "actual_winner": null,
-          "pen_home": null,
-          "pen_away": null,
-          "pen_winner": null
-        },
-        {
-          "home": "Portugal",
-          "away": "Spain",
-          "home_flag": "\ud83c\uddf5\ud83c\uddf9",
-          "away_flag": "\ud83c\uddea\ud83c\uddf8",
-          "home_tier": {
-            "key": "contender",
-            "label": "Contender",
-            "elo": 2013
-          },
-          "away_tier": {
             "key": "elite",
             "label": "Elite",
-            "elo": 2158
+            "elo": 2141
           },
-          "pred_home": 1,
-          "pred_away": 2,
-          "pred_winner": "Spain",
-          "confidence": 0.497,
+          "away_tier": {
+            "key": "challenger",
+            "label": "Challenger",
+            "elo": 1826
+          },
+          "pred_home": 2,
+          "pred_away": 0,
+          "pred_winner": "Argentina",
+          "confidence": 0.68,
           "status": "pending",
           "hit": null,
           "actual_home": null,
@@ -3231,34 +3259,6 @@
           "pred_away": 1,
           "pred_winner": "Colombia",
           "confidence": 0.412,
-          "status": "pending",
-          "hit": null,
-          "actual_home": null,
-          "actual_away": null,
-          "actual_winner": null,
-          "pen_home": null,
-          "pen_away": null,
-          "pen_winner": null
-        },
-        {
-          "home": "Argentina",
-          "away": "Egypt",
-          "home_flag": "\ud83c\udde6\ud83c\uddf7",
-          "away_flag": "\ud83c\uddea\ud83c\uddec",
-          "home_tier": {
-            "key": "elite",
-            "label": "Elite",
-            "elo": 2141
-          },
-          "away_tier": {
-            "key": "challenger",
-            "label": "Challenger",
-            "elo": 1826
-          },
-          "pred_home": 2,
-          "pred_away": 0,
-          "pred_winner": "Argentina",
-          "confidence": 0.68,
           "status": "pending",
           "hit": null,
           "actual_home": null,
@@ -3303,6 +3303,12 @@
           "pen_winner": null
         },
         {
+          "pending_on": [
+            "Portugal v Spain",
+            "USA v Belgium"
+          ]
+        },
+        {
           "home": "Norway",
           "away": "England",
           "home_flag": "\ud83c\uddf3\ud83c\uddf4",
@@ -3332,14 +3338,8 @@
         },
         {
           "pending_on": [
-            "USA v Belgium",
-            "Portugal v Spain"
-          ]
-        },
-        {
-          "pending_on": [
-            "Switzerland v Colombia",
-            "Argentina v Egypt"
+            "Argentina v Egypt",
+            "Switzerland v Colombia"
           ]
         }
       ]
@@ -3486,7 +3486,7 @@
     "locked_flag": "\ud83c\uddea\ud83c\uddf8",
     "current_pick": "France",
     "current_flag": "\ud83c\uddeb\ud83c\uddf7",
-    "title_pct": 0.2207,
+    "title_pct": 0.2213,
     "holding": false,
     "sims": 20000,
     "r16_played": 4,
@@ -3496,98 +3496,98 @@
     {
       "team": "France",
       "flag": "\ud83c\uddeb\ud83c\uddf7",
-      "title": 0.2207,
-      "final": 0.374,
-      "semi": 0.6686,
+      "title": 0.2213,
+      "final": 0.3715,
+      "semi": 0.66475,
       "advance": 1.0
     },
     {
       "team": "Spain",
       "flag": "\ud83c\uddea\ud83c\uddf8",
-      "title": 0.1767,
-      "final": 0.2796,
-      "semi": 0.4659,
-      "advance": 0.63605
+      "title": 0.1723,
+      "final": 0.2761,
+      "semi": 0.4613,
+      "advance": 0.63545
     },
     {
       "team": "England",
       "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
-      "title": 0.15065,
-      "final": 0.317,
-      "semi": 0.6037,
+      "title": 0.1538,
+      "final": 0.3185,
+      "semi": 0.6023,
       "advance": 1.0
     },
     {
       "team": "Argentina",
       "flag": "\ud83c\udde6\ud83c\uddf7",
-      "title": 0.1441,
-      "final": 0.2789,
-      "semi": 0.48565,
-      "advance": 0.78405
+      "title": 0.14635,
+      "final": 0.2861,
+      "semi": 0.49395,
+      "advance": 0.7893
     },
     {
       "team": "Norway",
       "flag": "\ud83c\uddf3\ud83c\uddf4",
-      "title": 0.06655,
-      "final": 0.1755,
-      "semi": 0.3963,
+      "title": 0.0659,
+      "final": 0.17455,
+      "semi": 0.3977,
       "advance": 1.0
     },
     {
       "team": "Morocco",
       "flag": "\ud83c\uddf2\ud83c\udde6",
-      "title": 0.052,
-      "final": 0.12715,
-      "semi": 0.3314,
+      "title": 0.05705,
+      "final": 0.13195,
+      "semi": 0.33525,
       "advance": 1.0
-    },
-    {
-      "team": "Portugal",
-      "flag": "\ud83c\uddf5\ud83c\uddf9",
-      "title": 0.0508,
-      "final": 0.1004,
-      "semi": 0.22005,
-      "advance": 0.36395
     },
     {
       "team": "Colombia",
       "flag": "\ud83c\udde8\ud83c\uddf4",
-      "title": 0.04995,
-      "final": 0.11915,
-      "semi": 0.2508,
-      "advance": 0.56025
+      "title": 0.04945,
+      "final": 0.1167,
+      "semi": 0.24755,
+      "advance": 0.5659
     },
     {
-      "team": "Switzerland",
-      "flag": "\ud83c\udde8\ud83c\udded",
-      "title": 0.03195,
-      "final": 0.0838,
-      "semi": 0.18425,
-      "advance": 0.43975
+      "team": "Portugal",
+      "flag": "\ud83c\uddf5\ud83c\uddf9",
+      "title": 0.04915,
+      "final": 0.10005,
+      "semi": 0.21785,
+      "advance": 0.36455
     },
     {
       "team": "Belgium",
       "flag": "\ud83c\udde7\ud83c\uddea",
-      "title": 0.0299,
-      "final": 0.0692,
-      "semi": 0.17515,
-      "advance": 0.52805
+      "title": 0.0312,
+      "final": 0.07225,
+      "semi": 0.18275,
+      "advance": 0.5316
+    },
+    {
+      "team": "Switzerland",
+      "flag": "\ud83c\udde8\ud83c\udded",
+      "title": 0.02905,
+      "final": 0.07915,
+      "semi": 0.1826,
+      "advance": 0.4341
     },
     {
       "team": "USA",
       "flag": "\ud83c\uddfa\ud83c\uddf8",
-      "title": 0.02005,
-      "final": 0.04965,
-      "semi": 0.1389,
-      "advance": 0.47195
+      "title": 0.01795,
+      "final": 0.04815,
+      "semi": 0.1381,
+      "advance": 0.4684
     },
     {
       "team": "Egypt",
       "flag": "\ud83c\uddea\ud83c\uddec",
-      "title": 0.00665,
-      "final": 0.02565,
-      "semi": 0.0793,
-      "advance": 0.21595
+      "title": 0.0065,
+      "final": 0.025,
+      "semi": 0.0759,
+      "advance": 0.2107
     }
   ]
 }
