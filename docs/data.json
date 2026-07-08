@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-07T11:33:14.551170+00:00",
+  "generated_at": "2026-07-08T19:46:35.578352+00:00",
   "summary": {
-    "matches_scored": 81,
+    "matches_scored": 83,
     "exact": 9,
-    "direction_only": 53,
-    "miss": 19,
-    "outcome_accuracy": 0.7654,
-    "exact_rate": 0.1111,
-    "pending": 5,
+    "direction_only": 54,
+    "miss": 20,
+    "outcome_accuracy": 0.759,
+    "exact_rate": 0.1084,
+    "pending": 4,
     "futures_open": 2
   },
   "timeline": [
@@ -49,12 +49,12 @@
     },
     {
       "round": "Round of 16",
-      "matches": 6,
+      "matches": 8,
       "exact": 0,
-      "accuracy": 0.8333,
+      "accuracy": 0.75,
       "exact_rate": 0.0,
-      "cum_accuracy": 0.7654,
-      "cum_exact_rate": 0.1111
+      "cum_accuracy": 0.759,
+      "cum_exact_rate": 0.1084
     }
   ],
   "predictions": [
@@ -2509,10 +2509,14 @@
       "pred_away": 1,
       "pred_dir": "A",
       "confidence": 0.412,
-      "status": "pending",
-      "actual_home": null,
-      "actual_away": null,
-      "hit": null
+      "status": "played",
+      "actual_home": 0,
+      "actual_away": 0,
+      "actual_dir": "H",
+      "pen_home": 4,
+      "pen_away": 3,
+      "pen_winner": "Switzerland",
+      "hit": "miss"
     },
     {
       "round": "Round of 16",
@@ -2535,10 +2539,14 @@
       "pred_away": 0,
       "pred_dir": "H",
       "confidence": 0.68,
-      "status": "pending",
-      "actual_home": null,
-      "actual_away": null,
-      "hit": null
+      "status": "played",
+      "actual_home": 3,
+      "actual_away": 2,
+      "actual_dir": "H",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
+      "hit": "dir"
     },
     {
       "round": "Quarter-finals",
@@ -2613,6 +2621,32 @@
       "pred_away": 0,
       "pred_dir": "H",
       "confidence": 0.588,
+      "status": "pending",
+      "actual_home": null,
+      "actual_away": null,
+      "hit": null
+    },
+    {
+      "round": "Quarter-finals",
+      "stage": "qf",
+      "home": "Argentina",
+      "away": "Switzerland",
+      "home_flag": "\ud83c\udde6\ud83c\uddf7",
+      "away_flag": "\ud83c\udde8\ud83c\udded",
+      "home_tier": {
+        "key": "elite",
+        "label": "Elite",
+        "elo": 2141
+      },
+      "away_tier": {
+        "key": "contender",
+        "label": "Contender",
+        "elo": 1965
+      },
+      "pred_home": 1,
+      "pred_away": 0,
+      "pred_dir": "H",
+      "confidence": 0.51,
       "status": "pending",
       "actual_home": null,
       "actual_away": null,
@@ -3265,11 +3299,11 @@
           "pred_away": 0,
           "pred_winner": "Argentina",
           "confidence": 0.68,
-          "status": "pending",
-          "hit": null,
-          "actual_home": null,
-          "actual_away": null,
-          "actual_winner": null,
+          "status": "played",
+          "hit": "dir",
+          "actual_home": 3,
+          "actual_away": 2,
+          "actual_winner": "Argentina",
           "pen_home": null,
           "pen_away": null,
           "pen_winner": null
@@ -3293,14 +3327,14 @@
           "pred_away": 1,
           "pred_winner": "Colombia",
           "confidence": 0.412,
-          "status": "pending",
-          "hit": null,
-          "actual_home": null,
-          "actual_away": null,
-          "actual_winner": null,
-          "pen_home": null,
-          "pen_away": null,
-          "pen_winner": null
+          "status": "played",
+          "hit": "miss",
+          "actual_home": 0,
+          "actual_away": 0,
+          "actual_winner": "Switzerland",
+          "pen_home": 4,
+          "pen_away": 3,
+          "pen_winner": "Switzerland"
         }
       ]
     },
@@ -3393,10 +3427,32 @@
           "pen_winner": null
         },
         {
-          "pending_on": [
-            "Argentina v Egypt",
-            "Switzerland v Colombia"
-          ]
+          "home": "Argentina",
+          "away": "Switzerland",
+          "home_flag": "\ud83c\udde6\ud83c\uddf7",
+          "away_flag": "\ud83c\udde8\ud83c\udded",
+          "home_tier": {
+            "key": "elite",
+            "label": "Elite",
+            "elo": 2141
+          },
+          "away_tier": {
+            "key": "contender",
+            "label": "Contender",
+            "elo": 1965
+          },
+          "pred_home": 1,
+          "pred_away": 0,
+          "pred_winner": "Argentina",
+          "confidence": 0.51,
+          "status": "pending",
+          "hit": null,
+          "actual_home": null,
+          "actual_away": null,
+          "actual_winner": null,
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
         }
       ]
     },
@@ -3432,9 +3488,9 @@
       "label": "Golden Boot",
       "pick": "Kylian Mbappe",
       "flag": "\ud83c\uddeb\ud83c\uddf7",
-      "current": "Kylian Mbappe",
-      "current_flag": "\ud83c\uddeb\ud83c\uddf7",
-      "holding": true,
+      "current": "Lionel Messi",
+      "current_flag": "\ud83c\udde6\ud83c\uddf7",
+      "holding": false,
       "status": "pending"
     }
   ],
@@ -3443,7 +3499,7 @@
     "source": "Public tournament scoring data",
     "locked_pick": "Kylian Mbappe",
     "locked_flag": "\ud83c\uddeb\ud83c\uddf7",
-    "current_pick": "Kylian Mbappe",
+    "current_pick": "Lionel Messi",
     "leader": "Lionel Messi",
     "max_goals": 7,
     "players": [
@@ -3454,9 +3510,9 @@
         "goals": 7,
         "penalty_taker": false,
         "alive": true,
-        "projection": 10.1,
-        "extra": 3.1,
-        "is_pick": false
+        "projection": 10.7,
+        "extra": 3.7,
+        "is_pick": true
       },
       {
         "player": "Kylian Mbappe",
@@ -3467,7 +3523,7 @@
         "alive": true,
         "projection": 10.7,
         "extra": 3.7,
-        "is_pick": true
+        "is_pick": false
       },
       {
         "player": "Erling Haaland",
@@ -3476,8 +3532,8 @@
         "goals": 7,
         "penalty_taker": true,
         "alive": true,
-        "projection": 10.2,
-        "extra": 3.2,
+        "projection": 10.1,
+        "extra": 3.1,
         "is_pick": false
       },
       {
@@ -3542,92 +3598,76 @@
     "locked_flag": "\ud83c\uddea\ud83c\uddf8",
     "current_pick": "Spain",
     "current_flag": "\ud83c\uddea\ud83c\uddf8",
-    "title_pct": 0.2753,
+    "title_pct": 0.2645,
     "holding": true,
     "sims": 20000,
-    "r16_played": 6,
+    "r16_played": 8,
     "r16_total": 8
   },
   "odds": [
     {
       "team": "Spain",
       "flag": "\ud83c\uddea\ud83c\uddf8",
-      "title": 0.2753,
-      "final": 0.4307,
-      "semi": 0.7137,
+      "title": 0.2645,
+      "final": 0.4258,
+      "semi": 0.70585,
       "advance": 1.0
     },
     {
       "team": "France",
       "flag": "\ud83c\uddeb\ud83c\uddf7",
-      "title": 0.20625,
-      "final": 0.3412,
-      "semi": 0.6696,
-      "advance": 1.0
-    },
-    {
-      "team": "England",
-      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
-      "title": 0.1411,
-      "final": 0.3153,
-      "semi": 0.59425,
+      "title": 0.1981,
+      "final": 0.3398,
+      "semi": 0.66435,
       "advance": 1.0
     },
     {
       "team": "Argentina",
       "flag": "\ud83c\udde6\ud83c\uddf7",
-      "title": 0.1388,
-      "final": 0.2859,
-      "semi": 0.4919,
-      "advance": 0.78445
+      "title": 0.1812,
+      "final": 0.3686,
+      "semi": 0.64515,
+      "advance": 1.0
+    },
+    {
+      "team": "England",
+      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+      "title": 0.145,
+      "final": 0.31085,
+      "semi": 0.5992,
+      "advance": 1.0
     },
     {
       "team": "Norway",
       "flag": "\ud83c\uddf3\ud83c\uddf4",
-      "title": 0.0619,
-      "final": 0.1777,
-      "semi": 0.40575,
+      "title": 0.0601,
+      "final": 0.1659,
+      "semi": 0.4008,
+      "advance": 1.0
+    },
+    {
+      "team": "Switzerland",
+      "flag": "\ud83c\udde8\ud83c\udded",
+      "title": 0.0544,
+      "final": 0.15465,
+      "semi": 0.35485,
       "advance": 1.0
     },
     {
       "team": "Belgium",
       "flag": "\ud83c\udde7\ud83c\uddea",
-      "title": 0.04915,
-      "final": 0.1127,
-      "semi": 0.2863,
+      "title": 0.0498,
+      "final": 0.11705,
+      "semi": 0.29415,
       "advance": 1.0
     },
     {
       "team": "Morocco",
       "flag": "\ud83c\uddf2\ud83c\udde6",
-      "title": 0.04695,
-      "final": 0.1154,
-      "semi": 0.3304,
+      "title": 0.0469,
+      "final": 0.11735,
+      "semi": 0.33565,
       "advance": 1.0
-    },
-    {
-      "team": "Colombia",
-      "flag": "\ud83c\udde8\ud83c\uddf4",
-      "title": 0.0463,
-      "final": 0.119,
-      "semi": 0.25395,
-      "advance": 0.56925
-    },
-    {
-      "team": "Switzerland",
-      "flag": "\ud83c\udde8\ud83c\udded",
-      "title": 0.0277,
-      "final": 0.0769,
-      "semi": 0.1739,
-      "advance": 0.43075
-    },
-    {
-      "team": "Egypt",
-      "flag": "\ud83c\uddea\ud83c\uddec",
-      "title": 0.00655,
-      "final": 0.0252,
-      "semi": 0.08025,
-      "advance": 0.21555
     },
     {
       "team": "Paraguay",
@@ -3640,6 +3680,22 @@
     {
       "team": "Canada",
       "flag": "\ud83c\udde8\ud83c\udde6",
+      "title": 0.0,
+      "final": 0.0,
+      "semi": 0.0,
+      "advance": 0.0
+    },
+    {
+      "team": "Portugal",
+      "flag": "\ud83c\uddf5\ud83c\uddf9",
+      "title": 0.0,
+      "final": 0.0,
+      "semi": 0.0,
+      "advance": 0.0
+    },
+    {
+      "team": "USA",
+      "flag": "\ud83c\uddfa\ud83c\uddf8",
       "title": 0.0,
       "final": 0.0,
       "semi": 0.0,
