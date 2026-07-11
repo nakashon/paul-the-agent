@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-11T06:23:56.731820+00:00",
+  "generated_at": "2026-07-11T11:23:55.135432+00:00",
   "summary": {
     "matches_scored": 85,
     "exact": 9,
@@ -3563,9 +3563,9 @@
       "label": "Golden Boot",
       "pick": "Kylian Mbappe",
       "flag": "\ud83c\uddeb\ud83c\uddf7",
-      "current": "Lionel Messi",
-      "current_flag": "\ud83c\udde6\ud83c\uddf7",
-      "holding": false,
+      "current": "Kylian Mbappe",
+      "current_flag": "\ud83c\uddeb\ud83c\uddf7",
+      "holding": true,
       "status": "pending"
     }
   ],
@@ -3574,7 +3574,7 @@
     "source": "Public tournament scoring data",
     "locked_pick": "Kylian Mbappe",
     "locked_flag": "\ud83c\uddeb\ud83c\uddf7",
-    "current_pick": "Lionel Messi",
+    "current_pick": "Kylian Mbappe",
     "leader": "Lionel Messi",
     "max_goals": 7,
     "players": [
@@ -3587,7 +3587,7 @@
         "alive": true,
         "projection": 10.7,
         "extra": 3.7,
-        "is_pick": true
+        "is_pick": false
       },
       {
         "player": "Kylian Mbappe",
@@ -3596,9 +3596,9 @@
         "goals": 7,
         "penalty_taker": true,
         "alive": true,
-        "projection": 10.7,
-        "extra": 3.7,
-        "is_pick": false
+        "projection": 11.2,
+        "extra": 4.2,
+        "is_pick": true
       },
       {
         "player": "Erling Haaland",
@@ -3629,8 +3629,8 @@
         "goals": 4,
         "penalty_taker": false,
         "alive": true,
-        "projection": 6.1,
-        "extra": 2.1,
+        "projection": 6.4,
+        "extra": 2.4,
         "is_pick": false
       },
       {
@@ -3651,8 +3651,8 @@
         "goals": 4,
         "penalty_taker": true,
         "alive": true,
-        "projection": 6.2,
-        "extra": 2.2,
+        "projection": 6.5,
+        "extra": 2.5,
         "is_pick": false
       },
       {
@@ -3673,7 +3673,7 @@
     "locked_flag": "\ud83c\uddea\ud83c\uddf8",
     "current_pick": "Spain",
     "current_flag": "\ud83c\uddea\ud83c\uddf8",
-    "title_pct": 0.2618,
+    "title_pct": 0.34775,
     "holding": true,
     "sims": 20000,
     "r16_played": 8,
@@ -3683,65 +3683,49 @@
     {
       "team": "Spain",
       "flag": "\ud83c\uddea\ud83c\uddf8",
-      "title": 0.2618,
-      "final": 0.4184,
-      "semi": 0.70195,
+      "title": 0.34775,
+      "final": 0.54765,
+      "semi": 1.0,
       "advance": 1.0
     },
     {
       "team": "France",
       "flag": "\ud83c\uddeb\ud83c\uddf7",
-      "title": 0.2027,
-      "final": 0.345,
-      "semi": 0.66815,
+      "title": 0.2621,
+      "final": 0.45235,
+      "semi": 1.0,
       "advance": 1.0
     },
     {
       "team": "Argentina",
       "flag": "\ud83c\udde6\ud83c\uddf7",
-      "title": 0.18695,
-      "final": 0.3784,
-      "semi": 0.64715,
+      "title": 0.1602,
+      "final": 0.36955,
+      "semi": 0.64465,
       "advance": 1.0
     },
     {
       "team": "England",
       "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
-      "title": 0.1422,
-      "final": 0.30675,
-      "semi": 0.6044,
+      "title": 0.1293,
+      "final": 0.31415,
+      "semi": 0.6026,
       "advance": 1.0
     },
     {
       "team": "Norway",
       "flag": "\ud83c\uddf3\ud83c\uddf4",
-      "title": 0.0572,
-      "final": 0.1641,
-      "semi": 0.3956,
+      "title": 0.0527,
+      "final": 0.1647,
+      "semi": 0.3974,
       "advance": 1.0
     },
     {
       "team": "Switzerland",
       "flag": "\ud83c\udde8\ud83c\udded",
-      "title": 0.053,
-      "final": 0.15075,
-      "semi": 0.35285,
-      "advance": 1.0
-    },
-    {
-      "team": "Belgium",
-      "flag": "\ud83c\udde7\ud83c\uddea",
-      "title": 0.0485,
-      "final": 0.11835,
-      "semi": 0.29805,
-      "advance": 1.0
-    },
-    {
-      "team": "Morocco",
-      "flag": "\ud83c\uddf2\ud83c\udde6",
-      "title": 0.04765,
-      "final": 0.11825,
-      "semi": 0.33185,
+      "title": 0.04795,
+      "final": 0.1516,
+      "semi": 0.35535,
       "advance": 1.0
     },
     {
@@ -3761,6 +3745,14 @@
       "advance": 0.0
     },
     {
+      "team": "Morocco",
+      "flag": "\ud83c\uddf2\ud83c\udde6",
+      "title": 0.0,
+      "final": 0.0,
+      "semi": 0.0,
+      "advance": 1.0
+    },
+    {
       "team": "Portugal",
       "flag": "\ud83c\uddf5\ud83c\uddf9",
       "title": 0.0,
@@ -3775,6 +3767,14 @@
       "final": 0.0,
       "semi": 0.0,
       "advance": 0.0
+    },
+    {
+      "team": "Belgium",
+      "flag": "\ud83c\udde7\ud83c\uddea",
+      "title": 0.0,
+      "final": 0.0,
+      "semi": 0.0,
+      "advance": 1.0
     }
   ]
 }

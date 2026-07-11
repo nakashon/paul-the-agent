@@ -10,6 +10,12 @@ ensemble model, recording who lifts the trophy in each simulation.
     python3 scripts/simulate_bracket.py            # 20,000 sims (default)
     python3 scripts/simulate_bracket.py 10000      # custom count
 
+Every already-played knockout match (at ANY stage — R16, QF, SF, Final) is
+read straight from match_results and locked in as a certainty rather than
+re-rolled, so re-running this after each new round's results come in
+automatically stops re-simulating whatever just became real — no per-round
+code changes needed.
+
 Writes champion / reach-final / reach-semi / reach-QF probabilities to
 sim_results, so the site's Title Race reflects the actual draw.
 """
@@ -91,28 +97,33 @@ def play(a, b, p):
 
 
 def load_decided(con):
-    """Map each R16 tie to its real winner, for ties already played (penalties
-    count as the decider on a level score) — so the sim stops re-rolling a
-    knockout that has already happened in reality."""
+    """Map every real (home, away) knockout tie to its winner, across ALL
+    rounds recorded so far in match_results (R16, QF, SF, Final alike) —
+    penalties count as the decider on a level score. Used so the sim stops
+    re-rolling any knockout that has already happened in reality, at
+    whichever stage it happened. Re-run after every new round's results and
+    it picks up whatever's newly decided automatically."""
     decided = {}
-    for h, a in R16:
-        row = con.execute(
-            "SELECT home, away, hg, ag, pen_home, pen_away FROM match_results "
-            "WHERE (home=? AND away=?) OR (home=? AND away=?)",
-            (h, a, a, h)).fetchone()
-        if row is None:
-            continue
-        sh, sa, hg, ag, ph, pa = row
+    rows = con.execute(
+        "SELECT home, away, hg, ag, pen_home, pen_away FROM match_results "
+        "WHERE matchday >= 5").fetchall()
+    for h, a, hg, ag, ph, pa in rows:
         if hg > ag:
-            winner = sh
+            winner = h
         elif hg < ag:
-            winner = sa
+            winner = a
         elif ph is not None and pa is not None:
-            winner = sh if ph > pa else sa
+            winner = h if ph > pa else a
         else:
             continue  # stored as level with no shootout — not actually decided
         decided[(h, a)] = winner
     return decided
+
+
+def resolve(a, b, decided, p):
+    """Real winner if this exact tie has already been played (either order);
+    otherwise a modeled coin-flip."""
+    return decided.get((a, b)) or decided.get((b, a)) or play(a, b, p)
 
 
 def main():
@@ -123,7 +134,7 @@ def main():
     con = sqlite3.connect(DB)
     decided = load_decided(con)
     if decided:
-        print("Locking in already-played R16 results (no more re-rolling these):")
+        print("Locking in already-played knockout results (no more re-rolling these):")
         for (h, a), w in decided.items():
             print(f"  {h} v {a} -> {w} advance")
         print()
@@ -135,19 +146,19 @@ def main():
 
     for _ in range(n):
         # Round of 16 -> 8 quarter-finalists (already-played ties are locked in)
-        qf_teams = [decided.get((h, a)) or play(h, a, p) for (h, a) in R16]
+        qf_teams = [resolve(h, a, decided, p) for (h, a) in R16]
         for t in qf_teams:
             reach_qf[t] += 1
-        # Quarter-finals -> 4 semi-finalists
-        sf_teams = [play(qf_teams[i], qf_teams[i + 1], p) for i in range(0, 8, 2)]
+        # Quarter-finals -> 4 semi-finalists (already-played ties are locked in)
+        sf_teams = [resolve(qf_teams[i], qf_teams[i + 1], decided, p) for i in range(0, 8, 2)]
         for t in sf_teams:
             reach_semi[t] += 1
-        # Semi-finals -> 2 finalists
-        f_teams = [play(sf_teams[i], sf_teams[i + 1], p) for i in range(0, 4, 2)]
+        # Semi-finals -> 2 finalists (already-played ties are locked in)
+        f_teams = [resolve(sf_teams[i], sf_teams[i + 1], decided, p) for i in range(0, 4, 2)]
         for t in f_teams:
             reach_final[t] += 1
-        # Final
-        champ = play(f_teams[0], f_teams[1], p)
+        # Final (locked in if already played)
+        champ = resolve(f_teams[0], f_teams[1], decided, p)
         title[champ] += 1
 
     rows = sorted(title, key=lambda t: title[t], reverse=True)
