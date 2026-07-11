@@ -216,9 +216,27 @@ def build_futures(con, gb_pick=None):
 
 
 def load_alive(con):
-    """Teams still in the tournament = the 16 Round-of-16 participants."""
-    return {t for (t,) in con.execute(
+    """Teams still alive right now: the 16 Round-of-16 participants, minus
+    anyone eliminated since by a real recorded knockout result (R16, QF, SF,
+    Final alike) — re-derived every run so it never goes stale mid-round."""
+    teams = {t for (t,) in con.execute(
         "SELECT home FROM locked_bets_r16 UNION SELECT away FROM locked_bets_r16")}
+    cols = {c[1] for c in con.execute("PRAGMA table_info(match_results)")}
+    pen = ", pen_home, pen_away" if {"pen_home", "pen_away"} <= cols else ""
+    for row in con.execute(f"SELECT home, away, hg, ag, matchday{pen} FROM match_results "
+                            f"WHERE matchday >= 5"):
+        home, away, hg, ag = row[0], row[1], row[2], row[3]
+        ph, pa = (row[5], row[6]) if pen else (None, None)
+        if hg > ag:
+            loser = away
+        elif hg < ag:
+            loser = home
+        elif ph is not None and pa is not None:
+            loser = away if ph > pa else home
+        else:
+            continue  # level with no shootout on record — not actually decided
+        teams.discard(loser)
+    return teams
 
 
 def build_golden_boot(con, alive):

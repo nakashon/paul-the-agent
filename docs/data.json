@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-11T11:23:55.135432+00:00",
+  "generated_at": "2026-07-11T11:37:33.387245+00:00",
   "summary": {
     "matches_scored": 85,
     "exact": 9,
@@ -3570,34 +3570,34 @@
     }
   ],
   "golden_boot": {
-    "as_of": "Through the Round of 32",
+    "as_of": "Through the Round of 16",
     "source": "Public tournament scoring data",
     "locked_pick": "Kylian Mbappe",
     "locked_flag": "\ud83c\uddeb\ud83c\uddf7",
     "current_pick": "Kylian Mbappe",
     "leader": "Lionel Messi",
-    "max_goals": 7,
+    "max_goals": 8,
     "players": [
       {
         "player": "Lionel Messi",
         "country": "Argentina",
         "flag": "\ud83c\udde6\ud83c\uddf7",
-        "goals": 7,
+        "goals": 8,
         "penalty_taker": false,
         "alive": true,
-        "projection": 10.7,
-        "extra": 3.7,
+        "projection": 11.4,
+        "extra": 3.4,
         "is_pick": false
       },
       {
         "player": "Kylian Mbappe",
         "country": "France",
         "flag": "\ud83c\uddeb\ud83c\uddf7",
-        "goals": 7,
+        "goals": 8,
         "penalty_taker": true,
         "alive": true,
-        "projection": 11.2,
-        "extra": 4.2,
+        "projection": 11.9,
+        "extra": 3.9,
         "is_pick": true
       },
       {
@@ -3607,8 +3607,8 @@
         "goals": 7,
         "penalty_taker": true,
         "alive": true,
-        "projection": 10.1,
-        "extra": 3.1,
+        "projection": 9.5,
+        "extra": 2.5,
         "is_pick": false
       },
       {
@@ -3618,18 +3618,18 @@
         "goals": 6,
         "penalty_taker": true,
         "alive": true,
-        "projection": 9.1,
-        "extra": 3.1,
+        "projection": 8.4,
+        "extra": 2.4,
         "is_pick": false
       },
       {
         "player": "Ousmane Dembele",
         "country": "France",
         "flag": "\ud83c\uddeb\ud83c\uddf7",
-        "goals": 4,
+        "goals": 5,
         "penalty_taker": false,
         "alive": true,
-        "projection": 6.4,
+        "projection": 7.4,
         "extra": 2.4,
         "is_pick": false
       },
@@ -3639,9 +3639,9 @@
         "flag": "\ud83c\udde7\ud83c\uddf7",
         "goals": 4,
         "penalty_taker": false,
-        "alive": true,
-        "projection": 4.7,
-        "extra": 0.7,
+        "alive": false,
+        "projection": 4.0,
+        "extra": 0.0,
         "is_pick": false
       },
       {
@@ -3651,8 +3651,8 @@
         "goals": 4,
         "penalty_taker": true,
         "alive": true,
-        "projection": 6.5,
-        "extra": 2.5,
+        "projection": 6.0,
+        "extra": 2.0,
         "is_pick": false
       },
       {
@@ -3665,6 +3665,28 @@
         "projection": 4.0,
         "extra": 0.0,
         "is_pick": false
+      },
+      {
+        "player": "Julian Quinones",
+        "country": "Mexico",
+        "flag": "\ud83c\uddf2\ud83c\uddfd",
+        "goals": 4,
+        "penalty_taker": false,
+        "alive": false,
+        "projection": 4.0,
+        "extra": 0.0,
+        "is_pick": false
+      },
+      {
+        "player": "Jude Bellingham",
+        "country": "England",
+        "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+        "goals": 4,
+        "penalty_taker": false,
+        "alive": true,
+        "projection": 5.6,
+        "extra": 1.6,
+        "is_pick": false
       }
     ]
   },
@@ -3673,7 +3695,7 @@
     "locked_flag": "\ud83c\uddea\ud83c\uddf8",
     "current_pick": "Spain",
     "current_flag": "\ud83c\uddea\ud83c\uddf8",
-    "title_pct": 0.34775,
+    "title_pct": 0.34355,
     "holding": true,
     "sims": 20000,
     "r16_played": 8,
@@ -3683,97 +3705,49 @@
     {
       "team": "Spain",
       "flag": "\ud83c\uddea\ud83c\uddf8",
-      "title": 0.34775,
-      "final": 0.54765,
+      "title": 0.34355,
+      "final": 0.54915,
       "semi": 1.0,
       "advance": 1.0
     },
     {
       "team": "France",
       "flag": "\ud83c\uddeb\ud83c\uddf7",
-      "title": 0.2621,
-      "final": 0.45235,
+      "title": 0.26105,
+      "final": 0.45085,
       "semi": 1.0,
       "advance": 1.0
     },
     {
       "team": "Argentina",
       "flag": "\ud83c\udde6\ud83c\uddf7",
-      "title": 0.1602,
-      "final": 0.36955,
-      "semi": 0.64465,
+      "title": 0.16725,
+      "final": 0.37435,
+      "semi": 0.6461,
       "advance": 1.0
     },
     {
       "team": "England",
       "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
-      "title": 0.1293,
-      "final": 0.31415,
-      "semi": 0.6026,
+      "title": 0.126,
+      "final": 0.3038,
+      "semi": 0.60395,
       "advance": 1.0
     },
     {
       "team": "Norway",
       "flag": "\ud83c\uddf3\ud83c\uddf4",
-      "title": 0.0527,
-      "final": 0.1647,
-      "semi": 0.3974,
+      "title": 0.05145,
+      "final": 0.1658,
+      "semi": 0.39605,
       "advance": 1.0
     },
     {
       "team": "Switzerland",
       "flag": "\ud83c\udde8\ud83c\udded",
-      "title": 0.04795,
-      "final": 0.1516,
-      "semi": 0.35535,
-      "advance": 1.0
-    },
-    {
-      "team": "Paraguay",
-      "flag": "\ud83c\uddf5\ud83c\uddfe",
-      "title": 0.0,
-      "final": 0.0,
-      "semi": 0.0,
-      "advance": 0.0
-    },
-    {
-      "team": "Canada",
-      "flag": "\ud83c\udde8\ud83c\udde6",
-      "title": 0.0,
-      "final": 0.0,
-      "semi": 0.0,
-      "advance": 0.0
-    },
-    {
-      "team": "Morocco",
-      "flag": "\ud83c\uddf2\ud83c\udde6",
-      "title": 0.0,
-      "final": 0.0,
-      "semi": 0.0,
-      "advance": 1.0
-    },
-    {
-      "team": "Portugal",
-      "flag": "\ud83c\uddf5\ud83c\uddf9",
-      "title": 0.0,
-      "final": 0.0,
-      "semi": 0.0,
-      "advance": 0.0
-    },
-    {
-      "team": "USA",
-      "flag": "\ud83c\uddfa\ud83c\uddf8",
-      "title": 0.0,
-      "final": 0.0,
-      "semi": 0.0,
-      "advance": 0.0
-    },
-    {
-      "team": "Belgium",
-      "flag": "\ud83c\udde7\ud83c\uddea",
-      "title": 0.0,
-      "final": 0.0,
-      "semi": 0.0,
+      "title": 0.0507,
+      "final": 0.15605,
+      "semi": 0.3539,
       "advance": 1.0
     }
   ]
