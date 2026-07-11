@@ -83,7 +83,8 @@ def load_conf(con):
     """Map (home, away) -> model win probability for the picked winner."""
     conf = {}
     for table in ("locked_bets_md2", "locked_bets_md3",
-                  "locked_bets_r32", "locked_bets_r16", "locked_bets_qf"):
+                  "locked_bets_r32", "locked_bets_r16", "locked_bets_qf",
+                  "locked_bets_sf"):
         for home, away, c in con.execute(
                 f"SELECT home, away, conf FROM {table}"):
             if c is not None:
@@ -129,6 +130,7 @@ SOURCES = [
     ("locked_bets_r32", "home, away, hg, ag", "r32", "Round of 32"),
     ("locked_bets_r16", "home, away, hg, ag", "r16", "Round of 16"),
     ("locked_bets_qf", "home, away, hg, ag", "qf", "Quarter-finals"),
+    ("locked_bets_sf", "home, away, hg, ag", "sf", "Semi-finals"),
 ]
 
 
@@ -411,10 +413,35 @@ def build_bracket(preds):
         pending = [f"{h} v {a}" for (h, a), w in ((tie_a, wa), (tie_b, wb)) if not w]
         return {"pending_on": pending}
 
+    def sf_match(qf_a, qf_b):
+        """Resolve the real semi-final fed by two adjacent quarter-final ties
+        (each itself a pair of R16 ties). Returns the locked prediction once
+        both QFs are decided; otherwise a small "awaiting" marker naming
+        whichever QF tie(s) still need to finish."""
+        def qf_winner_or_wait(qf_tie):
+            tie_a, tie_b = qf_tie
+            m = qf_match(tie_a, tie_b)
+            if m and m.get("actual_winner"):
+                return m["actual_winner"], None
+            if m and "pending_on" in m:
+                return None, m["pending_on"]
+            # QF matchup is locked but hasn't been played yet.
+            label = f"{m['home']} v {m['away']}" if m else \
+                f"{tie_a[0]} v {tie_a[1]} / {tie_b[0]} v {tie_b[1]}"
+            return None, [label]
+
+        wa, pa = qf_winner_or_wait(qf_a)
+        wb, pb = qf_winner_or_wait(qf_b)
+        if wa and wb:
+            return match_from((wa, wb)) or match_from((wb, wa))
+        pending = [x for lst in (pa, pb) if lst for x in lst]
+        return {"pending_on": pending}
+
     def placeholders(n):
         return [None] * n
 
     qf_ties = [(R16_ORDER[i], R16_ORDER[i + 1]) for i in range(0, 8, 2)]
+    sf_ties = [(qf_ties[0], qf_ties[1]), (qf_ties[2], qf_ties[3])]
     return [
         {"key": "r32", "label": "Round of 32",
          "matches": [match_from(x) for x in R32_ORDER]},
@@ -422,7 +449,8 @@ def build_bracket(preds):
          "matches": [match_from(x) for x in R16_ORDER]},
         {"key": "qf", "label": "Quarter-finals",
          "matches": [qf_match(a, b) for a, b in qf_ties]},
-        {"key": "sf", "label": "Semi-finals", "matches": placeholders(2)},
+        {"key": "sf", "label": "Semi-finals",
+         "matches": [sf_match(a, b) for a, b in sf_ties]},
         {"key": "final", "label": "Final", "matches": placeholders(1)},
     ]
 
