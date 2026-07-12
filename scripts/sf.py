@@ -37,6 +37,7 @@ SF_LABELS = ["SF-1", "SF-2"]
 # Ties without an entry here (not yet a real fixture) fall back to ELO+FORM.
 SF_MARKET = {
     ("France", "Spain"): (2.44, 3.27, 3.16),
+    ("England", "Argentina"): (2.68, 3.00, 2.88),
 }
 
 
