@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-07-12T04:29:28.127688+00:00",
+  "generated_at": "2026-07-16T08:34:36.240366+00:00",
   "summary": {
-    "matches_scored": 87,
+    "matches_scored": 89,
     "exact": 10,
-    "direction_only": 57,
-    "miss": 20,
-    "outcome_accuracy": 0.7701,
-    "exact_rate": 0.1149,
-    "pending": 2,
+    "direction_only": 58,
+    "miss": 21,
+    "outcome_accuracy": 0.764,
+    "exact_rate": 0.1124,
+    "pending": 1,
     "futures_open": 2
   },
   "timeline": [
@@ -64,6 +64,15 @@
       "exact_rate": 0.25,
       "cum_accuracy": 0.7701,
       "cum_exact_rate": 0.1149
+    },
+    {
+      "round": "Semi-finals",
+      "matches": 2,
+      "exact": 0,
+      "accuracy": 0.5,
+      "exact_rate": 0.0,
+      "cum_accuracy": 0.764,
+      "cum_exact_rate": 0.1124
     }
   ],
   "predictions": [
@@ -2698,10 +2707,14 @@
       "pred_away": 0,
       "pred_dir": "H",
       "confidence": 0.363,
-      "status": "pending",
-      "actual_home": null,
-      "actual_away": null,
-      "hit": null
+      "status": "played",
+      "actual_home": 0,
+      "actual_away": 2,
+      "actual_dir": "A",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
+      "hit": "miss"
     },
     {
       "round": "Semi-finals",
@@ -2724,6 +2737,36 @@
       "pred_away": 1,
       "pred_dir": "A",
       "confidence": 0.355,
+      "status": "played",
+      "actual_home": 1,
+      "actual_away": 2,
+      "actual_dir": "A",
+      "pen_home": null,
+      "pen_away": null,
+      "pen_winner": null,
+      "hit": "dir"
+    },
+    {
+      "round": "Final",
+      "stage": "final",
+      "home": "Spain",
+      "away": "Argentina",
+      "home_flag": "\ud83c\uddea\ud83c\uddf8",
+      "away_flag": "\ud83c\udde6\ud83c\uddf7",
+      "home_tier": {
+        "key": "elite",
+        "label": "Elite",
+        "elo": 2158
+      },
+      "away_tier": {
+        "key": "elite",
+        "label": "Elite",
+        "elo": 2141
+      },
+      "pred_home": 2,
+      "pred_away": 1,
+      "pred_dir": "H",
+      "confidence": 0.444,
       "status": "pending",
       "actual_home": null,
       "actual_away": null,
@@ -3556,11 +3599,11 @@
           "pred_away": 0,
           "pred_winner": "France",
           "confidence": 0.363,
-          "status": "pending",
-          "hit": null,
-          "actual_home": null,
-          "actual_away": null,
-          "actual_winner": null,
+          "status": "played",
+          "hit": "miss",
+          "actual_home": 0,
+          "actual_away": 2,
+          "actual_winner": "Spain",
           "pen_home": null,
           "pen_away": null,
           "pen_winner": null
@@ -3584,11 +3627,11 @@
           "pred_away": 1,
           "pred_winner": "Argentina",
           "confidence": 0.355,
-          "status": "pending",
-          "hit": null,
-          "actual_home": null,
-          "actual_away": null,
-          "actual_winner": null,
+          "status": "played",
+          "hit": "dir",
+          "actual_home": 1,
+          "actual_away": 2,
+          "actual_winner": "Argentina",
           "pen_home": null,
           "pen_away": null,
           "pen_winner": null
@@ -3599,7 +3642,34 @@
       "key": "final",
       "label": "Final",
       "matches": [
-        null
+        {
+          "home": "Spain",
+          "away": "Argentina",
+          "home_flag": "\ud83c\uddea\ud83c\uddf8",
+          "away_flag": "\ud83c\udde6\ud83c\uddf7",
+          "home_tier": {
+            "key": "elite",
+            "label": "Elite",
+            "elo": 2158
+          },
+          "away_tier": {
+            "key": "elite",
+            "label": "Elite",
+            "elo": 2141
+          },
+          "pred_home": 2,
+          "pred_away": 1,
+          "pred_winner": "Spain",
+          "confidence": 0.444,
+          "status": "pending",
+          "hit": null,
+          "actual_home": null,
+          "actual_away": null,
+          "actual_winner": null,
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
+        }
       ]
     }
   ],
@@ -3626,7 +3696,7 @@
     }
   ],
   "golden_boot": {
-    "as_of": "Through the Quarterfinals",
+    "as_of": "Through the Semi-finals",
     "source": "Public tournament scoring data",
     "locked_pick": "Kylian Mbappe",
     "locked_flag": "\ud83c\uddeb\ud83c\uddf7",
@@ -3641,8 +3711,8 @@
         "goals": 8,
         "penalty_taker": false,
         "alive": true,
-        "projection": 11.3,
-        "extra": 3.3,
+        "projection": 11.2,
+        "extra": 3.2,
         "is_pick": true
       },
       {
@@ -3651,9 +3721,9 @@
         "flag": "\ud83c\uddeb\ud83c\uddf7",
         "goals": 8,
         "penalty_taker": true,
-        "alive": true,
-        "projection": 11.2,
-        "extra": 3.2,
+        "alive": false,
+        "projection": 8.0,
+        "extra": 0.0,
         "is_pick": false
       },
       {
@@ -3673,9 +3743,9 @@
         "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
         "goals": 6,
         "penalty_taker": true,
-        "alive": true,
-        "projection": 8.4,
-        "extra": 2.4,
+        "alive": false,
+        "projection": 6.0,
+        "extra": 0.0,
         "is_pick": false
       },
       {
@@ -3684,9 +3754,9 @@
         "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
         "goals": 6,
         "penalty_taker": false,
-        "alive": true,
-        "projection": 8.4,
-        "extra": 2.4,
+        "alive": false,
+        "projection": 6.0,
+        "extra": 0.0,
         "is_pick": false
       },
       {
@@ -3695,6 +3765,17 @@
         "flag": "\ud83c\uddeb\ud83c\uddf7",
         "goals": 5,
         "penalty_taker": false,
+        "alive": false,
+        "projection": 5.0,
+        "extra": 0.0,
+        "is_pick": false
+      },
+      {
+        "player": "Mikel Oyarzabal",
+        "country": "Spain",
+        "flag": "\ud83c\uddea\ud83c\uddf8",
+        "goals": 5,
+        "penalty_taker": true,
         "alive": true,
         "projection": 7.0,
         "extra": 2.0,
@@ -3709,17 +3790,6 @@
         "alive": false,
         "projection": 4.0,
         "extra": 0.0,
-        "is_pick": false
-      },
-      {
-        "player": "Mikel Oyarzabal",
-        "country": "Spain",
-        "flag": "\ud83c\uddea\ud83c\uddf8",
-        "goals": 4,
-        "penalty_taker": true,
-        "alive": true,
-        "projection": 5.7,
-        "extra": 1.7,
         "is_pick": false
       },
       {
@@ -3751,7 +3821,7 @@
     "locked_flag": "\ud83c\uddea\ud83c\uddf8",
     "current_pick": "Spain",
     "current_flag": "\ud83c\uddea\ud83c\uddf8",
-    "title_pct": 0.3263,
+    "title_pct": 0.58475,
     "holding": true,
     "sims": 20000,
     "r16_played": 8,
@@ -3761,32 +3831,16 @@
     {
       "team": "Spain",
       "flag": "\ud83c\uddea\ud83c\uddf8",
-      "title": 0.3263,
-      "final": 0.55205,
-      "semi": 1.0,
-      "advance": 1.0
-    },
-    {
-      "team": "France",
-      "flag": "\ud83c\uddeb\ud83c\uddf7",
-      "title": 0.24635,
-      "final": 0.44795,
+      "title": 0.58475,
+      "final": 1.0,
       "semi": 1.0,
       "advance": 1.0
     },
     {
       "team": "Argentina",
       "flag": "\ud83c\udde6\ud83c\uddf7",
-      "title": 0.237,
-      "final": 0.5438,
-      "semi": 1.0,
-      "advance": 1.0
-    },
-    {
-      "team": "England",
-      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
-      "title": 0.19035,
-      "final": 0.4562,
+      "title": 0.41525,
+      "final": 1.0,
       "semi": 1.0,
       "advance": 1.0
     }

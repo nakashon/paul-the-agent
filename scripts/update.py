@@ -7,9 +7,11 @@ Run this after logging new results and goals to refresh everything, in order:
                            (never touches a QF tie once it's already locked)
   4. sf.py               — lock in any semi-final ties that just became knowable
                            (never touches an SF tie once it's already locked)
-  5. simulate_bracket.py — re-run the bracket-aware Monte Carlo for live title odds
+  5. final.py            — lock in the Final once both semi-finals are decided
+                           (never touches it once it's already locked)
+  6. simulate_bracket.py — re-run the bracket-aware Monte Carlo for live title odds
                            (plays the actual set draw, not a bracket-blind reseed)
-  6. export_site.py      — regenerate docs/data.json for the website
+  7. export_site.py      — regenerate docs/data.json for the website
 
 Usage:
     # 1) log whatever came in first:
@@ -32,7 +34,8 @@ def run(script):
 
 
 def main():
-    for s in ("calibrate.py", "model.py", "qf.py", "sf.py", "simulate_bracket.py", "export_site.py"):
+    for s in ("calibrate.py", "model.py", "qf.py", "sf.py", "final.py",
+              "simulate_bracket.py", "export_site.py"):
         run(s)
     print("\n🐙 Paul the Agent — fully synced: model, title odds, and site data are all up to date.")
 
