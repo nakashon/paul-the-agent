@@ -251,24 +251,68 @@ def load_alive(con):
     return teams
 
 
+def load_third_place_pending(con):
+    """Semi-final losers who haven't played the third-place match yet. The
+    bracket sim only models the path to the title, so it has no notion of
+    this consolation match - Golden Boot projection has to add it back in
+    by hand for the two teams it actually applies to."""
+    cols = {c[1] for c in con.execute("PRAGMA table_info(match_results)")}
+    pen = ", pen_home, pen_away" if {"pen_home", "pen_away"} <= cols else ""
+    sf_losers, third_played = set(), set()
+    for row in con.execute(f"SELECT home, away, hg, ag, matchday{pen} FROM match_results "
+                            f"WHERE matchday IN (7, 9)"):
+        home, away, hg, ag, md = row[0], row[1], row[2], row[3], row[4]
+        ph, pa = (row[5], row[6]) if pen else (None, None)
+        if hg > ag:
+            winner, loser = home, away
+        elif hg < ag:
+            winner, loser = away, home
+        elif ph is not None and pa is not None:
+            winner, loser = (home, away) if ph > pa else (away, home)
+        else:
+            continue  # level with no shootout on record — not actually decided
+        if md == 7:
+            sf_losers.add(loser)
+        else:
+            third_played.add(home)
+            third_played.add(away)
+    return sf_losers - third_played
+
+
 def build_golden_boot(con, alive):
     """Live golden-boot standings: real current goal tallies (tracked in the
     gb_live table, updated after every matchday via scripts/goals.py) plus
     Paul's re-projected pick, which weighs each contender's current goals
-    against how deep his team is expected to run."""
+    against how many matches his team actually has left."""
     ensure_gb_tables(con)
     standings = [(p, c, g, bool(pen)) for p, c, g, pen in con.execute(
         "SELECT player, country, goals, penalty_taker FROM gb_live")]
     games_played, as_of, source = con.execute(
         "SELECT games_played, as_of, source FROM gb_meta WHERE id=1").fetchone()
 
-    # Expected remaining matches per team from the tournament simulation:
-    # they play the R16 tie for sure, then each later match with the modeled
-    # probability of reaching it.
-    depth = {}
+    # Total knockout matches (R16 through Final) the sim expects each team to
+    # play: the R16 tie for sure, then each later match with the modeled
+    # probability of reaching it. This total blends already-played rounds
+    # (probability settles to 1.0 once decided) with genuinely future ones.
+    total_knockout = {}
     for team, title, final, semi, adv in con.execute(
             "SELECT team, title, final, semi, adv FROM sim_results"):
-        depth[team] = 1.0 + (adv or 0) + (semi or 0) + (final or 0)
+        total_knockout[team] = 1.0 + (adv or 0) + (semi or 0) + (final or 0)
+
+    # How many of those knockout matches has each team actually played
+    # already (already reflected in their goal tally)? Subtract that out so
+    # we only project forward for matches genuinely still ahead - otherwise
+    # a team that's already played its R16/QF/SF gets those re-counted as
+    # "remaining" on top of the goals it already banked from them.
+    played = {}
+    for home, away in con.execute("SELECT home, away FROM match_results WHERE matchday >= 5"):
+        played[home] = played.get(home, 0) + 1
+        played[away] = played.get(away, 0) + 1
+
+    # The sim only models the path to the title, so a semi-final loser shows
+    # zero future probability in it even though they still have the
+    # third-place match to play - add that back in explicitly.
+    third_pending = load_third_place_pending(con)
 
     # Knockout scoring regresses (tougher defenses, fewer blowouts), so damp
     # the extrapolated rate rather than projecting group-stage pace forward.
@@ -277,7 +321,12 @@ def build_golden_boot(con, alive):
     for player, country, goals, pen in standings:
         is_alive = country in alive
         rate = goals / games_played
-        e_rem = depth.get(country, 1.0) if is_alive else 0.0
+        if is_alive:
+            e_rem = max(total_knockout.get(country, 1.0) - played.get(country, 0), 0.0)
+            if country in third_pending:
+                e_rem += 1.0
+        else:
+            e_rem = 0.0
         extra = rate * e_rem * KO_DAMP
         projection = goals + extra
         rows.append({

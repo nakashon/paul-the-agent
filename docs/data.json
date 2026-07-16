@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-16T08:41:26.773331+00:00",
+  "generated_at": "2026-07-16T09:13:15.196276+00:00",
   "summary": {
     "matches_scored": 89,
     "exact": 10,
@@ -3711,8 +3711,8 @@
         "goals": 8,
         "penalty_taker": false,
         "alive": true,
-        "projection": 11.2,
-        "extra": 3.2,
+        "projection": 8.8,
+        "extra": 0.8,
         "is_pick": true
       },
       {
@@ -3722,8 +3722,8 @@
         "goals": 8,
         "penalty_taker": true,
         "alive": true,
-        "projection": 10.4,
-        "extra": 2.4,
+        "projection": 8.8,
+        "extra": 0.8,
         "is_pick": false
       },
       {
@@ -3744,8 +3744,8 @@
         "goals": 6,
         "penalty_taker": true,
         "alive": true,
-        "projection": 7.8,
-        "extra": 1.8,
+        "projection": 6.6,
+        "extra": 0.6,
         "is_pick": false
       },
       {
@@ -3755,8 +3755,8 @@
         "goals": 6,
         "penalty_taker": false,
         "alive": true,
-        "projection": 7.8,
-        "extra": 1.8,
+        "projection": 6.6,
+        "extra": 0.6,
         "is_pick": false
       },
       {
@@ -3766,8 +3766,8 @@
         "goals": 5,
         "penalty_taker": false,
         "alive": true,
-        "projection": 6.5,
-        "extra": 1.5,
+        "projection": 5.5,
+        "extra": 0.5,
         "is_pick": false
       },
       {
@@ -3777,8 +3777,8 @@
         "goals": 5,
         "penalty_taker": true,
         "alive": true,
-        "projection": 7.0,
-        "extra": 2.0,
+        "projection": 5.5,
+        "extra": 0.5,
         "is_pick": false
       },
       {
@@ -3821,7 +3821,7 @@
     "locked_flag": "\ud83c\uddea\ud83c\uddf8",
     "current_pick": "Spain",
     "current_flag": "\ud83c\uddea\ud83c\uddf8",
-    "title_pct": 0.58025,
+    "title_pct": 0.5842,
     "holding": true,
     "sims": 20000,
     "r16_played": 8,
@@ -3831,7 +3831,7 @@
     {
       "team": "Spain",
       "flag": "\ud83c\uddea\ud83c\uddf8",
-      "title": 0.58025,
+      "title": 0.5842,
       "final": 1.0,
       "semi": 1.0,
       "advance": 1.0
@@ -3839,7 +3839,7 @@
     {
       "team": "Argentina",
       "flag": "\ud83c\udde6\ud83c\uddf7",
-      "title": 0.41975,
+      "title": 0.4158,
       "final": 1.0,
       "semi": 1.0,
       "advance": 1.0
