@@ -319,20 +319,24 @@ function bracketMatch(m) {
 function renderBracket(rounds) {
   const wrap = document.getElementById("bracketTree");
   if (!rounds || !rounds.length) return;
-  rounds.forEach((r) => {
-    // The third-place playoff is a standalone consolation match run alongside
-    // the Final, not a continuation of the elimination chain -- keep it free
-    // of bracket connector lines on both sides.
-    const detached = r.key === "third";
-    const first = r.key === "r32" || detached;
-    const last = r.key === "final" || detached;
-    const col = el("div", `round r-${r.key}` + (first ? " r-first" : "") + (last ? " r-last" : "") + (detached ? " r-detached" : ""));
+  // The third-place playoff runs alongside the Final, not as a further step
+  // in the elimination chain -- render it stacked under the Final's own
+  // column instead of as an extra bracket column.
+  const thirdRound = rounds.find((r) => r.key === "third");
+  const mainRounds = rounds.filter((r) => r.key !== "third");
+  mainRounds.forEach((r, ri) => {
+    const col = el("div", `round r-${r.key}` + (ri === 0 ? " r-first" : "") + (ri === mainRounds.length - 1 ? " r-last" : ""));
     col.appendChild(el("div", "round-head", r.label));
     r.matches.forEach((m) => {
       const cell = el("div", "match");
       cell.innerHTML = bracketMatch(m);
       col.appendChild(cell);
     });
+    if (r.key === "final" && thirdRound) {
+      const sub = el("div", "third-slot");
+      sub.innerHTML = `<div class="third-label">${thirdRound.label}</div>${bracketMatch(thirdRound.matches[0])}`;
+      col.appendChild(sub);
+    }
     wrap.appendChild(col);
   });
 }
