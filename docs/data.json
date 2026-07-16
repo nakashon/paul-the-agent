@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-16T09:13:15.196276+00:00",
+  "generated_at": "2026-07-16T09:31:37.503798+00:00",
   "summary": {
     "matches_scored": 89,
     "exact": 10,
@@ -7,7 +7,7 @@
     "miss": 21,
     "outcome_accuracy": 0.764,
     "exact_rate": 0.1124,
-    "pending": 1,
+    "pending": 2,
     "futures_open": 2
   },
   "timeline": [
@@ -2771,6 +2771,32 @@
       "actual_home": null,
       "actual_away": null,
       "hit": null
+    },
+    {
+      "round": "Third-place",
+      "stage": "third",
+      "home": "France",
+      "away": "England",
+      "home_flag": "\ud83c\uddeb\ud83c\uddf7",
+      "away_flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+      "home_tier": {
+        "key": "elite",
+        "label": "Elite",
+        "elo": 2131
+      },
+      "away_tier": {
+        "key": "elite",
+        "label": "Elite",
+        "elo": 2052
+      },
+      "pred_home": 1,
+      "pred_away": 0,
+      "pred_dir": "H",
+      "confidence": 0.415,
+      "status": "pending",
+      "actual_home": null,
+      "actual_away": null,
+      "hit": null
     }
   ],
   "bracket": [
@@ -3671,6 +3697,40 @@
           "pen_winner": null
         }
       ]
+    },
+    {
+      "key": "third",
+      "label": "Third-place",
+      "matches": [
+        {
+          "home": "France",
+          "away": "England",
+          "home_flag": "\ud83c\uddeb\ud83c\uddf7",
+          "away_flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+          "home_tier": {
+            "key": "elite",
+            "label": "Elite",
+            "elo": 2131
+          },
+          "away_tier": {
+            "key": "elite",
+            "label": "Elite",
+            "elo": 2052
+          },
+          "pred_home": 1,
+          "pred_away": 0,
+          "pred_winner": "France",
+          "confidence": 0.415,
+          "status": "pending",
+          "hit": null,
+          "actual_home": null,
+          "actual_away": null,
+          "actual_winner": null,
+          "pen_home": null,
+          "pen_away": null,
+          "pen_winner": null
+        }
+      ]
     }
   ],
   "futures": [
@@ -3821,7 +3881,7 @@
     "locked_flag": "\ud83c\uddea\ud83c\uddf8",
     "current_pick": "Spain",
     "current_flag": "\ud83c\uddea\ud83c\uddf8",
-    "title_pct": 0.5842,
+    "title_pct": 0.57995,
     "holding": true,
     "sims": 20000,
     "r16_played": 8,
@@ -3831,7 +3891,7 @@
     {
       "team": "Spain",
       "flag": "\ud83c\uddea\ud83c\uddf8",
-      "title": 0.5842,
+      "title": 0.57995,
       "final": 1.0,
       "semi": 1.0,
       "advance": 1.0
@@ -3839,7 +3899,7 @@
     {
       "team": "Argentina",
       "flag": "\ud83c\udde6\ud83c\uddf7",
-      "title": 0.4158,
+      "title": 0.42005,
       "final": 1.0,
       "semi": 1.0,
       "advance": 1.0

@@ -228,6 +228,8 @@ main, .nav, .foot { position: relative; z-index: 1; }
 .round:not(.r-first) .match::before {
   content: ""; position: absolute; left: -1px; top: 25%; height: 50%; width: 2px; background: var(--line);
 }
+/* Third-place playoff: a side match, not a continuation of the ladder */
+.round.r-detached { margin-left: 24px; padding-left: 24px; border-left: 1px dashed var(--card-brd); }
 .bx {
   width: 100%; background: var(--card); border: 1px solid var(--card-brd); border-radius: 12px;
   padding: 9px 11px; backdrop-filter: blur(6px); position: relative; z-index: 1;

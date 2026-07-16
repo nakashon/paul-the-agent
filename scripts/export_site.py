@@ -84,7 +84,7 @@ def load_conf(con):
     conf = {}
     for table in ("locked_bets_md2", "locked_bets_md3",
                   "locked_bets_r32", "locked_bets_r16", "locked_bets_qf",
-                  "locked_bets_sf", "locked_bets_final"):
+                  "locked_bets_sf", "locked_bets_final", "locked_bets_third"):
         for home, away, c in con.execute(
                 f"SELECT home, away, conf FROM {table}"):
             if c is not None:
@@ -97,7 +97,7 @@ def load_scoring(con):
     return {s: (d, e) for s, d, e in rows}
 
 
-KNOCKOUT_STAGES = {"r32", "r16", "qf", "sf", "final"}
+KNOCKOUT_STAGES = {"r32", "r16", "qf", "sf", "final", "third"}
 
 
 def load_results(con):
@@ -132,6 +132,7 @@ SOURCES = [
     ("locked_bets_qf", "home, away, hg, ag", "qf", "Quarter-finals"),
     ("locked_bets_sf", "home, away, hg, ag", "sf", "Semi-finals"),
     ("locked_bets_final", "home, away, hg, ag", "final", "Final"),
+    ("locked_bets_third", "home, away, hg, ag", "third", "Third-place"),
 ]
 
 
@@ -541,6 +542,32 @@ def build_bracket(preds):
         pending = [x for lst in (pa, pb) if lst for x in lst]
         return {"pending_on": pending}
 
+    def third_match(sf_a, sf_b):
+        """Resolve the real third-place playoff fed by the LOSERS of the two
+        semi-finals (each itself a pair of adjacent QF ties). Returns the
+        locked prediction once both SFs are decided; otherwise a small
+        "awaiting" marker naming whichever SF tie(s) still need to finish."""
+        def sf_loser_or_wait(sf_tie):
+            qf_a, qf_b = sf_tie
+            m = sf_match(qf_a, qf_b)
+            if m and m.get("actual_winner"):
+                loser = m["away"] if m["actual_winner"] == m["home"] else m["home"]
+                return loser, None
+            if m and "pending_on" in m:
+                return None, m["pending_on"]
+            # SF matchup is locked but hasn't been played yet.
+            label = f"{m['home']} v {m['away']}" if m else \
+                f"{qf_a[0][0]} v {qf_a[0][1]} / {qf_a[1][0]} v {qf_a[1][1]} " \
+                f"or {qf_b[0][0]} v {qf_b[0][1]} / {qf_b[1][0]} v {qf_b[1][1]}"
+            return None, [label]
+
+        la, pa = sf_loser_or_wait(sf_a)
+        lb, pb = sf_loser_or_wait(sf_b)
+        if la and lb:
+            return match_from((la, lb)) or match_from((lb, la))
+        pending = [x for lst in (pa, pb) if lst for x in lst]
+        return {"pending_on": pending}
+
     qf_ties = [(R16_ORDER[i], R16_ORDER[i + 1]) for i in range(0, 8, 2)]
     sf_ties = [(qf_ties[0], qf_ties[1]), (qf_ties[2], qf_ties[3])]
     return [
@@ -554,6 +581,8 @@ def build_bracket(preds):
          "matches": [sf_match(a, b) for a, b in sf_ties]},
         {"key": "final", "label": "Final",
          "matches": [final_match(sf_ties[0], sf_ties[1])]},
+        {"key": "third", "label": "Third-place",
+         "matches": [third_match(sf_ties[0], sf_ties[1])]},
     ]
 
 

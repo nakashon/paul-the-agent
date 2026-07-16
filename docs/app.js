@@ -166,10 +166,10 @@ function renderTable(filter) {
 
 function renderFilters(preds) {
   const wrap = document.getElementById("filters");
-  const stageOrder = ["group", "r32", "r16", "qf", "sf", "final"];
+  const stageOrder = ["group", "r32", "r16", "qf", "sf", "third", "final"];
   const stages = [...new Set(preds.map((p) => p.stage))]
     .sort((a, b) => stageOrder.indexOf(a) - stageOrder.indexOf(b));
-  const stageLabel = { group: "Group", r32: "Round of 32", r16: "Round of 16", qf: "Quarters", sf: "Semis", final: "Final" };
+  const stageLabel = { group: "Group", r32: "Round of 32", r16: "Round of 16", qf: "Quarters", sf: "Semis", third: "Third-place", final: "Final" };
   // Default to the latest (current) round so the page opens compact, not with
   // every result from the whole tournament.
   const current = stages[stages.length - 1] || "all";
@@ -319,8 +319,14 @@ function bracketMatch(m) {
 function renderBracket(rounds) {
   const wrap = document.getElementById("bracketTree");
   if (!rounds || !rounds.length) return;
-  rounds.forEach((r, ri) => {
-    const col = el("div", `round r-${r.key}` + (ri === 0 ? " r-first" : "") + (ri === rounds.length - 1 ? " r-last" : ""));
+  rounds.forEach((r) => {
+    // The third-place playoff is a standalone consolation match run alongside
+    // the Final, not a continuation of the elimination chain -- keep it free
+    // of bracket connector lines on both sides.
+    const detached = r.key === "third";
+    const first = r.key === "r32" || detached;
+    const last = r.key === "final" || detached;
+    const col = el("div", `round r-${r.key}` + (first ? " r-first" : "") + (last ? " r-last" : "") + (detached ? " r-detached" : ""));
     col.appendChild(el("div", "round-head", r.label));
     r.matches.forEach((m) => {
       const cell = el("div", "match");
