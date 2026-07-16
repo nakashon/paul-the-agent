@@ -18,7 +18,8 @@ Notes
   score). The script refuses to save a level knockout score without it, so the
   winner who advances is always recorded.
 * The round (matchday) is detected automatically from Paul's locked fixtures;
-  pass ``--md N`` to override (1-3 group, 4 R32, 5 R16, 6 QF, 7 SF, 8 Final).
+  pass ``--md N`` to override (1-3 group, 4 R32, 5 R16, 6 QF, 7 SF, 8 Final,
+  9 Third-place).
 * After saving, re-run the export to refresh the site:
       python3 scripts/export_site.py
 """
@@ -36,8 +37,8 @@ STAGE_TABLES = [
     ("locked_bets_r32", 4, "Round of 32"),
     ("locked_bets_r16", 5, "Round of 16"),
 ]
-KNOCKOUT_MD = {4, 5, 6, 7, 8}
-MD_LABEL = {6: "Quarter-final", 7: "Semi-final", 8: "Final"}
+KNOCKOUT_MD = {4, 5, 6, 7, 8, 9}
+MD_LABEL = {6: "Quarter-final", 7: "Semi-final", 8: "Final", 9: "Third-place"}
 
 
 def die(msg):
@@ -107,7 +108,7 @@ def parse_args(argv):
             try:
                 md = int(argv[i + 1])
             except (IndexError, ValueError):
-                die("--md needs a number 1-8")
+                die("--md needs a number 1-9")
             i += 2
         else:
             pos.append(a)
@@ -141,7 +142,7 @@ def main():
         md, label = md_override, MD_LABEL.get(md_override, label or f"Matchday {md_override}")
     if md is None:
         die(f"couldn't find {home} v {away} in Paul's fixtures — "
-            f"pass --md N (1-3 group, 4 R32, 5 R16, 6 QF, 7 SF, 8 Final)")
+            f"pass --md N (1-3 group, 4 R32, 5 R16, 6 QF, 7 SF, 8 Final, 9 Third-place)")
 
     # A level knockout tie must be settled on penalties.
     if hg == ag and md in KNOCKOUT_MD and pens is None:

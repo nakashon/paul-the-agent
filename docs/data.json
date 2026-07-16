@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-16T08:34:36.240366+00:00",
+  "generated_at": "2026-07-16T08:41:26.773331+00:00",
   "summary": {
     "matches_scored": 89,
     "exact": 10,
@@ -3721,9 +3721,9 @@
         "flag": "\ud83c\uddeb\ud83c\uddf7",
         "goals": 8,
         "penalty_taker": true,
-        "alive": false,
-        "projection": 8.0,
-        "extra": 0.0,
+        "alive": true,
+        "projection": 10.4,
+        "extra": 2.4,
         "is_pick": false
       },
       {
@@ -3743,9 +3743,9 @@
         "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
         "goals": 6,
         "penalty_taker": true,
-        "alive": false,
-        "projection": 6.0,
-        "extra": 0.0,
+        "alive": true,
+        "projection": 7.8,
+        "extra": 1.8,
         "is_pick": false
       },
       {
@@ -3754,9 +3754,9 @@
         "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
         "goals": 6,
         "penalty_taker": false,
-        "alive": false,
-        "projection": 6.0,
-        "extra": 0.0,
+        "alive": true,
+        "projection": 7.8,
+        "extra": 1.8,
         "is_pick": false
       },
       {
@@ -3765,9 +3765,9 @@
         "flag": "\ud83c\uddeb\ud83c\uddf7",
         "goals": 5,
         "penalty_taker": false,
-        "alive": false,
-        "projection": 5.0,
-        "extra": 0.0,
+        "alive": true,
+        "projection": 6.5,
+        "extra": 1.5,
         "is_pick": false
       },
       {
@@ -3821,7 +3821,7 @@
     "locked_flag": "\ud83c\uddea\ud83c\uddf8",
     "current_pick": "Spain",
     "current_flag": "\ud83c\uddea\ud83c\uddf8",
-    "title_pct": 0.58475,
+    "title_pct": 0.58025,
     "holding": true,
     "sims": 20000,
     "r16_played": 8,
@@ -3831,7 +3831,7 @@
     {
       "team": "Spain",
       "flag": "\ud83c\uddea\ud83c\uddf8",
-      "title": 0.58475,
+      "title": 0.58025,
       "final": 1.0,
       "semi": 1.0,
       "advance": 1.0
@@ -3839,8 +3839,24 @@
     {
       "team": "Argentina",
       "flag": "\ud83c\udde6\ud83c\uddf7",
-      "title": 0.41525,
+      "title": 0.41975,
       "final": 1.0,
+      "semi": 1.0,
+      "advance": 1.0
+    },
+    {
+      "team": "France",
+      "flag": "\ud83c\uddeb\ud83c\uddf7",
+      "title": 0.0,
+      "final": 0.0,
+      "semi": 1.0,
+      "advance": 1.0
+    },
+    {
+      "team": "England",
+      "flag": "\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f",
+      "title": 0.0,
+      "final": 0.0,
       "semi": 1.0,
       "advance": 1.0
     }
