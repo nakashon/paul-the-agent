@@ -188,7 +188,7 @@ def build_predictions(con, scoring, results, elo, conf):
     return out
 
 
-def build_futures(con, gb_pick=None):
+def build_futures(con, gb_pick=None, gb_final=False):
     out = []
     picks = dict(con.execute("SELECT bet, pick FROM locked_futures"))
     labels = {"champion": "Champion", "golden_boot": "Golden Boot"}
@@ -196,6 +196,11 @@ def build_futures(con, gb_pick=None):
     # Current model-favourite for each market.
     champ_row = con.execute(
         "SELECT team FROM sim_results ORDER BY title DESC LIMIT 1").fetchone()
+    # The champion market is only truly settled once the Final has been played;
+    # golden_boot is settled once nobody's tournament run is still ongoing.
+    champion_decided = con.execute(
+        "SELECT 1 FROM match_results WHERE matchday = 8 LIMIT 1").fetchone() is not None
+    decided = {"champion": champion_decided, "golden_boot": gb_final}
     current = {
         "champion": champ_row[0] if champ_row else None,
         "golden_boot": gb_pick,
@@ -204,6 +209,8 @@ def build_futures(con, gb_pick=None):
     for kind, pick in picks.items():
         cur = current.get(kind)
         is_player = kind == "golden_boot"
+        is_decided = decided.get(kind, False)
+        status = ("won" if cur == pick else "lost") if is_decided else "pending"
         out.append({
             "kind": kind,
             "label": labels.get(kind, kind.title()),
@@ -212,7 +219,7 @@ def build_futures(con, gb_pick=None):
             "current": cur,
             "current_flag": (flag_for_player(con, cur) if is_player else flag(cur.split(" ")[-1])) if cur else "",
             "holding": (cur == pick),
-            "status": "pending",
+            "status": status,
         })
     return out
 
@@ -339,8 +346,16 @@ def build_golden_boot(con, alive):
     rows.sort(key=lambda r: -r["goals"])  # goals scored so far sets the board order
 
     # Paul's current pick = best projected finish among players still in.
-    pick = max((r for r in rows if r["alive"]),
-               key=lambda r: r["projection"], default=None)
+    # Once nobody is "alive" any more (every team's tournament run, including
+    # the Final and third-place match, has been played out), there's no more
+    # projecting to do — the award is decided outright by whoever scored the
+    # most goals overall.
+    tournament_over = len(alive) == 0
+    if tournament_over:
+        pick = rows[0] if rows else None
+    else:
+        pick = max((r for r in rows if r["alive"]),
+                   key=lambda r: r["projection"], default=None)
     for r in rows:
         r["is_pick"] = bool(pick and r["player"] == pick["player"])
 
@@ -354,6 +369,7 @@ def build_golden_boot(con, alive):
         "locked_flag": flag_for_player(con, locked[0]) if locked else "",
         "current_pick": pick["player"] if pick else None,
         "leader": rows[0]["player"] if rows else None,
+        "final": tournament_over,
         "max_goals": max_goals,
         "players": rows,
     }
@@ -614,7 +630,7 @@ def summarize(preds, futures):
         "outcome_accuracy": round(correct / n, 4) if n else 0,
         "exact_rate": round(exact / n, 4) if n else 0,
         "pending": sum(1 for p in preds if p["status"] == "pending"),
-        "futures_open": len(futures),
+        "futures_open": sum(1 for f in futures if f["status"] == "pending"),
     }
 
 
@@ -693,7 +709,7 @@ def main():
     preds = build_predictions(con, scoring, results, elo, conf)
     alive = load_alive(con)
     golden_boot = build_golden_boot(con, alive)
-    futures = build_futures(con, gb_pick=golden_boot.get("current_pick"))
+    futures = build_futures(con, gb_pick=golden_boot.get("current_pick"), gb_final=golden_boot.get("final", False))
     odds = build_odds(con, alive)
     title_race = build_title_race(con, odds, preds)
     bracket = build_bracket(preds)

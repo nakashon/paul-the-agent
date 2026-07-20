@@ -270,6 +270,7 @@ main, .nav, .foot { position: relative; z-index: 1; }
 .pb-tag { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 6px 12px; border-radius: 8px; white-space: nowrap; }
 .pb-drift { background: rgba(245,197,66,0.16); color: var(--gold); }
 .pb-hold { background: rgba(52,230,164,0.14); color: var(--green); }
+.pb-final { background: rgba(52,230,164,0.2); color: var(--green); }
 
 /* Golden boot race */
 
@@ -312,6 +313,8 @@ main, .nav, .foot { position: relative; z-index: 1; }
 .f-chip { align-self: flex-start; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; padding: 5px 12px; border-radius: 999px; white-space: nowrap; }
 .chip-hold { color: var(--green); background: rgba(52,211,153,0.12); border: 1px solid rgba(52,211,153,0.32); }
 .chip-drift { color: var(--amber); background: rgba(251,191,36,0.12); border: 1px solid rgba(251,191,36,0.32); }
+.chip-won { color: var(--green); background: rgba(52,211,153,0.2); border: 1px solid rgba(52,211,153,0.45); }
+.chip-lost { color: var(--faint); background: rgba(148,163,184,0.12); border: 1px solid rgba(148,163,184,0.28); }
 
 /* Trend chart */
 .trend-wrap {

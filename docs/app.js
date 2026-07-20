@@ -203,18 +203,20 @@ function renderFutures(futures) {
     const picks = el("div", "f-picks");
     picks.innerHTML = `
       <div class="f-slot">
-        <span class="f-slabel">Original pick</span>
+        <span class="f-slabel">${f.status === "pending" ? "Original pick" : "Locked pick"}</span>
         <span class="f-team f-orig"><span class="flag">${f.flag}</span> ${f.pick}</span>
       </div>
       <div class="f-arrow">${changed ? "→" : "="}</div>
       <div class="f-slot">
-        <span class="f-slabel">Current pick</span>
+        <span class="f-slabel">${f.status === "pending" ? "Current pick" : "Result"}</span>
         <span class="f-team f-curr"><span class="flag">${f.current_flag}</span> ${f.current}</span>
       </div>`;
     info.appendChild(picks);
     card.appendChild(info);
-    card.appendChild(el("div", "f-chip " + (changed ? "chip-drift" : "chip-hold"),
-      changed ? "Changed" : "Holding"));
+    const chip = f.status === "won" ? { cls: "chip-won", txt: "Won" }
+      : f.status === "lost" ? { cls: "chip-lost", txt: "Lost" }
+      : { cls: changed ? "chip-drift" : "chip-hold", txt: changed ? "Changed" : "Holding" };
+    card.appendChild(el("div", `f-chip ${chip.cls}`, chip.txt));
     wrap.appendChild(card);
   });
 }
@@ -224,16 +226,19 @@ function pickBanner(o) {
     ? `<div class="pb-orig">Original pick:
          <span class="flag">${o.origFlag || ""}</span> <s>${o.original}</s></div>`
     : "";
+  const lbl = o.final ? "Golden Boot winner" : (o.changed ? "Paul's current pick" : "Paul's pick");
+  const tag = o.final ? "Final" : (o.changed ? "Updated pick" : "Holding");
+  const tagClass = o.final ? "pb-final" : (o.changed ? "pb-drift" : "pb-hold");
   return `
     <div class="pb-ic">${o.icon}</div>
     <div class="pb-main">
-      <div class="pb-lbl">${o.changed ? "Paul's current pick" : "Paul's pick"}</div>
+      <div class="pb-lbl">${lbl}</div>
       <div class="pb-name"><span class="flag">${o.flag}</span> ${o.name}
         <span class="pb-metric">${o.metric}</span></div>
       ${orig}
       <div class="pb-sub">${o.sub}</div>
     </div>
-    <div class="pb-tag ${o.changed ? "pb-drift" : "pb-hold"}">${o.changed ? "Updated pick" : "Holding"}</div>`;
+    <div class="pb-tag ${tagClass}">${tag}</div>`;
 }
 
 function renderGoldenBoot(gb) {
@@ -251,11 +256,15 @@ function renderGoldenBoot(gb) {
     pickHost.innerHTML = pickBanner({
       icon: "🏆", flag: pk.flag || "", name: gb.current_pick,
       metric: `${pk.goals} goals`,
-      changed,
+      changed, final: gb.final,
       original: gb.locked_pick, origFlag: gb.locked_flag,
-      sub: changed
-        ? `Shifted off the locked pick <b>${gb.locked_pick}</b> — ${gb.current_pick} leads the race and his team is projected deep. On pace for <b>~${pk.projection}</b>.`
-        : `Still backing the locked pick <b>${gb.locked_pick}</b>. On pace for <b>~${pk.projection}</b>.`,
+      sub: gb.final
+        ? (changed
+            ? `Finishes ahead of the locked pick <b>${gb.locked_pick}</b> — <b>${gb.current_pick}</b> ends the tournament as top scorer with <b>${pk.goals}</b> goals.`
+            : `The locked pick <b>${gb.locked_pick}</b> ends the tournament as top scorer with <b>${pk.goals}</b> goals.`)
+        : (changed
+            ? `Shifted off the locked pick <b>${gb.locked_pick}</b> — ${gb.current_pick} leads the race and his team is projected deep. On pace for <b>~${pk.projection}</b>.`
+            : `Still backing the locked pick <b>${gb.locked_pick}</b>. On pace for <b>~${pk.projection}</b>.`),
     });
   }
 
@@ -264,12 +273,15 @@ function renderGoldenBoot(gb) {
     const row = el("div", "gb-row" + (g.is_pick ? " gb-lead" : "") + (!g.alive ? " gb-out" : ""));
     row.appendChild(el("div", "gb-rank", `${i + 1}`));
     const meta = g.is_pick
-      ? `<span class="gb-badge">Paul's pick</span>`
+      ? `<span class="gb-badge">${gb.final ? "Golden Boot" : "Paul's pick"}</span>`
       : (!g.alive ? `<span class="gb-badge gb-elim">Eliminated</span>` : "");
+    const note = g.is_pick && gb.final
+      ? " · tournament top scorer"
+      : (g.alive && g.extra ? ` · on pace for ~${g.projection}` : (g.alive ? "" : " · out of the tournament"));
     row.appendChild(
       el("div", "gb-name",
         `<span class="flag">${g.flag}</span> ${g.player}${g.penalty_taker ? ' <span class="gb-pen" title="Penalty taker">⚽</span>' : ""}
-         <div class="gb-note">${g.country}${g.alive && g.extra ? ` · on pace for ~${g.projection}` : (g.alive ? "" : " · out of the tournament")}</div>`)
+         <div class="gb-note">${g.country}${note}</div>`)
     );
     row.appendChild(meta ? el("div", "gb-mid", meta) : el("div", "gb-mid"));
     const bar = el("div", "gb-bar");
